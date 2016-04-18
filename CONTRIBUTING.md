@@ -1,0 +1,28 @@
+## Create a new module
+
+To add a new module, follow these steps:
+
+1. Fork the repo
+2. Create a new branch (`git checkout -b my-new-feature`)
+3. Add a new file in `modules/src/` folder (define `match` and `process` functions)
+4. Add some tests in `modules/tests/` folder (run them locally with `py.test`)
+5. Add the module name in `src/__init__.py`
+6. Commit your changes (`git commit -am 'Add some feature'`)
+7. Push to the branch (`git push origin my-new-feature`)
+8. Create a Pull Request 
+
+## Improve an existing module
+
+To fix a bug or enhance an existing module, follow these steps:
+
+1. Fork the repo
+2. Create a new branch (`git checkout -b improve-feature`)
+3. Make the appropriate changes in the required file in `modules/src/` folder
+4. Add / Edit tests in `modules/tests/` folder to reflect the changes made (run them locally with `py.test`)
+5. Commit your changes (`git commit -am 'Improve feature'`)
+6. Push to the branch (`git push origin improve-feature`)
+7. Create a Pull Request 
+
+You may take this [commit](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/ee974e44d027f8bdc4329a35e1d8410d7779acb2) as a reference.
+
+Apart from these, contributions directly to the framework are also welcome!

@@ -3,6 +3,7 @@ from flask import Flask, request
 import json
 import os
 import requests
+import modules
 
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN', config.ACCESS_TOKEN)
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', config.VERIFY_TOKEN)
@@ -27,7 +28,7 @@ def webhook():
                         'id': sender
                     },
                     'message': {
-                        'text': 'At your service, sir.'
+                        'text': modules.search(text)
                     }
                 }
                 r = requests.post('https://graph.facebook.com/v2.6/me/messages', params={'access_token': ACCESS_TOKEN}, json=payload)

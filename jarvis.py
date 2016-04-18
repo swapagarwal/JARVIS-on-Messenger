@@ -11,8 +11,8 @@ VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', config.VERIFY_TOKEN)
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return 'Hello World!'
+def about():
+    return 'Just A Rather Very Intelligent System, now on Messenger!'
 
 @app.route('/webhook/', methods=['GET', 'POST'])
 def webhook():

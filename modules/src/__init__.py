@@ -1,4 +1,5 @@
 __all__ = [
     'movie',
-    'joke'
+    'joke',
+    'hello'
 ]

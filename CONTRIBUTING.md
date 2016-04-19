@@ -25,4 +25,8 @@ To fix a bug or enhance an existing module, follow these steps:
 
 You may take this [commit](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/ee974e44d027f8bdc4329a35e1d8410d7779acb2) as a reference.
 
+Keep the code as simple as possible. No need of obfuscation / code golf.
+
+If you have to explain your code, you're doing it wrong!
+
 Apart from these, contributions directly to the framework are also welcome!

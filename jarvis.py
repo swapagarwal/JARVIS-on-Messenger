@@ -14,6 +14,10 @@ app = Flask(__name__)
 def about():
     return 'Just A Rather Very Intelligent System, now on Messenger!'
 
+@app.route('/test/')
+def test():
+    return modules.search(request.args.get('q'))
+
 @app.route('/webhook/', methods=['GET', 'POST'])
 def webhook():
     if request.method == 'POST':

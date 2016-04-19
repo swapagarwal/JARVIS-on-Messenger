@@ -1,7 +1,7 @@
 # JARVIS on Messenger
 Just A Rather Very Intelligent System, now on Messenger!
 
-[![Build Status](https://travis-ci.com/swapagarwal/JARVIS-on-Messenger.svg?token=spUPFsghA235BFdCFAJo&branch=master)](https://travis-ci.com/swapagarwal/JARVIS-on-Messenger)
+[![Build Status](https://travis-ci.org/swapagarwal/JARVIS-on-Messenger.svg?branch=master)](https://travis-ci.org/swapagarwal/JARVIS-on-Messenger)
 
 Messenger is now used by 900 million people every month. With the launch of Send / Receive API, bots are about to [take](http://time.com/4291214/facebook-messenger-bots/) [over](http://www.computerworld.com/article/3055588/social-media/an-army-of-chatbots-will-take-over-facebook-here-s-why.html).
 
@@ -37,3 +37,18 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 ### Usage
 
 JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currently, it's pending approval before the public can engage. If you'd like to be a tester, post [here](https://www.facebook.com/J.A.R.V.I.S.on.Messenger/posts/551338921704902).
+
+### Sample Queries
+
+`Hi, Jarvis!`
+`Are you there?`
+`tell me a joke`
+`iron man movie`
+More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
+
+### Local Development / Testing
+
+1. Clone this repo.
+2. `pip install -r requirements.txt`
+3. `python jarvis.py`
+4. Visit `http://localhost:5000/test/?q=<YOUR_QUERY>` to see results.

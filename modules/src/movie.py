@@ -2,7 +2,7 @@ import re
 import requests
 
 def match(input):
-    return bool(re.match(r'^.*movie$', input))
+    return bool(re.match(r'^.*\s+movie$', input))
 
 def process(input):
     output = {}

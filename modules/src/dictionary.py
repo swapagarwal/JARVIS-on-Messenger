@@ -11,7 +11,7 @@ def process(input):
 		r = requests.get("https://glosbe.com/gapi/translate?from=eng&dest=eng&format=json&phrase=" + word + "&pretty=true")
 		data = r.json()
 		output['input'] = input
-		output['output'] = "Definition of " + input + ": " + data['tuc'][0]['meanings'][1]['text']
+		output['output'] = "Definition of " + input + ": " + data['tuc'][0]['meanings'][0]['text']
 		output['success'] = True
 	except:
 		output['success'] = False

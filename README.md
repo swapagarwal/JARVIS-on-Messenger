@@ -65,7 +65,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `Are you there?`  
 `tell me a joke`  
 `iron man movie`  
-`cloud definition`  
+`define a superhero`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

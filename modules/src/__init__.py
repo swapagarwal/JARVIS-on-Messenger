@@ -1,6 +1,6 @@
 __all__ = [
-    'movie',
-    # 'dictionary',
+    'dictionary',
+    'hello',
     'joke',
-    'hello'
+    'movie'
 ]

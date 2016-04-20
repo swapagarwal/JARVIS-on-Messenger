@@ -35,7 +35,7 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 - [ ] Currency Conversion
 - [ ] Random Quote / Fact
 - [x] Random Joke
-- [ ] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
+- [x] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
 - [ ] Wikipedia Summary
 - [ ] Weather
 
@@ -62,9 +62,15 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 ### Sample Queries
 
 `Hi, Jarvis!`
+
 `Are you there?`
+
 `tell me a joke`
+
 `iron man movie`
+
+`cloud definition`
+
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

@@ -8,10 +8,10 @@ def process(input):
 	output = {}
 	word = re.match(r'^(?P<definition>.*)\s+definition$', input).group('definition')
 	try:
-		r = requests.get("https://glosbe.com/gapi/translate?from=eng&dest=eng&format=json&phrase=" + word + "&pretty=true")
+		r = requests.get('https://glosbe.com/gapi/translate?from=eng&dest=eng&format=json&phrase=' + word + '&pretty=true')
 		data = r.json()
 		output['input'] = input
-		output['output'] = "Definition of " + input + ": " + data['tuc'][0]['meanings'][0]['text']
+		output['output'] = 'Definition of ' + word + ':\n' + data['tuc'][0]['meanings'][0]['text']
 		output['success'] = True
 	except:
 		output['success'] = False

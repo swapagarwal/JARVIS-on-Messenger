@@ -1,19 +1,7 @@
 import re
 import random
 
-def match(input):
-    greetings = [
-        'hi',
-        'hello',
-        'jarvis',
-        'hi jarvis',
-        'hello jarvis',
-        'are you there'
-    ]
-    input = re.sub(r'[^a-zA-Z\d\s]', '', input).lower()
-    return input in greetings
-
-def process(input):
+def process(input, entities=None):
     greetings = [
         'Welcome home, sir...',
         'All wrapped up here, sir. Will there be anything else?',

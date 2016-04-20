@@ -1,10 +1,7 @@
 import re
 import requests
 
-def match(input):
-    return bool(re.match(r'^.*jokes?\W*$', input))
-
-def process(input):
+def process(input, entities=None):
     output = {}
     try:
         r = requests.get('https://api.chucknorris.io/jokes/random')

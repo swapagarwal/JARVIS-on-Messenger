@@ -35,8 +35,25 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 - [ ] Currency Conversion
 - [ ] Random Quote / Fact
 - [x] Random Joke
-- [ ] Dictionary
+- [ ] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
 - [ ] Wikipedia Summary
+- [ ] Weather
+
+Some advanced features:
+
+- [ ] Add templates support (Structured Messages)
+- [ ] Integrate with [Wit.ai](https://wit.ai/swapagarwal/JARVIS-on-Messenger) to parse Natural Language
+- [ ] Retain context between queries
+
+### Structure
+
+```sh
+├── modules/  # home for various features
+├── modules/src/ # code goes here
+├── modules/tests/ # tests go here
+├── CONTRIBUTING.md # contributing guidelines
+└── jarvis.py # the main bot
+```
 
 ### Usage
 

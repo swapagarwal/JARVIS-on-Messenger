@@ -1,4 +1,6 @@
 # JARVIS on Messenger
+
+[![Join the chat at https://gitter.im/swapagarwal/JARVIS-on-Messenger](https://badges.gitter.im/swapagarwal/JARVIS-on-Messenger.svg)](https://gitter.im/swapagarwal/JARVIS-on-Messenger?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Just A Rather Very Intelligent System, now on Messenger!
 
 [![Build Status](https://travis-ci.org/swapagarwal/JARVIS-on-Messenger.svg?branch=master)](https://travis-ci.org/swapagarwal/JARVIS-on-Messenger)

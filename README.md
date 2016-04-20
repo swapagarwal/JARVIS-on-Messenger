@@ -42,17 +42,17 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 Some advanced features:
 
 - [ ] Add templates support (Structured Messages)
-- [ ] Integrate with [Wit.ai](https://wit.ai/swapagarwal/JARVIS-on-Messenger) to parse Natural Language
+- [x] Integrate with [Wit.ai](https://wit.ai/swapagarwal/JARVIS-on-Messenger) to parse Natural Language
 - [ ] Retain context between queries
 
 ### Structure
 
 ```sh
-├── modules/  # home for various features
-├── modules/src/ # code goes here
-├── modules/tests/ # tests go here
-├── CONTRIBUTING.md # contributing guidelines
-└── jarvis.py # the main bot
+├── modules/         # home for various features
+├── modules/src/     # code goes here
+├── modules/tests/   # tests go here
+├── CONTRIBUTING.md  # contributing guidelines
+└── jarvis.py        # the main bot
 ```
 
 ### Usage
@@ -61,16 +61,11 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 
 ### Sample Queries
 
-`Hi, Jarvis!`
-
-`Are you there?`
-
-`tell me a joke`
-
-`iron man movie`
-
-`cloud definition`
-
+`Hi, Jarvis!`  
+`Are you there?`  
+`tell me a joke`  
+`iron man movie`  
+`cloud definition`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing
@@ -79,4 +74,14 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 2. `sudo apt-get install python-dev libffi-dev libssl-dev`
 3. `pip install -r requirements.txt`
 4. `python jarvis.py`
-5. Visit `http://localhost:5000/test/?q=<YOUR_QUERY>` to see results.
+5. Visit the following URLs to see results:  
+`http://localhost:5000/process/?q=<YOUR_QUERY>` returns the intent of the query.  
+`http://localhost:5000/search/?q=<YOUR_QUERY>` returns the search result of the query.
+
+### History
+
+I started out with rule-based model but it didn't scale well so now I've shifted to Natural Language Processing.
+Rest assured, I'll strive to keep it as simple as possible so that you, yes you, can contribute!
+
+If you'd like to contribute to the old model, you are welcome to do so as well.
+I've created a new branch [`legacy`](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/legacy) for this purpose. I'll be accepting Pull Requests to this branch also. :smile:

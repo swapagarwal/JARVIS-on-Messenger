@@ -4,12 +4,12 @@ import requests
 import sys
 from src import *
 
-WIT_AI_SERVER_ACCESS_TOKEN = os.environ.get('WIT_AI_SERVER_ACCESS_TOKEN', config.WIT_AI_SERVER_ACCESS_TOKEN)
+WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)
 
 def process_query(input):
     try:
         r = requests.get('https://api.wit.ai/message?v=20160420&q=' + input, headers={
-            'Authorization': 'Bearer %s' % WIT_AI_SERVER_ACCESS_TOKEN
+            'Authorization': 'Bearer %s' % WIT_AI_ACCESS_TOKEN
         })
         data = r.json()
         intent = data['outcomes'][0]['intent']

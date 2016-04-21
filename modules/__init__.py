@@ -31,4 +31,4 @@ def search(input):
         else:
             return 'Something didn\'t work as expected! I\'ll report this to my master.'
     else:
-        return 'I\'m still learning. Check back later!'
+        return 'I\'m sorry; I\'m not sure I understand what you\'re trying to say sir.\nTry typing "help"'

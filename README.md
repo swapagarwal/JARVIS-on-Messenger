@@ -72,8 +72,7 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 
 
 1. Clone this repo.
-2. `sudo apt-get install python-dev libffi-dev libssl-dev` - For LINUX users.
-  For Mac/OSX users:
+2. For LINUX users - `sudo apt-get install python-dev libffi-dev libssl-dev` and For Mac/OSX users -
  a) If you install Python using brew, the relevant headers are already installed for you. In other words, you don't need python-devel.
  b) `brew install pkg-config libffi`
     `export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.0.13/lib/pkgconfig/` # May change with libffi version

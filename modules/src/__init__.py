@@ -4,5 +4,6 @@ __all__ = [
     'help',
     'joke',
     'movie',
-    'request'
+    'request',
+    'weather'
 ]

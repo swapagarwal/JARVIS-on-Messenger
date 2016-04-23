@@ -8,7 +8,7 @@ def process(input, entities):
         r = requests.get('http://www.omdbapi.com/?t=' + movie + '&plot=short&r=json')
         data = r.json()
         output['input'] = input
-        output['output'] = data['Title'] + '\nPlot: ' + data['Plot'] + '\nIMDb Rating: ' + data['imdbRating']
+        output['output'] = data['Title'] + '\nPlot: ' + data['Plot'] + '\nIMDb Rating: ' + data['imdbRating'] + data['Year']
         output['success'] = True
     except:
         output['success'] = False

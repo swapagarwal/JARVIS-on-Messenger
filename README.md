@@ -28,20 +28,21 @@ Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARV
 
 There are a lot of features that I've planned for JARVIS. Feel free to add to this list by opening an issue / PR.
 
-- [ ] Book Rating
+- [ ] Book Rating ([#11](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/11))
 - [x] Movie Rating
 - [ ] News
-- [ ] Weather
+- [ ] Weather ([#13](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/13))
 - [ ] Currency Conversion
 - [ ] Random Quote / Fact
 - [x] Random Joke
 - [x] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
-- [ ] Wikipedia Summary
+- [x] Wikipedia Summary ([#9](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/9))
 - [ ] Weather
+- [ ] Lyrics Search
 
 Some advanced features:
 
-- [ ] Add templates support (Structured Messages)
+- [ ] Add templates support (Structured Messages) ([#7](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/7))
 - [x] Integrate with [Wit.ai](https://wit.ai/swapagarwal/JARVIS-on-Messenger) to parse Natural Language
 - [ ] Retain context between queries
 
@@ -66,6 +67,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `tell me a joke`  
 `iron man movie`  
 `define a superhero`  
+`wiki html`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

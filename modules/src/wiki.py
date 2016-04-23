@@ -4,9 +4,9 @@ def process(input, entities):
     output = {}
     try:
         query = entities['wikipedia_search_query'][0]['value']
-        data = wikipedia.summary(query, sentences=5, auto_suggest=True)
+        data = wikipedia.summary(query, sentences=1)
         output['input'] = input
-        output['output'] = 'Summary :' + data
+        output['output'] = 'Wikipedia summary: ' + data
         output['success'] = True
     except:
         output['success'] = False

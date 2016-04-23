@@ -28,7 +28,7 @@ Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARV
 
 There are a lot of features that I've planned for JARVIS. Feel free to add to this list by opening an issue / PR.
 
-- [ ] Book Rating ([#11](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/11))
+- [x] Book Rating ([#11](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/11))
 - [x] Movie Rating
 - [ ] News
 - [ ] Weather ([#13](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/13))
@@ -67,6 +67,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `iron man movie`  
 `define a superhero`  
 `wiki html`  
+`anything you want book`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

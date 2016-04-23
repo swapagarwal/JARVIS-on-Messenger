@@ -26,6 +26,7 @@ To fix a bug or enhance an existing module, follow these steps:
 ## Bug / Feature Request
 
 If you find a bug (the bot couldn't handle the query and / or gave irrelevant results), kindly open an issue [here](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/new) by including your search query and the expected result.
+
 If you'd like to request a new functionality, feel free to do so by opening an issue [here](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/new) including some sample queries and their corresponding results.
 
 ## General

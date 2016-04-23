@@ -17,11 +17,12 @@ def process(input, entities=None):
         description = book_node.find('description').text
         link = book_node.find('link').text
         average_rating = book_node.find('average_rating').text
+        goodreads_attribute = "This data is powered by Goodreads"
         
-        output_data = (title, description, average_rating, link)
+        output_data = (title, description, average_rating, link, goodreads_attribute)
         
         output['input'] = input
-        output['output'] = "Title: %s<br/>Description: %s<br/>Average Rating: %s<br/> Book link: %s<br/>" % output_data
+        output['output'] = "Title: %s<br/>Description: %s<br/>Average Rating: %s<br/> Book link: %s<br/><br/>%s" % output_data
         output['success'] = True
     except:
         output['success'] = False

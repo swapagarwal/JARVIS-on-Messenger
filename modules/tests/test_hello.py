@@ -1,8 +1,7 @@
-from modules.src import hello
+import modules
 
-def test_joke():
-    assert(hello.match('Are you there?') == True)
-    assert(hello.match('Hi, Jarvis!') == True)
-    assert(hello.match('hello') == True)
-    assert(hello.match('jarvis jarvis') == False)
-    assert(hello.match('something random') == False)
+def test_hello():
+    assert('hello' == modules.process_query('hello')[0])
+    assert('hello' == modules.process_query('Hi, Jarvis!')[0])
+    assert('hello' == modules.process_query('Are you there?')[0])
+    assert('hello' != modules.process_query('something random')[0])

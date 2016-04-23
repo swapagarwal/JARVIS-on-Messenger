@@ -4,8 +4,8 @@ To add a new module, follow these steps:
 
 1. Fork the repo
 2. Create a new branch (`git checkout -b my-new-feature`)
-3. Add a new file in `modules/src/` folder (define `match` and `process` functions)
-4. Add some tests in `modules/tests/` folder (run them locally with `py.test`)
+3. Add a new file in `modules/src/` folder (define `process` function)
+4. Add some tests in `modules/tests/` folder
 5. Add the module name in `src/__init__.py`
 6. Commit your changes (`git commit -am 'Add some feature'`)
 7. Push to the branch (`git push origin my-new-feature`)
@@ -23,7 +23,13 @@ To fix a bug or enhance an existing module, follow these steps:
 6. Push to the branch (`git push origin improve-feature`)
 7. Create a Pull Request 
 
-You may take this [commit](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/ee974e44d027f8bdc4329a35e1d8410d7779acb2) as a reference.
+## Bug / Feature Request
+
+If you find a bug (the bot couldn't handle the query and / or gave irrelevant results), kindly open an issue [here](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/new) by including your search query and the expected result.
+
+If you'd like to request a new functionality, feel free to do so by opening an issue [here](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/new) including some sample queries and their corresponding results.
+
+## General
 
 Keep the code as simple as possible. No need of obfuscation / code golf.
 

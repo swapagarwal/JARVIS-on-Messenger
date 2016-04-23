@@ -1,16 +1,13 @@
 import re
 import requests
 
-def match(input):
-    return bool(re.match(r'^.*jokes?\W*$', input))
-
-def process(input):
+def process(input, entities=None):
     output = {}
     try:
-        r = requests.get('http://api.icndb.com/jokes/random')
+        r = requests.get('http://tambal.azurewebsites.net/joke/random')
         data = r.json()
         output['input'] = input
-        output['output'] = data['value']['joke']
+        output['output'] = data['joke']
         output['success'] = True
     except:
         output['success'] = False

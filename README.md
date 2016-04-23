@@ -37,7 +37,6 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 - [x] Random Joke
 - [x] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
 - [x] Wikipedia Summary ([#9](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/9))
-- [ ] Weather
 - [ ] Lyrics Search
 
 Some advanced features:

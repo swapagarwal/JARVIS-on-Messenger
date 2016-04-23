@@ -1,6 +1,9 @@
 import re
+import config
+import os
 import requests
 
+OPEN_WEATHER_MAP_ACCESS_TOKEN = os.environ.get('OPEN_WEATHER_MAP_ACCESS_TOKEN', config.OPEN_WEATHER_MAP_ACCESS_TOKEN)
 def process(input, entities=None):
     output = {}
 

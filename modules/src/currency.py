@@ -3,7 +3,6 @@ import requests
 def process(input, entities=None):
     output = {}
     try:
-        print(entities)
         from_currency = entities['from_currency'][0]['value'].upper()
         to_currency = entities['to_currency'][0]['value'].upper()
         amount = float(entities['number'][0]['value'])

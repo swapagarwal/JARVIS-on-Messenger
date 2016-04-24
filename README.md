@@ -55,6 +55,7 @@ Some advanced features:
 ├── modules/         # home for various features
 ├── modules/src/     # code goes here
 ├── modules/tests/   # tests go here
+├── templates/       # for sending structured messages
 ├── CONTRIBUTING.md  # contributing guidelines
 └── jarvis.py        # the main bot
 ```

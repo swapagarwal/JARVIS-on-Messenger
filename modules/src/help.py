@@ -1,3 +1,5 @@
+from templates.text import TextTemplate
+
 def process(input, entities=None):
     help = '''\n
 Hi there. I'm Jarvis, your personal assistant.\nTell me things like the following:\n
@@ -6,7 +8,7 @@ I'm always learning, so do come back and say hi from time to time!\nHave a nice 
     '''
     output = {
         'input': input,
-        'output': help,
+        'output': TextTemplate(help).get_message(),
         'success': True
     }
     return output

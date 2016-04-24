@@ -1,5 +1,5 @@
-import re
 import requests
+from templates.text import TextTemplate
 
 def process(input, entities=None):
     output = {}
@@ -8,7 +8,7 @@ def process(input, entities=None):
         r = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
         data = r.json()
         output['input'] = input
-        output['output'] = data['quote'] + " - " + data['author']
+        output['output'] = TextTemplate(data['quote'] + ' - ' + data['author']).get_message()
         output['success'] = True
     except:
         output['success'] = False

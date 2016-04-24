@@ -1,3 +1,5 @@
+from templates.text import TextTemplate
+
 def process(input, entities=None):
     request = '''
 Kindly head over to https://github.com/swapagarwal/JARVIS-on-Messenger/issues/new to:\n
@@ -6,7 +8,7 @@ Kindly head over to https://github.com/swapagarwal/JARVIS-on-Messenger/issues/ne
     '''
     output = {
         'input': input,
-        'output': request,
+        'output': TextTemplate(request).get_message(),
         'success': True
     }
     return output

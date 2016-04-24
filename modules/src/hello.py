@@ -1,5 +1,5 @@
-import re
 import random
+from templates.text import TextTemplate
 
 def process(input, entities=None):
     greetings = [
@@ -14,7 +14,7 @@ def process(input, entities=None):
     ]
     output = {
         'input': input,
-        'output': random.choice(greetings),
+        'output': TextTemplate(random.choice(greetings)).get_message(),
         'success': True
     }
     return output

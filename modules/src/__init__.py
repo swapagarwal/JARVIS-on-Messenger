@@ -5,6 +5,7 @@ __all__ = [
     'help',
     'joke',
     'movie',
+    'quote',
     'request',
     'wiki'
 ]

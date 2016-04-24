@@ -5,6 +5,7 @@ import sys
 from src import *
 
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)
+
 def process_query(input):
     try:
         r = requests.get('https://api.wit.ai/message?v=20160420&q=' + input, headers={

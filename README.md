@@ -28,20 +28,24 @@ Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARV
 
 There are a lot of features that I've planned for JARVIS. Feel free to add to this list by opening an issue / PR.
 
-- [ ] Book Rating
+- [x] Book Rating ([#11](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/11))
 - [x] Movie Rating
+- [ ] Anime Rating
 - [ ] News
-- [ ] Weather
+- [ ] Weather ([#13](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/13))
 - [ ] Currency Conversion
-- [ ] Random Quote / Fact
+- [x] Random Quote ([#21](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/21))
+- [ ] Random Fact
 - [x] Random Joke
 - [x] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
-- [ ] Wikipedia Summary
-- [ ] Weather
+- [x] Wikipedia Summary ([#9](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/9))
+- [ ] Lyrics Search
+- [ ] URL Shortener
+- [ ] Expand URL
 
 Some advanced features:
 
-- [ ] Add templates support (Structured Messages)
+- [ ] Add templates support (Structured Messages) ([#7](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/7))
 - [x] Integrate with [Wit.ai](https://wit.ai/swapagarwal/JARVIS-on-Messenger) to parse Natural Language
 - [ ] Retain context between queries
 
@@ -51,6 +55,7 @@ Some advanced features:
 ├── modules/         # home for various features
 ├── modules/src/     # code goes here
 ├── modules/tests/   # tests go here
+├── templates/       # for sending structured messages
 ├── CONTRIBUTING.md  # contributing guidelines
 └── jarvis.py        # the main bot
 ```
@@ -66,6 +71,9 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `tell me a joke`  
 `iron man movie`  
 `define a superhero`  
+`wiki html`  
+`anything you want book`  
+`random quote`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

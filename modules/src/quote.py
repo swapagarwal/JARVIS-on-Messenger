@@ -4,10 +4,11 @@ from templates.text import TextTemplate
 def process(input, entities=None):
     output = {}
     try:
-        r = requests.get('http://tambal.azurewebsites.net/joke/random')
+        # Programming quotes
+        r = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
         data = r.json()
         output['input'] = input
-        output['output'] = TextTemplate(data['joke']).get_message()
+        output['output'] = TextTemplate(data['quote'] + ' - ' + data['author']).get_message()
         output['success'] = True
     except:
         output['success'] = False

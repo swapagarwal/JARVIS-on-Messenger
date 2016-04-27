@@ -10,7 +10,7 @@ def process(input, entities=None):
         'At your service, sir.',
         'You are not authorized to access this area.',
         'Oh hello, sir!',
-        'Perhaps, if you intend to visit other planets, we should improve the exosystems.'
+        'Perhaps, if you intend to visit other planets, we should improve the exosystems.',
     ]
     output = {
         'input': input,

@@ -74,6 +74,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `wiki html`  
 `anything you want book`  
 `random quote`  
+`usd to eur rate`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

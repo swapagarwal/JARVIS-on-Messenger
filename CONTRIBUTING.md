@@ -11,6 +11,8 @@ To add a new module, follow these steps:
 7. Push to the branch (`git push origin my-new-feature`)
 8. Create a Pull Request 
 
+Kindly note that your tests may fail initially as I'll have to configure wit.ai to handle these new types of queries. Just include some sample queries in your PR's description for the initial training.
+
 ## Improve an existing module
 
 To fix a bug or enhance an existing module, follow these steps:

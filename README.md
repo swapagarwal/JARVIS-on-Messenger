@@ -30,18 +30,22 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 
 - [x] Book Rating ([#11](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/11))
 - [x] Movie Rating
+- [ ] Anime Rating
 - [ ] News
 - [ ] Weather ([#13](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/13))
-- [ ] Currency Conversion
-- [ ] Random Quote / Fact
+- [x] Currency Conversion ([#18](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/18))
+- [x] Random Quote ([#21](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/21))
+- [ ] Random Fact
 - [x] Random Joke
 - [x] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
 - [x] Wikipedia Summary ([#9](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/9))
 - [ ] Lyrics Search
+- [ ] URL Shortener
+- [ ] Expand URL
 
 Some advanced features:
 
-- [ ] Add templates support (Structured Messages) ([#7](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/7))
+- [x] Add templates support (Structured Messages) ([#7](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/7))
 - [x] Integrate with [Wit.ai](https://wit.ai/swapagarwal/JARVIS-on-Messenger) to parse Natural Language
 - [ ] Retain context between queries
 
@@ -51,6 +55,7 @@ Some advanced features:
 ├── modules/         # home for various features
 ├── modules/src/     # code goes here
 ├── modules/tests/   # tests go here
+├── templates/       # for sending structured messages
 ├── CONTRIBUTING.md  # contributing guidelines
 └── jarvis.py        # the main bot
 ```
@@ -68,6 +73,8 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `define a superhero`  
 `wiki html`  
 `anything you want book`  
+`random quote`  
+`usd to eur rate`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing
@@ -87,3 +94,6 @@ Rest assured, I'll strive to keep it as simple as possible so that you, yes you,
 
 If you'd like to contribute to the old model, you are welcome to do so as well.
 I've created a new branch [`legacy`](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/legacy) for this purpose. I'll be accepting Pull Requests to this branch also. :smile:
+
+P.S. If you've come this far, you might as well contribute.
+Looking for a place to start? Take a look at some of the [low-hanging fruits](https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit)!

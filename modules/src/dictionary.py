@@ -1,5 +1,5 @@
-import re
 import requests
+from templates.text import TextTemplate
 
 def process(input, entities):
     output = {}
@@ -8,7 +8,7 @@ def process(input, entities):
         r = requests.get('https://glosbe.com/gapi/translate?from=eng&dest=eng&format=json&phrase=' + word + '&pretty=true')
         data = r.json()
         output['input'] = input
-        output['output'] = 'Definition of ' + word + ':\n' + data['tuc'][0]['meanings'][0]['text']
+        output['output'] = TextTemplate('Definition of ' + word + ':\n' + data['tuc'][0]['meanings'][0]['text']).get_message()
         output['success'] = True
     except:
         output['success'] = False

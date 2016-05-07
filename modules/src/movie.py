@@ -1,5 +1,5 @@
 import requests
-from templates.text import TextTemplate
+from templates.button import *
 
 def process(input, entities):
     output = {}
@@ -8,9 +8,10 @@ def process(input, entities):
         r = requests.get('http://www.omdbapi.com/?t=' + movie + '&plot=full&r=json')
         data = r.json()
         output['input'] = input
-        template = TextTemplate()
-        template.set_text(data['Title'] + '\nPlot: ' + data['Plot'])
-        template.set_post_text('\nIMDb Rating: ' + data['imdbRating'] + '\nIMDb Link: http://www.imdb.com/title/' + data['imdbID'])
+        template = TextTemplate('Title: ' + data['Title'] + '\nIMDb Rating: ' + data['imdbRating'] + '\nPlot: ' + data['Plot'])
+        text = template.get_text()
+        template = ButtonTemplate(text)
+        template.add_web_url('IMDb Link', 'http://www.imdb.com/title/' + data['imdbID'] + '/')
         output['output'] = template.get_message()
         output['success'] = True
     except:

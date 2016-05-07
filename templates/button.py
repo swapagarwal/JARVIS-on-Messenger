@@ -1,3 +1,8 @@
+from copy import deepcopy as copy
+
+from text import TextTemplate
+TextTemplate.get_text = lambda self: self.get_message()['text']
+
 template = {
     'template_type': 'button',
     'value': {
@@ -14,7 +19,7 @@ template = {
 
 class ButtonTemplate:
     def __init__(self, text=''):
-        self.template = template['value']
+        self.template = copy(template['value'])
         self.text = text
     def add_web_url(self, title='', url=''):
         web_url_button = {}

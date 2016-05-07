@@ -1,3 +1,5 @@
+from copy import deepcopy as copy
+
 from button import ButtonTemplate
 ButtonTemplate.get_buttons = lambda self: self.template['attachment']['payload']['buttons']
 
@@ -22,7 +24,7 @@ template = {
 
 class GenericTemplate:
     def __init__(self):
-        self.template = template['value']
+        self.template = copy(template['value'])
         self.elements = []
     def add_element(self, title='', item_url='', image_url='', subtitle='', buttons=[]):
         element = {}

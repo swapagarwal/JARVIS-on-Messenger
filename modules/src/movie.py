@@ -10,7 +10,7 @@ def process(input, entities):
         output['input'] = input
         template = TextTemplate()
         template.set_text(data['Title'] + '\nPlot: ' + data['Plot'])
-        template.set_post_text('\nIMDb Rating: ' + data['imdbRating'])
+        template.set_post_text('\nIMDb Rating: ' + data['imdbRating'] + '\nIMDb Link: http://www.imdb.com/title/' + data['imdbID'])
         output['output'] = template.get_message()
         output['success'] = True
     except:

@@ -1,6 +1,7 @@
 import requests
 from templates.text import TextTemplate
 from random import choice
+import json
 import config
 
 def process(input, entities=None):
@@ -15,16 +16,12 @@ def process(input, entities=None):
         '''
         
         with open(config.JOKES_SOURCE_FILE,"r") as file:
-            dump = file.read() # read the whole file
-            jokes_list = dump.split("\'''")[2].split("\n")
+            dump = json.load(file) # read the whole file
+            jokes_list = dump.get("jokes")
             output['input'] = input
             joke = choice(jokes_list).strip() #randomly choose a joke
-            if(len(joke)>2): #because there could be null values in the list
-                output['output'] = TextTemplate(joke).get_message()
-            else:
-                output['output'] = TextTemplate(choice(jokes_list).strip()).get_message() #choose again
+            output['output'] = TextTemplate(joke).get_message()
             output['success']=True
-
     except:
         output['success'] = False
     return output

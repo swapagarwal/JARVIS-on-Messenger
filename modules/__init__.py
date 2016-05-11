@@ -23,9 +23,16 @@ def process_query(input):
     except:
         return None, {}
 
-def search(input):
+def search(input, sender=None):
     intent, entities = process_query(input)
     if intent is not None:
+        if sender is not None:
+            sender_r = requests.get('https://graph.facebook.com/v2.6/' + str(sender), params={
+                'fields': 'first_name,last_name,profile_pic,locale,timezone,gender',
+                'access_token' : os.environ.get('ACCESS_TOKEN', config.ACCESS_TOKEN)
+            })
+            entities['sender'] = sender_r.json()
+
         data = sys.modules['modules.src.' + intent].process(input, entities)
         if data['success']:
             return data['output']

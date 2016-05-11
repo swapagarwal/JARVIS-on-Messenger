@@ -29,6 +29,7 @@ def webhook():
         messaging_events = data['entry'][0]['messaging']
         for event in messaging_events:
             sender = event['sender']['id']
+            print('SENDER ID: ' + str(sender))
             if 'message' in event and 'text' in event['message']:
                 text = event['message']['text']
                 payload = {

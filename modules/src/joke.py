@@ -12,16 +12,14 @@ def process(input, entities=None):
         data = r.json()
         output['input'] = input
         output['output'] = TextTemplate(data['joke']).get_message()
-        output['success'] = True        
+        output['success'] = True
         '''
-        
-        with open(config.JOKES_SOURCE_FILE,"r") as file:
-            dump = json.load(file) # read the whole file
-            jokes_list = dump.get("jokes")
+        with open(config.JOKES_SOURCE_FILE) as jokes_file:
+            jokes = json.load(jokes_file)
+            jokes_list = jokes['jokes']
             output['input'] = input
-            joke = choice(jokes_list).strip() #randomly choose a joke
-            output['output'] = TextTemplate(joke).get_message()
-            output['success']=True
+            output['output'] = TextTemplate(choice(jokes_list)).get_message()
+            output['success'] = True
     except:
         output['success'] = False
     return output

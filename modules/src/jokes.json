@@ -1,6 +1,7 @@
-{ "description": "Format:\n<question>\t\t\t<answer>\n  (OR) <entire_joke_here>\n. The \"\t\t\t\" splits the joke as question & answer( if its Q&A type) and \n is used for new line.",
-  "jokes":[
-		"What happens to a frog's car when it breaks down?\t\t\tIt gets toad away. ",
+{
+	"description": "Format:\n<question>\t\t\t<answer>\n (OR) <entire_joke_here>\n. The \"\t\t\t\" splits the joke as question & answer (if it's Q&A type) and \n is used for new line.",
+	"jokes": [
+		"What happens to a frog's car when it breaks down?\t\t\tIt gets toad away.",
 		"Why was six scared of seven?\t\t\tBecause seven \"ate\" nine.",
 		"How do astronomers organize a party?\t\t\tThey planet.",
 		"Want to hear a Potassium joke?\t\t\tK.",
@@ -11,5 +12,5 @@
 		"When an employment application asks who is to be notified in case of emergency, I always write, \"A very good doctor\".",
 		"If you think nobody cares whether you're alive, try missing a couple of payments.",
 		"I hate when I am about to hug someone really sexy and my face hits the mirror."
-]
+	]
 }

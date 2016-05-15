@@ -11,6 +11,5 @@ def process(input, entities):
         output['output'] = TextTemplate('Title: ' + data[0]['title'] + '\n' + 'Url: ' + data[0]['url'] + '\n'+ 'Community Rating: ' + data[0]['community_rating'] + '\n'+ 'Status: ' + data[0]['status'] + '\n' ).get_message()
         output['success'] = True
     except:
-	#print data
         output['success'] = False
     return output

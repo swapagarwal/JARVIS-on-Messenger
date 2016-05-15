@@ -1,4 +1,5 @@
 __all__ = [
+    'anime',
     'book',
     'currency',
     'dictionary',
@@ -9,5 +10,4 @@ __all__ = [
     'quote',
     'request',
     'wiki',
-    'anime',
 ]

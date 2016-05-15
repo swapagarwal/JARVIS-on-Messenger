@@ -1,15 +1,16 @@
 import wikipedia
-from templates.text import TextTemplate
+from templates.button import *
 
 def process(input, entities):
     output = {}
     try:
         query = entities['wikipedia_search_query'][0]['value']
         data = wikipedia.page(query)
-        template = TextTemplate()
-        template.set_text('Wikipedia summary of ' + data.title + ':\n' + data.summary)
-        template.set_post_text('\n' + data.url)
         output['input'] = input
+        template = TextTemplate('Wikipedia summary of ' + data.title + ':\n' + data.summary)
+        text = template.get_text()
+        template = ButtonTemplate(text)
+        template.add_web_url('Wikipedia Link', data.url)
         output['output'] = template.get_message()
         output['success'] = True
     except:

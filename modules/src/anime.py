@@ -1,14 +1,25 @@
 import requests
-from templates.text import TextTemplate
+from templates.button import *
 
 def process(input, entities):
     output = {}
     try:
-        word = entities['search_query'][0]['value']
-        r = requests.get('http://hummingbird.me/api/v1/search/anime', params = {'query' : word})	
+        anime = entities['search_query'][0]['value']
+        r = requests.get('https://hummingbird.me/api/v1/search/anime', params={
+            'query': anime
+        })
         data = r.json()
+
+        template = TextTemplate()
+        template.set_text('Title: ' + data[0]['title'] + '\nSynopsis: ' + data[0]['synopsis'])
+        template.set_post_text('\nCommunity Rating: ' + str(data[0]['community_rating']) + '\nStatus: ' + data[0]['status'])
+        text = template.get_text()
+
+        template = ButtonTemplate(text)
+        template.add_web_url('Hummingbird URL', data[0]['url'])
+
         output['input'] = input
-        output['output'] = TextTemplate('Title: ' + data[0]['title'] + '\n' + 'Url: ' + data[0]['url'] + '\n'+ 'Community Rating: ' + data[0]['community_rating'] + '\n'+ 'Status: ' + data[0]['status'] + '\n' ).get_message()
+        output['output'] = template.get_message()
         output['success'] = True
     except:
         output['success'] = False

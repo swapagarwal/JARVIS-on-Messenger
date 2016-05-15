@@ -9,4 +9,5 @@ __all__ = [
     'quote',
     'request',
     'wiki',
+    'anime',
 ]

@@ -4,7 +4,7 @@ from templates.text import TextTemplate
 def process(input, entities):
     output = {}
     try:
-        word = entities['word'][0]['value']
+        word = entities['search_query'][0]['value']
         r = requests.get('http://hummingbird.me/api/v1/search/anime', params = {'query' : word})	
         data = r.json()
         output['input'] = input

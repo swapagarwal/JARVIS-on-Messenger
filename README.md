@@ -70,7 +70,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `Are you there?`  
 `tell me a joke`  
 `iron man movie`  
-`define a superhero`  
+`define comfort`  
 `wiki html`  
 `anything you want book`  
 `random quote`  

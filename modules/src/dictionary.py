@@ -18,4 +18,5 @@ def process(input, entities):
         output['success'] = True
     except:
         output['success'] = False
+        output['error_msg'] = TextTemplate('Definition of the word '+input.split(" ")[1]+ ' could not be found.\n Please ask me something else.').get_message()
     return output

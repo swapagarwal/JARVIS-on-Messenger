@@ -9,7 +9,7 @@ def process(input, entities=None):
 	output = {}
 	try:
 		topic = str(entities.get('news')[0].get('topic'))
-		api_response = requests.get(url='https://api.nytimes.com/svc/search/v2/articlesearch.json', params={'api-key': NYT_API_KEY, 'q': topic )
+		api_response = requests.get(url='https://api.nytimes.com/svc/search/v2/articlesearch.json', params={'api-key': NYT_API_KEY, 'q': topic})
 		news_dict = json.loads(api_response.text)
 		news = news_dict['response'].get('docs')
 		template = GenericTemplate()

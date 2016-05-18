@@ -1,3 +1,4 @@
+import os
 import config
 import requests
 import json

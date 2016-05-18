@@ -1,7 +1,7 @@
 import config
 import requests
 import json
-from templates.button import GenericTemplate
+from templates.generic import GenericTemplate
 
 NYT_API_KEY = os.environ.get('NYT_API_KEY', config.NYT_API_KEY)
 

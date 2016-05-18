@@ -8,7 +8,7 @@ __all__ = [
     'help',
     'joke',
     'movie',
-    'news'
+    'news',
     'quote',
     'request',
     'wiki',

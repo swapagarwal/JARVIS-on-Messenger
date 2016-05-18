@@ -6,10 +6,10 @@ from templates.generic import GenericTemplate
 
 NYT_API_KEY = os.environ.get('NYT_API_KEY', config.NYT_API_KEY)
 
-def process(input, entities=None):
+def process(input, entities):
 	output = {}
 	try:
-		topic = str(entities.get('news')[0].get('topic'))
+		topic = str(entities['news'][0]['value'])
 		api_response = requests.get(url='https://api.nytimes.com/svc/search/v2/articlesearch.json', params={'api-key': NYT_API_KEY, 'q': topic})
 		news_dict = json.loads(api_response.text)
 		news = news_dict['response'].get('docs')

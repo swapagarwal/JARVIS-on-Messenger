@@ -17,6 +17,6 @@ def process(input, entities):
         output['output'] = TextTemplate('Definition of ' + word + ':\n' + data['definitions'][0]['definition']).get_message()
         output['success'] = True
     except:
+        output['error_msg'] = TextTemplate('I could not find the definition of ' + word + '.\nPlease ask me something else.').get_message()
         output['success'] = False
-        output['error_msg'] = TextTemplate('Definition of the word '+input.split(" ")[1]+ ' could not be found.\n Please ask me something else.').get_message()
     return output

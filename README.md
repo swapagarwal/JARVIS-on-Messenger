@@ -30,18 +30,22 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 
 - [x] Book Rating ([#11](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/11))
 - [x] Movie Rating
-- [ ] Anime Rating
-- [ ] News
-- [ ] Weather ([#13](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/13))
+- [x] Anime Rating ([#41](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/41))
+- [ ] News ([#48](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/48))
+- [ ] Weather ([#28](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/28))
 - [x] Currency Conversion ([#18](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/18))
 - [x] Random Quote ([#21](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/21))
-- [ ] Random Fact
+- [x] Random Fact ([#45](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/45))
 - [x] Random Joke
 - [x] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
 - [x] Wikipedia Summary ([#9](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/9))
 - [ ] Lyrics Search
 - [ ] URL Shortener
 - [ ] Expand URL
+- [ ] Ping ([#30](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/30))
+- [ ] Restaurant Rating ([#31](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/31))
+- [ ] Calculator ([#46](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/46))
+- [ ] Time ([#52](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/52))
 
 Some advanced features:
 
@@ -55,6 +59,7 @@ Some advanced features:
 ├── modules/         # home for various features
 ├── modules/src/     # code goes here
 ├── modules/tests/   # tests go here
+├── data/            # home for shared data
 ├── templates/       # for sending structured messages
 ├── CONTRIBUTING.md  # contributing guidelines
 └── jarvis.py        # the main bot
@@ -75,6 +80,8 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `anything you want book`  
 `random quote`  
 `usd to eur rate`  
+`tell me a fact`  
+`death note anime`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

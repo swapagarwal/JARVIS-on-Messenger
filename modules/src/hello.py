@@ -8,7 +8,6 @@ def process(input, entities=None):
         'Sir, I think I need to sleep now...',
         'I seem to do quite well for a stretch, and then at the end of the sentence I say the wrong cranberry.',
         'At your service, sir.',
-        'You are not authorized to access this area.',
         'Oh hello, sir!',
         'Perhaps, if you intend to visit other planets, we should improve the exosystems.',
     ]

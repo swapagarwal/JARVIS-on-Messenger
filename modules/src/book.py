@@ -18,7 +18,7 @@ def process(input, entities):
         description = book_node.find('description').text
         average_rating = book_node.find('average_rating').text
         link = book_node.find('link').text
-        goodreads_attribution = "- Powered by Goodreads"
+        goodreads_attribution = '- Powered by Goodreads'
 
         template = TextTemplate()
         template.set_text('Title: ' + title + '\nDescription: ' + description)

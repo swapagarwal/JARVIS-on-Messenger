@@ -10,5 +10,6 @@ __all__ = [
     'movie',
     'quote',
     'request',
+    'time',
     'wiki',
 ]

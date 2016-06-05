@@ -1,6 +1,14 @@
 __all__ = [
-    'movie',
+    'anime',
+    'book',
+    'currency',
     'dictionary',
+    'fact',
+    'hello',
+    'help',
     'joke',
-    'hello'
+    'movie',
+    'quote',
+    'request',
+    'wiki',
 ]

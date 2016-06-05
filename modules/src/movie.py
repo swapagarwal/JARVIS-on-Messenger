@@ -1,17 +1,18 @@
-import re
 import requests
+from templates.button import *
 
-def match(input):
-    return bool(re.match(r'^.*\s+movie$', input))
-
-def process(input):
+def process(input, entities):
     output = {}
-    movie = re.match(r'^(?P<movie>.*)\s+movie$', input).group('movie')
     try:
-        r = requests.get('http://www.omdbapi.com/?t=' + movie + '&plot=short&r=json')
+        movie = entities['movie'][0]['value']
+        r = requests.get('http://www.omdbapi.com/?t=' + movie + '&plot=full&r=json')
         data = r.json()
         output['input'] = input
-        output['output'] = data['Title'] + '\nPlot: ' + data['Plot'] + '\nIMDb Rating: ' + data['imdbRating']
+        template = TextTemplate('Title: ' + data['Title'] + '\nYear: ' + data['Year'] + '\nIMDb Rating: ' + data['imdbRating'] + '\nPlot: ' + data['Plot'])
+        text = template.get_text()
+        template = ButtonTemplate(text)
+        template.add_web_url('IMDb Link', 'http://www.imdb.com/title/' + data['imdbID'] + '/')
+        output['output'] = template.get_message()
         output['success'] = True
     except:
         output['success'] = False

@@ -14,9 +14,13 @@ app = Flask(__name__)
 def about():
     return 'Just A Rather Very Intelligent System, now on Messenger!'
 
-@app.route('/test/')
-def test():
-    return modules.search(request.args.get('q'))
+@app.route('/process/')
+def process():
+    return json.dumps(modules.process_query(request.args.get('q')))
+
+@app.route('/search/')
+def search():
+    return json.dumps(modules.search(request.args.get('q')))
 
 @app.route('/webhook/', methods=['GET', 'POST'])
 def webhook():
@@ -31,9 +35,7 @@ def webhook():
                     'recipient': {
                         'id': sender
                     },
-                    'message': {
-                        'text': modules.search(text)
-                    }
+                    'message': modules.search(text)
                 }
                 r = requests.post('https://graph.facebook.com/v2.6/me/messages', params={'access_token': ACCESS_TOKEN}, json=payload)
         return ''  # 200 OK

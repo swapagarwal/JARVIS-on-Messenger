@@ -1,8 +1,7 @@
-from modules.src import joke
+import modules
 
 def test_joke():
-    assert(joke.match('tell me a joke') == True)
-    assert(joke.match('random jokes') == True)
-    assert(joke.match('Do you know a joke?') == True)
-    assert(joke.match('joke is the') == False)
-    assert(joke.match('something random') == False)
+    assert('joke' == modules.process_query('tell me a joke')[0])
+    assert('joke' == modules.process_query('Do you know a joke?')[0])
+    assert('joke' == modules.process_query('random jokes')[0])
+    assert('joke' != modules.process_query('something random')[0])

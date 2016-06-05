@@ -28,31 +28,41 @@ Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARV
 
 There are a lot of features that I've planned for JARVIS. Feel free to add to this list by opening an issue / PR.
 
-- [ ] Book Rating
+- [x] Book Rating ([#11](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/11))
 - [x] Movie Rating
-- [ ] News
-- [ ] Weather
-- [ ] Currency Conversion
-- [ ] Random Quote / Fact
+- [x] Anime Rating ([#41](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/41))
+- [ ] News ([#48](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/48))
+- [ ] Weather ([#28](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/28))
+- [x] Currency Conversion ([#18](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/18))
+- [x] Random Quote ([#21](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/21))
+- [x] Random Fact ([#45](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/45))
 - [x] Random Joke
 - [x] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
-- [ ] Wikipedia Summary
-- [ ] Weather
+- [x] Wikipedia Summary ([#9](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/9))
+- [ ] Lyrics Search
+- [ ] URL Shortener
+- [ ] Expand URL
+- [ ] Ping ([#30](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/30))
+- [ ] Restaurant Rating ([#31](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/31))
+- [ ] Calculator ([#46](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/46))
+- [ ] Time ([#52](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/52))
 
 Some advanced features:
 
-- [ ] Add templates support (Structured Messages)
-- [ ] Integrate with [Wit.ai](https://wit.ai/swapagarwal/JARVIS-on-Messenger) to parse Natural Language
+- [x] Add templates support (Structured Messages) ([#7](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/7))
+- [x] Integrate with [Wit.ai](https://wit.ai/swapagarwal/JARVIS-on-Messenger) to parse Natural Language
 - [ ] Retain context between queries
 
 ### Structure
 
 ```sh
-├── modules/  # home for various features
-├── modules/src/ # code goes here
-├── modules/tests/ # tests go here
-├── CONTRIBUTING.md # contributing guidelines
-└── jarvis.py # the main bot
+├── modules/         # home for various features
+├── modules/src/     # code goes here
+├── modules/tests/   # tests go here
+├── data/            # home for shared data
+├── templates/       # for sending structured messages
+├── CONTRIBUTING.md  # contributing guidelines
+└── jarvis.py        # the main bot
 ```
 
 ### Usage
@@ -61,16 +71,17 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 
 ### Sample Queries
 
-`Hi, Jarvis!`
-
-`Are you there?`
-
-`tell me a joke`
-
-`iron man movie`
-
-`cloud definition`
-
+`Hi, Jarvis!`  
+`Are you there?`  
+`tell me a joke`  
+`iron man movie`  
+`define comfort`  
+`wiki html`  
+`anything you want book`  
+`random quote`  
+`usd to eur rate`  
+`tell me a fact`  
+`death note anime`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing
@@ -79,4 +90,17 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 2. `sudo apt-get install python-dev libffi-dev libssl-dev`
 3. `pip install -r requirements.txt`
 4. `python jarvis.py`
-5. Visit `http://localhost:5000/test/?q=<YOUR_QUERY>` to see results.
+5. Visit the following URLs to see results:  
+`http://localhost:5000/process/?q=<YOUR_QUERY>` returns the intent of the query.  
+`http://localhost:5000/search/?q=<YOUR_QUERY>` returns the search result of the query.
+
+### History
+
+I started out with rule-based model but it didn't scale well so now I've shifted to Natural Language Processing.
+Rest assured, I'll strive to keep it as simple as possible so that you, yes you, can contribute!
+
+If you'd like to contribute to the old model, you are welcome to do so as well.
+I've created a new branch [`legacy`](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/legacy) for this purpose. I'll be accepting Pull Requests to this branch also. :smile:
+
+P.S. If you've come this far, you might as well contribute.
+Looking for a place to start? Take a look at some of the [low-hanging fruits](https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit)!

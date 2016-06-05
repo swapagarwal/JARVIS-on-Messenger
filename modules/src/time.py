@@ -5,7 +5,7 @@ from datetime import datetime
 def process(input, entities):
     output = {}
     try:
-        l = requests.get('http://nominatim.openstreetmap.org/search?q='+ entities['time'][0]['value'] + '&format=json&limit=1')
+        l = requests.get('http://open.mapquestapi.com/nominatim/v1/search.php?key=CcNE2f13xlbD9bMBYzWHsyasWeyGDfwA&format=json&q='+ entities['time'][0]['value'] + '&addressdetails=0&limit=1')
         location = l.json()
         r = requests.get('http://api.timezonedb.com/?lat='+ location[0]['lat'] + '&lng='+ location[0]['lon'] + '&format=json&key=M4K04AV6U6IT')
         time_data = r.json()

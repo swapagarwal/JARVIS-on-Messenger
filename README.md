@@ -45,7 +45,7 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 - [ ] Ping ([#30](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/30))
 - [ ] Restaurant Rating ([#31](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/31))
 - [ ] Calculator ([#46](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/46))
-- [ ] Time ([#52](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/52))
+- [x] Time ([#64](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/64))
 
 Some advanced features:
 
@@ -82,6 +82,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `usd to eur rate`  
 `tell me a fact`  
 `death note anime`  
+`time in seattle`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

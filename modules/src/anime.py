@@ -22,6 +22,6 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        output['success'] = False
         output['error_msg'] = TextTemplate('I couldn\'t find that anime. Please ask me something else!')
+        output['success'] = False
     return output

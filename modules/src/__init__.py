@@ -8,6 +8,7 @@ __all__ = [
     'help',
     'joke',
     'movie',
+    'music',
     'quote',
     'request',
     'time',

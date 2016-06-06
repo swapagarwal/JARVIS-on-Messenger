@@ -46,6 +46,7 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 - [ ] Restaurant Rating ([#31](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/31))
 - [ ] Calculator ([#46](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/46))
 - [x] Time ([#64](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/64))
+- [x] Music Search
 
 Some advanced features:
 
@@ -83,6 +84,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `tell me a fact`  
 `death note anime`  
 `time in seattle`  
+`songs by linkin park`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

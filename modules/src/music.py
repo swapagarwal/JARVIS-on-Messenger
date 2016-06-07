@@ -1,5 +1,6 @@
 import requests
 from templates.generic import *
+from templates.text import TextTemplate
 from datetime import datetime
 
 def process(input, entities):
@@ -26,5 +27,6 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
+        output['error_msg'] = TextTemplate('I could not find any music to do with ' + music + ', sorry. Please try again.').get_message()
         output['success'] = False
     return output

@@ -28,5 +28,6 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
+        output['error_msg'] = TextTemplate('I was unable to find ' + book_title + ' , please try something else!').get_message()
         output['success'] = False
     return output

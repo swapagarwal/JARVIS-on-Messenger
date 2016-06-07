@@ -19,5 +19,6 @@ def process(input, entities):
         output['output'] = TextTemplate(conversion_details).get_message()
         output['success'] = True
     except:
+        output['error_msg'] = TextTemplate('I could not convert ' + from_currency + ' to ' + to_currency + '. Please try something else!').get_message()
         output['success'] = False
     return output

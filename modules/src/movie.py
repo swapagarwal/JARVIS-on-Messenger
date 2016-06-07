@@ -15,5 +15,6 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
+        output['error_msg'] = TextTemplate('I could not find anything to do with ' + movie + ', sorry. Please try again!').get_message()
         output['success'] = False
     return output

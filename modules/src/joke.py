@@ -21,5 +21,6 @@ def process(input, entities=None):
             output['output'] = TextTemplate(choice(jokes_list)).get_message()
             output['success'] = True
     except:
+        output['error_msg'] = TextTemplate('I could not manage to tell you a joke, please try again!').get_message()
         output['success'] = False
     return output

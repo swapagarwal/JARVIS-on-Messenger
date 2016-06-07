@@ -12,4 +12,5 @@ __all__ = [
     'request',
     'time',
     'wiki',
+    'identify',
 ]

@@ -3,6 +3,7 @@ from templates.text import TextTemplate
 
 def process(input, entities=None):
     output = {}
+    print str(input)
     try:
         # Programming quotes
         r = requests.get('http://quotes.stormconsultancy.co.uk/random.json')

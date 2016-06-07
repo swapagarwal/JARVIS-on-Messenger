@@ -4,7 +4,7 @@ from templates.button import *
 def process(input, entities):
     output = {}
     try:
-        anime = entities['search_query'][0]['value']
+        anime = entities['anime'][0]['value']
         r = requests.get('https://hummingbird.me/api/v1/search/anime', params={
             'query': anime
         })

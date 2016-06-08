@@ -12,6 +12,7 @@ __all__ = [
     'quote',
     'request',
     'time',
-    'wiki',
     'weather',
+    'wiki',
+    
 ]

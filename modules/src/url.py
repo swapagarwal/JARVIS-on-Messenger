@@ -11,7 +11,7 @@ GOOGLE_URL_SHORTENER = os.environ.get('GOOGLE_URL_SHORTENER', config.GOOGLE_URL_
 def process(input, entities=None):
     output = {}
     try:
-        long_url = ""
+        long_url = entities['word'][0]['value']
         headers = {'content-type': 'application/json'}
         r = requests.post('https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTENER, data=json.dumps({'longUrl': long_url}), headers=headers)
         data = r.json()

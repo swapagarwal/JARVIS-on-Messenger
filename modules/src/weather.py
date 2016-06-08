@@ -13,7 +13,7 @@ def process(input, entities):
         r = requests.get('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + OPEN_WEATHER_MAP_ACCESS_TOKEN)
         data = r.json()
         output['input'] = input
-        template = TextTemplate('The weather in ' + data['name'] + 'is: ' + data['weather']['description'] + ' with a temperature of ' + data['main']['temp'] + '. Info provided by OpenWeatherMap.')
+        template = TextTemplate('The weather in ' + data['name'] + 'is: ' + data['weather'][0]['description'] + ' with a temperature of ' + data['main']['temp'] + '. Info provided by OpenWeatherMap.')
         output['output'] = template.get_message()
         output['success'] = True
     except:

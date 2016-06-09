@@ -1,3 +1,4 @@
+
 import wikipedia
 from templates.button import *
 
@@ -14,5 +15,6 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
+        output['error_msg'] = TextTemplate('I could not find any wiki results to do with ' + query + '. Please try again!').get_message()
         output['success'] = False
     return output

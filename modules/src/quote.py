@@ -11,6 +11,5 @@ def process(input, entities=None):
         output['output'] = TextTemplate(data['quote'] + ' - ' + data['author']).get_message()
         output['success'] = True
     except:
-        output['error_msg'] = TextTemplate('Sorry, I could not get you a quote. Please, try again.').get_message()
         output['success'] = False
     return output

@@ -19,6 +19,11 @@ def process(input, entities):
         output['output'] = TextTemplate(conversion_details).get_message()
         output['success'] = True
     except:
-        output['error_msg'] = TextTemplate('I couldn\'t convert between the two currencies! Please ask me something else!').get_message()
+        error_message = 'I couldn\'t convert between those currencies.'
+        error_message += '\nPlease ask me something else, like:'
+        error_message += '\n  - HKD to USD'
+        error_message += '\n  - USD to EUR rate'
+        error_message += '\n  - how much is 100 USD to INR'
+        output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

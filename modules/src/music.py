@@ -27,6 +27,11 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        output['error_msg'] = TextTemplate('I could not find any music to do with ' + music + ', sorry. Please try again.').get_message()
+        error_message = 'I couldn\'t find any music matching your query.'
+        error_message += '\nPlease ask me something else, like:'
+        error_message += '\n  - hymn for the weekend song'
+        error_message += '\n  - linkin park songs'
+        error_message += '\n  - play hotel california'
+        output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

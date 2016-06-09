@@ -15,6 +15,11 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        output['error_msg'] = TextTemplate('I could not find any wiki results to do with ' + query + '. Please try again!').get_message()
+        error_message = 'I couldn\'t find any wikipedia results matching your query.'
+        error_message += '\nPlease ask me something else, like:'
+        error_message += '\n  - wikipedia barack'
+        error_message += '\n  - html wiki'
+        error_message += '\n  - wiki sachin tendulkar'
+        output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

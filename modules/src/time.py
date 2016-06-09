@@ -19,6 +19,11 @@ def process(input, entities):
         output['output'] = TextTemplate('Location: ' + location_data[0]['display_name'] + '\nTime: ' + time + ' ' + time_data['abbreviation']).get_message()
         output['success'] = True
     except:
-        output['error_msg'] = TextTemplate('Sorry, I was not able to get you the time. Please try again.').get_message()
+        error_message = 'I couldn\'t get the time at the location you specified.'
+        error_message += '\nPlease ask me something else, like:'
+        error_message += '\n  - time in new york'
+        error_message += '\n  - india time'
+        error_message += '\n  - time at paris'
+        output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

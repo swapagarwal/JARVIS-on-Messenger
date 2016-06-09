@@ -12,6 +12,5 @@ def process(input, entities=None):
         output['output'] = TextTemplate(data['text']).get_message()
         output['success'] = True
     except:
-        output['error_msg'] = TextTemplate('I did not manage to get you a fact, sorry! Please try again.').get_message()
         output['success'] = False
     return output

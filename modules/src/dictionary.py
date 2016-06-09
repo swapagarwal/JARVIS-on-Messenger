@@ -17,6 +17,11 @@ def process(input, entities):
         output['output'] = TextTemplate('Definition of ' + word + ':\n' + data['definitions'][0]['definition']).get_message()
         output['success'] = True
     except:
-        output['error_msg'] = TextTemplate('I could not find the definition of ' + word + '.\nPlease ask me something else.').get_message()
+        error_message = 'I couldn\'t find that definition.'
+        error_message += '\nPlease ask me something else, like:'
+        error_message += '\n  - define comfort'
+        error_message += '\n  - cloud definition'
+        error_message += '\n  - what does an accolade mean?'
+        output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

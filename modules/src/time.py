@@ -14,7 +14,7 @@ def process(input, entities):
         location_data = r.json()
         r = requests.get('http://api.timezonedb.com/?lat='+ location_data[0]['lat'] + '&lng='+ location_data[0]['lon'] + '&format=json&key=' + TIME_ZONE_DB_API_KEY)
         time_data = r.json()
-        time = datetime.utcfromtimestamp(time_data['timestamp']).strftime('%Y-%m-%d %H:%M:%S')
+        time = datetime.utcfromtimestamp(time_data['timestamp']).strftime('%a %b %d %Y %H:%M:%S')
         output['input'] = input
         output['output'] = TextTemplate('Location: ' + location_data[0]['display_name'] + '\nTime: ' + time + ' ' + time_data['abbreviation']).get_message()
         output['success'] = True

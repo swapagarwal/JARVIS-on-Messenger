@@ -12,7 +12,7 @@ def process(input, entities):
 
         template = TextTemplate()
         template.set_text('Title: ' + data[0]['title'] + '\nSynopsis: ' + data[0]['synopsis'])
-        template.set_post_text('\nCommunity Rating: ' + str(round(data[0]['community_rating'], 2)) +'/5'+ '\nStatus: ' + data[0]['status'])
+        template.set_post_text('\nCommunity Rating: ' + str(round(data[0]['community_rating'], 2)) +' /5'+ '\nStatus: ' + data[0]['status'])
         text = template.get_text()
 
         template = ButtonTemplate(text)

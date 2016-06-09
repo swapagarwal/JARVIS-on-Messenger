@@ -8,7 +8,7 @@ def process(input, entities):
         r = requests.get('http://www.omdbapi.com/?t=' + movie + '&plot=full&r=json')
         data = r.json()
         output['input'] = input
-        template = TextTemplate('Title: ' + data['Title'] + '\nYear: ' + data['Year'] + '\nIMDb Rating: ' + data['imdbRating'] + '\nPlot: ' + data['Plot'])
+        template = TextTemplate('Title: ' + data['Title'] + '\nYear: ' + data['Year'] + '\nIMDb Rating: ' + data['imdbRating']+ ' / 10' + '\nPlot: ' + data['Plot'])
         text = template.get_text()
         template = ButtonTemplate(text)
         template.add_web_url('IMDb Link', 'http://www.imdb.com/title/' + data['imdbID'] + '/')

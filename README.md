@@ -32,7 +32,7 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 - [x] Movie Rating
 - [x] Anime Rating ([#41](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/41))
 - [ ] News ([#48](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/48))
-- [ ] Weather ([#28](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/28))
+- [x] Weather
 - [x] Currency Conversion ([#18](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/18))
 - [x] Random Quote ([#21](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/21))
 - [x] Random Fact ([#45](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/45))
@@ -87,6 +87,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `songs by linkin park`  
 `shorten google.com`  
 `expand http://goo.gl/7aqe`  
+`weather in london`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

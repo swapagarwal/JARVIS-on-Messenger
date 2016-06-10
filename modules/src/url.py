@@ -4,21 +4,38 @@ import os
 import json
 from templates.text import TextTemplate
 
+GOOGLE_URL_SHORTENER_API_KEY = os.environ.get('GOOGLE_URL_SHORTENER_API_KEY', config.GOOGLE_URL_SHORTENER_API_KEY)
 
-GOOGLE_URL_SHORTENER = os.environ.get('GOOGLE_URL_SHORTENER', config.GOOGLE_URL_SHORTENER)
-
-
-def process(input, entities=None):
+def process(input, entities):
     output = {}
     try:
-        long_url = entities['word'][0]['value']
-        headers = {'content-type': 'application/json'}
-        r = requests.post('https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTENER, data=json.dumps({'longUrl': long_url}), headers=headers)
-        data = r.json()
-
+        url = entities['url'][0]['value']
+        action = entities['url_action'][0]['value']
+        if action == 'expand':
+            r = requests.get('https://www.googleapis.com/urlshortener/v1/url', params={
+                'key': GOOGLE_URL_SHORTENER_API_KEY,
+                'shortUrl': url
+            })
+            data = r.json()
+            response = 'Here\'s your original URL:\n' + data['longUrl']
+        else:
+            assert(action == 'shorten')
+            r = requests.post('https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTENER_API_KEY, data=json.dumps({
+                'longUrl': url
+            }), headers={
+                'Content-Type': 'application/json'
+            })
+            data = r.json()
+            response = 'Here\'s your shortened URL:\n' + data['id']
         output['input'] = input
-        output['output'] = TextTemplate(data['id']).get_message()
+        output['output'] = TextTemplate(response).get_message()
         output['success'] = True
     except:
+        error_message = 'I couldn\'t perform that action.'
+        error_message += '\nPlease ask me something else, like:'
+        error_message += '\n  - shorten google.com'
+        error_message += '\n  - give me a short version of bing.com'
+        error_message += '\n  - expand http://goo.gl/7aqe'
+        output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

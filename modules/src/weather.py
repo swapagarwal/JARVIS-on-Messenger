@@ -15,9 +15,8 @@ def process(input, entities):
         r = requests.get('http://api.openweathermap.org/data/2.5/weather?lat='+ location_data[0]['lat'] + '&lon='+ location_data[0]['lon'] + '&units=metric' + '&appid=' + OPEN_WEATHER_MAP_ACCESS_TOKEN)
         weather_data = r.json()
         output['input'] = input
-		temp_in_farenheit=weather_data['main']['temp']*1.8+32
-		
-        output['output'] = TextTemplate('Location: ' + location_data[0]['display_name'] + '\nWeather: ' + weather_data['weather'][0]['description'] + '\nTemperature: ' + str(weather_data['main']['temp']) + ' °C/ ' + str(temp_in_farenheit) + ' °F\n- Info provided by OpenWeatherMap').get_message()
+	temp_in_farenheit=weather_data['main']['temp']*1.8+32
+	output['output'] = TextTemplate('Location: ' + location_data[0]['display_name'] + '\nWeather: ' + weather_data['weather'][0]['description'] + '\nTemperature: ' + str(weather_data['main']['temp']) + ' °C/ ' + str(temp_in_farenheit) + ' °F\n- Info provided by OpenWeatherMap').get_message()
         output['success'] = True
     except:
         error_message = 'I couldn\'t get the weather info you asked for.'

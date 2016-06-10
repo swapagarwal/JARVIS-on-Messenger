@@ -32,7 +32,7 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 - [x] Movie Rating
 - [x] Anime Rating ([#41](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/41))
 - [ ] News ([#48](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/48))
-- [ ] Weather ([#28](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/28))
+- [x] Weather
 - [x] Currency Conversion ([#18](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/18))
 - [x] Random Quote ([#21](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/21))
 - [x] Random Fact ([#45](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/45))
@@ -40,8 +40,8 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 - [x] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
 - [x] Wikipedia Summary ([#9](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/9))
 - [ ] Lyrics Search
-- [ ] URL Shortener
-- [ ] Expand URL
+- [x] URL Shortener ([#77](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/77))
+- [x] Expand URL
 - [ ] Ping ([#30](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/30))
 - [ ] Restaurant Rating ([#31](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/31))
 - [ ] Calculator ([#46](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/46))
@@ -85,6 +85,9 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `death note anime`  
 `time in seattle`  
 `songs by linkin park`  
+`shorten google.com`  
+`expand http://goo.gl/7aqe`  
+`weather in london`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing
@@ -94,8 +97,8 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 3. `pip install -r requirements.txt`
 4. `python jarvis.py`
 5. Visit the following URLs to see results:  
-`http://localhost:5000/process/?q=<YOUR_QUERY>` returns the intent of the query.  
-`http://localhost:5000/search/?q=<YOUR_QUERY>` returns the search result of the query.
+`http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
+`http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
 ### History
 

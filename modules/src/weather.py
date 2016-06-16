@@ -9,7 +9,6 @@ OPEN_WEATHER_MAP_ACCESS_TOKEN = os.environ.get('OPEN_WEATHER_MAP_ACCESS_TOKEN', 
 def process(input, entities):
     output = {}
     try:
-        print 'http://open.mapquestapi.com/nominatim/v1/search.php?key=' + MAPQUEST_CONSUMER_KEY + '&format=json&q='+ entities['weather_location'][0]['value'] + '&limit=1'
         r = requests.get('http://open.mapquestapi.com/nominatim/v1/search.php?key=' + MAPQUEST_CONSUMER_KEY + '&format=json&q='+ entities['weather_location'][0]['value'] + '&limit=1')
         location_data = r.json()
         r = requests.get('http://api.openweathermap.org/data/2.5/weather?lat='+ location_data[0]['lat'] + '&lon='+ location_data[0]['lon'] + '&appid=' + OPEN_WEATHER_MAP_ACCESS_TOKEN)

@@ -20,6 +20,7 @@ def process():
 
 @app.route('/search/')
 def search():
+    print str(request.args.get('q'))
     return json.dumps(modules.search(request.args.get('q')))
 
 @app.route('/webhook/', methods=['GET', 'POST'])

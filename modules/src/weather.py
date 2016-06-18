@@ -11,10 +11,12 @@ def process(input, entities):
     try:
         r = requests.get('http://open.mapquestapi.com/nominatim/v1/search.php?key=' + MAPQUEST_CONSUMER_KEY + '&format=json&q='+ entities['weather_location'][0]['value'] + '&limit=1')
         location_data = r.json()
-        r = requests.get('http://api.openweathermap.org/data/2.5/weather?lat='+ location_data[0]['lat'] + '&lon='+ location_data[0]['lon'] + '&appid=' + OPEN_WEATHER_MAP_ACCESS_TOKEN)
+        r = requests.get('http://api.openweathermap.org/data/2.5/weather?lat='+ location_data[0]['lat'] + '&lon='+ location_data[0]['lon'] + '&units=metric&appid=' + OPEN_WEATHER_MAP_ACCESS_TOKEN)
         weather_data = r.json()
         output['input'] = input
-        output['output'] = TextTemplate('Location: ' + location_data[0]['display_name'] + '\nWeather: ' + weather_data['weather'][0]['description'] + '\nTemperature: ' + str(weather_data['main']['temp']) + ' K\n- Info provided by OpenWeatherMap').get_message()
+        temperature_in_fahrenheit = weather_data['main']['temp'] * 1.8 + 32
+        degree_sign = u'\N{DEGREE SIGN}'
+        output['output'] = TextTemplate('Location: ' + location_data[0]['display_name'] + '\nWeather: ' + weather_data['weather'][0]['description'] + '\nTemperature: ' + str(weather_data['main']['temp']) + ' ' + degree_sign + 'C / ' + str(temperature_in_fahrenheit) + ' ' + degree_sign + 'F\n- Info provided by OpenWeatherMap').get_message()
         output['success'] = True
     except:
         error_message = 'I couldn\'t get the weather info you asked for.'

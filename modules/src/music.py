@@ -9,6 +9,7 @@ def process(input, entities):
         music = entities['music'][0]['value']
         r = requests.get('https://api.spotify.com/v1/search?q=' + music + '&type=track')
         data = r.json()
+        assert(len(data['tracks']['items']) > 0)
         template = GenericTemplate()
         for track in data['tracks']['items']:
             title = track['name']

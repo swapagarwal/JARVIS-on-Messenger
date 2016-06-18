@@ -1,0 +1,36 @@
+import requests
+import config
+import os
+from templates.generic import *
+from templates.text import TextTemplate
+
+YOUTUBE_DATA_API_KEY = os.environ.get('YOUTUBE_DATA_API_KEY', config.YOUTUBE_DATA_API_KEY)
+
+def process(input, entities):
+    output = {}
+    try:
+        video = entities['video'][0]['value']
+        r = requests.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=' + video + '&type=video&key=' + YOUTUBE_DATA_API_KEY)
+        data = r.json()
+        template = GenericTemplate()
+        for item in data['items']:
+            title = item['snippet']['title']
+            item_url = 'https://www.youtube.com/watch?v=' + item['id']['videoId']
+            image_url = item['snippet']['thumbnails']['high']['url']
+            subtitle = item['snippet']['channelTitle']
+            buttons = ButtonTemplate()
+            buttons.add_web_url('YouTube Link', 'https://www.youtube.com/watch?v=' + item['id']['videoId'])
+            buttons.add_web_url('Channel Link', 'https://www.youtube.com/channel/' + item['snippet']['channelId'])
+            template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle, buttons=buttons.get_buttons())
+        output['input'] = input
+        output['output'] = template.get_message()
+        output['success'] = True
+    except:
+        error_message = 'I couldn\'t find any videos matching your query.'
+        error_message += '\nPlease ask me something else, like:'
+        error_message += '\n  - sia videos'
+        error_message += '\n  - videos by eminem'
+        error_message += '\n  - video coldplay'
+        output['error_msg'] = TextTemplate(error_message).get_message()
+        output['success'] = False
+    return output

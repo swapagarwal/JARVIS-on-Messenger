@@ -13,6 +13,7 @@ __all__ = [
     'request',
     'time',
     'url',
+    'video',
     'weather',
     'wiki',
 ]

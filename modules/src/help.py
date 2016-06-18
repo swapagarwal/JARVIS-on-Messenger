@@ -14,6 +14,7 @@ def process(input, entities=None):
     help += '\n  - songs by linkin park'
     help += '\n  - shorten google.com'
     help += '\n  - weather in london'
+    help += '\n  - videos of sia'
     output = {
         'input': input,
         'output': TextTemplate(help).get_message(),

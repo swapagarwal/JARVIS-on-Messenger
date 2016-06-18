@@ -47,6 +47,7 @@ There are a lot of features that I've planned for JARVIS. Feel free to add to th
 - [ ] Calculator ([#46](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/46))
 - [x] Time ([#64](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/64))
 - [x] Music Search
+- [x] Video Search
 
 Some advanced features:
 
@@ -88,6 +89,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currentl
 `shorten google.com`  
 `expand http://goo.gl/7aqe`  
 `weather in london`  
+`videos of sia`  
 More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Local Development / Testing

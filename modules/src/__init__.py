@@ -16,4 +16,5 @@ __all__ = [
     'video',
     'weather',
     'wiki',
+    'restaurant'
 ]

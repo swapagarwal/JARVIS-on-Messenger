@@ -1,5 +1,5 @@
 template = {
-    'template_type': 'file',
+    'template_type': 'attachment',
     'value': {
         'attachment': {
             'type': 'file',
@@ -10,15 +10,17 @@ template = {
     }
 }
 
-class FileAttachmentTemplate:
-    def __init__(self, url=''):
+class AttachmentTemplate:
+    def __init__(self, url='', type='file'):
         self.template = template['value']
         self.url = url
+        self.type = type
     def set_url(self, url=''):
         self.url = url
+    def set_type(self, type=''):
+        # Image / Audio / Video / File
+        self.type = type
     def get_message(self):
         self.template['attachment']['payload']['url'] = self.url
+        self.template['attachment']['type'] = self.type
         return self.template
-
-
-

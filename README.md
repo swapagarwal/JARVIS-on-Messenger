@@ -102,6 +102,7 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 5. Visit the following URLs to see results:  
 `http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
 `http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
+
 #### Windows Operating Systems
 1. `Clone this repo`
 2. `pip install -r requirements.txt`

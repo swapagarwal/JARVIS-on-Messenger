@@ -94,22 +94,16 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 
 ### Local Development / Testing
 
-#### Linux and Mac OSX Operating Systems
+#### Linux and Mac OSX and Windows Operating Systems
 1. Clone this repo.
-2. `sudo apt-get install python-dev libffi-dev libssl-dev`
+2. Linux and Mac OSx Only: `sudo apt-get install python-dev libffi-dev libssl-dev`
+2a. Windows operating systems: These should already be pre-installed in your Python bundle. Therefore, it would be redundent to install these again. 
 3. `pip install -r requirements.txt`
 4. `python jarvis.py`
 5. Visit the following URLs to see results:  
 `http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
 `http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
-#### Windows Operating Systems
-1. `Clone this repo`
-2. `pip install -r requirements.txt`
-3. `python jarvis.py`
-4. Visit the following URLs to see results:  
-`http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
-`http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
 
 ### History

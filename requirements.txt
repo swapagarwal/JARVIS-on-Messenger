@@ -18,3 +18,4 @@ requests==2.9.1
 six==1.10.0
 Werkzeug==0.11.8
 wikipedia==1.4.0
+numexpr==2.6.1

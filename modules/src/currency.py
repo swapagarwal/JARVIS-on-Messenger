@@ -13,7 +13,8 @@ def process(input, entities):
         conversion_details = '1 %s = %.4f %s' % (from_currency, conversion_rate, to_currency)
         if 'number' in entities:
             amount = entities['number'][0]['value']
-            conversion_details += '\n%s %s = %.4f %s' % (amount, from_currency, amount * conversion_rate, to_currency)
+            if amount != 1:
+                conversion_details += '\n%s %s = %.4f %s' % (amount, from_currency, amount * conversion_rate, to_currency)
 
         output['input'] = input
         output['output'] = TextTemplate(conversion_details).get_message()

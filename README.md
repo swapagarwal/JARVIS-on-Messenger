@@ -94,17 +94,27 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 
 ### Local Development / Testing
 
-#### Linux and Mac OSX and Windows Operating Systems
 1. Clone this repo.
-2. Linux and Mac OSx Only: `sudo apt-get install python-dev libffi-dev libssl-dev`
-2a. Windows operating systems: These should already be pre-installed in your Python bundle. 
+2. Linux: `sudo apt-get install python-dev libffi-dev libssl-dev`  
+Windows: These should already be pre-installed in your Python bundle.  
+Mac/OS X:  
+a) If you install Python using brew, the relevant headers are already installed for you. In other words, you don't need python-devel.  
+b) `brew install pkg-config libffi`  
+`export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.0.13/lib/pkgconfig/` # May change with libffi version  
+`pip install cffi`  
+c) `brew install libtins`  
 3. `pip install -r requirements.txt`
 4. `python jarvis.py`
 5. Visit the following URLs to see results:  
 `http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
 `http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
-
+The process query returns what module the system classifies your query into, say a dictionary query or a song search, etc. Visit the following URLs to understand the output format:  
+http://localhost:5000/process/?q=tell%20me%20a%20joke  
+http://localhost:5000/process/?q=time%20in%20seattle  
+http://localhost:5000/process/?q=convert%2025%20usd%20to%20eur  
+The search query returns the actual bot output, that you get when you interact with the bot using that query.  
+Note that for the search query to work, you have to set your own key (of the module that you want to test) in config.py  
 
 ### History
 

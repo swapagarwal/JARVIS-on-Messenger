@@ -1,14 +1,11 @@
-import numexpr as ne
 from templates.text import TextTemplate
-
 
 def process(input, entities=None):
     eq = entities['math'][0]['values']
-    resp = ""
     try:
-        resp = "Of course Sir,\n the answer is " + ne.evaluate(eq)
+        resp = "Of course Sir,\n the answer is " + eval(eq)
     except SyntaxError:
-        resp = "There seems to be an issue with your equation Sir. "
+        resp = "There seems to be an issue with your equation Sir. It might not be supported yet"
     output = {
         'input': input,
         'output': TextTemplate(resp).get_message(),

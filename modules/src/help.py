@@ -1,7 +1,12 @@
 from templates.text import TextTemplate
 
 def process(input, entities=None):
-    help = 'Hi there! I\'m Jarvis, your personal assistant.'
+    sender_name = ''
+    if entities is not None:
+        if 'sender' in entities:
+            sender_name = entities['first_name']
+
+    help = 'Hi ' + sender_name + '! I\'m Jarvis, your personal assistant.'
     help += '\nTell me things like:'
     help += '\n  - define comfort'
     help += '\n  - iron man 2 movie plot'

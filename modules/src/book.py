@@ -22,7 +22,12 @@ def process(input, entities):
 
         template = TextTemplate()
         template.set_text('Title: ' + title + '\nDescription: ' + description)
-        template.set_post_text('\nAverage Rating: ' + average_rating + ' / 5' + '\nLink: ' + link + '\n\n' + goodreads_attribution)
+        template.set_post_text('\nAverage Rating: ' + average_rating + ' / 5' + '\n')
+
+        text = template.get_text()
+        template = ButtonTemplate(text)
+        template.add_web_url('Goodreads Link', link + '/')
+
 
         output['input'] = input
         output['output'] = template.get_message()

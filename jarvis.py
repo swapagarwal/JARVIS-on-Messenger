@@ -8,6 +8,10 @@ import modules
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN', config.ACCESS_TOKEN)
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', config.VERIFY_TOKEN)
 
+MARK_SEEN = 0
+SEND_TYPING_ON = 1
+SEND_TYPING_OFF = 2
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -21,6 +25,22 @@ def process():
 @app.route('/search/')
 def search():
     return json.dumps(modules.search(request.args.get('q')))
+    
+def senderaction(senderid, actiontype):
+    if actiontype == MARK_SEEN:
+        action = 'mark_seen'
+    elif actiontype == SEND_TYPING_ON:
+        action = 'typing_on'
+    else :
+        action = 'typing_off'
+    payload = {
+        'recipient': {
+            'id': senderid
+        },
+        'sender_action': action
+    }
+    r = requests.post('https://graph.facebook.com/v2.6/me/messages', params={'access_token': ACCESS_TOKEN}, json=payload)
+    return 'Done'
 
 @app.route('/webhook/', methods=['GET', 'POST'])
 def webhook():
@@ -29,8 +49,10 @@ def webhook():
         messaging_events = data['entry'][0]['messaging']
         for event in messaging_events:
             sender = event['sender']['id']
+            senderaction(sender, MARK_SEEN)
             if 'message' in event and 'text' in event['message']:
                 text = event['message']['text']
+                senderaction(sender, SEND_TYPING_ON)
                 payload = {
                     'recipient': {
                         'id': sender

@@ -1,26 +1,27 @@
-import requests
+from requests import get
 from templates.text import TextTemplate
-from random import choice
-import json
-import config
+from re import sub
+from HTMLParser import HTMLParser
+
 
 def process(input, entities=None):
     output = {}
     try:
-        '''
-        # Programming quotes
-        r = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
-        data = r.json()
+        h = HTMLParser()
+        res = get('http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1')
+        remove_html_tags_pattern = r'(<\w>|</\w>)'
+        data = res.json()[0]
+
+        # Remove html paragraph tags. h.unescape() not remove them
+        content = sub(remove_html_tags_pattern, "", data["content"])
+
+        # Remove some HTML tags from the response
+        escaped_html_content = h.unescape(content)
+        author = data['title']
         output['input'] = input
-        output['output'] = TextTemplate(data['quote'] + ' - ' + data['author']).get_message()
+        output['output'] = TextTemplate("{0} - {1}".format(escaped_html_content, author)).get_message()
         output['success'] = True
-        '''
-        with open(config.QUOTES_SOURCE_FILE) as quotes_file:
-            quotes = json.load(quotes_file)
-            quotes_list = quotes['quotes']
-            output['input'] = input
-            output['output'] = TextTemplate(choice(quotes_list)).get_message()
-            output['success'] = True
+
     except:
         output['success'] = False
     return output

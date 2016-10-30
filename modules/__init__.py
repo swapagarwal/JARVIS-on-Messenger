@@ -23,8 +23,13 @@ def process_query(input):
     except:
         return None, {}
 
-def search(input):
-    intent, entities = process_query(input)
+def search(input, postback=False):
+    if postback:
+        payload = json.loads(input)
+        intent = payload['intent']
+        entities = payload['entities']
+    else:
+        intent, entities = process_query(input)
     if intent is not None:
         data = sys.modules['modules.src.' + intent].process(input, entities)
         if data['success']:

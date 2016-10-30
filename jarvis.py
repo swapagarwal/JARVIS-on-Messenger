@@ -38,6 +38,15 @@ def webhook():
                     'message': modules.search(text)
                 }
                 r = requests.post('https://graph.facebook.com/v2.6/me/messages', params={'access_token': ACCESS_TOKEN}, json=payload)
+            if 'postback' in event and 'payload' in event['postback']:
+                postback = event['postback']['payload']
+                payload = {
+                    'recipient': {
+                        'id': sender
+                    },
+                    'message': modules.search(postback, postback=True)
+                }
+                r = requests.post('https://graph.facebook.com/v2.6/me/messages', params={'access_token': ACCESS_TOKEN}, json=payload)
         return ''  # 200 OK
     elif request.method == 'GET':  # Verification
         if request.args.get('hub.verify_token') == VERIFY_TOKEN:

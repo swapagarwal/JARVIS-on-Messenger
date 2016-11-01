@@ -2,6 +2,7 @@ __all__ = [
     'anime',
     'book',
     'bye',
+    'coin',
     'currency',
     'dictionary',
     'fact',

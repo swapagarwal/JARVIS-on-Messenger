@@ -4,6 +4,7 @@ __all__ = [
     'bye',
     'coin',
     'currency',
+    'dice',
     'dictionary',
     'fact',
     'hello',
@@ -18,5 +19,4 @@ __all__ = [
     'video',
     'weather',
     'wiki',
-    'dice',
 ]

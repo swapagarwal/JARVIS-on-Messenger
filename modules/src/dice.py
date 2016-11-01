@@ -1,9 +1,18 @@
+import json
 import random
-￼ from templates.text import TextTemplate
-￼ 
-￼ def process(input, entities):
-￼     output = {}
-￼     output['input'] = input
-      output['output'] = TextTemplate("Dice roll : {} ", random.randint(1,6)).get_message() 
-￼     output['success'] = True
-￼     return output
+from templates.text import TextTemplate
+from templates.quick_replies import add_quick_reply
+
+def process(input, entities=None):
+    roll = TextTemplate(str(random.randint(1, 6))).get_message()
+    postback = {
+        'intent': 'dice',
+        'entities': None
+    }
+    message = add_quick_reply(roll, 'Roll again!', json.dumps(postback))
+    output = {
+        'input': input,
+        'output': message,
+        'success': True
+    }
+    return output

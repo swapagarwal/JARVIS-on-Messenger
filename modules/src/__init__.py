@@ -1,3 +1,4 @@
+# List of all modules
 __all__ = [
     'anime',
     'book',
@@ -19,4 +20,11 @@ __all__ = [
     'video',
     'weather',
     'wiki',
+]
+
+# List of modules that send data personalized to the user
+__personalized__ = [
+    'bye',
+    'hello',
+    'help',
 ]

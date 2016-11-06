@@ -24,7 +24,7 @@ def process_query(input):
     except:
         return None, {}
 
-def search(input, postback=False):
+def search(input, sender=None, postback=False):
     if postback:
         payload = json.loads(input)
         intent = payload['intent']
@@ -32,6 +32,12 @@ def search(input, postback=False):
     else:
         intent, entities = process_query(input)
     if intent is not None:
+        if intent in src.__personalized__ and sender is not None:
+            r = requests.get('https://graph.facebook.com/v2.6/' + str(sender), params={
+                'fields': 'first_name',
+                'access_token' : os.environ.get('ACCESS_TOKEN', config.ACCESS_TOKEN)
+            })
+            entities['sender'] = r.json()
         data = sys.modules['modules.src.' + intent].process(input, entities)
         if data['success']:
             return data['output']

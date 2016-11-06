@@ -33,13 +33,13 @@ def webhook():
             if 'message' in event and 'text' in event['message']:
                 if 'quick_reply' in event['message'] and 'payload' in event['message']['quick_reply']:
                     quick_reply_payload = event['message']['quick_reply']['payload']
-                    message = modules.search(quick_reply_payload, postback=True)
+                    message = modules.search(quick_reply_payload, sender=sender, postback=True)
                 else:
                     text = event['message']['text']
-                    message = modules.search(text)
+                    message = modules.search(text, sender=sender)
             if 'postback' in event and 'payload' in event['postback']:
                 postback_payload = event['postback']['payload']
-                message = modules.search(postback_payload, postback=True)
+                message = modules.search(postback_payload, sender=sender, postback=True)
             if message is not None:
                 payload = {
                     'recipient': {

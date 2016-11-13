@@ -2,7 +2,7 @@ import requests
 import config
 import os
 from xml.etree import ElementTree
-from templates.text import TextTemplate
+from templates.button import *
 
 GOODREADS_ACCESS_TOKEN = os.environ.get('GOODREADS_ACCESS_TOKEN', config.GOODREADS_ACCESS_TOKEN)
 
@@ -22,7 +22,11 @@ def process(input, entities):
 
         template = TextTemplate()
         template.set_text('Title: ' + title + '\nDescription: ' + description)
-        template.set_post_text('\nAverage Rating: ' + average_rating + ' / 5' + '\nLink: ' + link + '\n\n' + goodreads_attribution)
+        template.set_post_text('\nAverage Rating: ' + average_rating + ' / 5' + '\n' + goodreads_attribution)
+
+        text = template.get_text()
+        template = ButtonTemplate(text)
+        template.add_web_url('Goodreads Link', link)
 
         output['input'] = input
         output['output'] = template.get_message()

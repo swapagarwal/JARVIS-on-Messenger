@@ -1,5 +1,19 @@
 import requests
 from templates.text import TextTemplate
+import json
+import config
+
+
+def currency_symbol(currency):
+    with open(config.CURRENCIES_SOURCE_FILE, 'r') as currencies_file:
+        currencies = json.load(currencies_file)
+
+    if currency in currencies:
+        return currencies[currency]
+    elif len(currency) > 1 and currency[:-1] in currencies:
+        return currencies[currency[:-1]]
+    return currency
+
 
 def process(input, entities):
     output = {}

@@ -1,22 +1,26 @@
 import requests
+from templates.generic import *
 from templates.text import TextTemplate
-import json
-import config
 
 def process(input, entities=None):
     output = {}
     try:
         r = requests.get('http://xkcd.com/info.0.json')
         data = r.json()
-        number = data['num']
+
         title = data['title']
-        link = data['img']
+        item_url = 'http://xkcd.com/' + str(data['num']) + '/'
+        image_url = data['img'].replace('\\', '')
+        subtitle = data['alt']
+
+        template = GenericTemplate()
+        template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle, buttons=[])
 
         output['input'] = input
-        output['output'] = TextTemplate('Number: ' + number + '\nTitle: ' + title + '\nLink: ' + link).get_message()
+        output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = 'Error retrieving latest XKCD'
-        ouput['error_message'] = TextTemplate(error_message).get_message()
+        error_message = 'There was some error while retrieving data from xkcd.'
+        output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

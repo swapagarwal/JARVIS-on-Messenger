@@ -34,7 +34,8 @@ class GenericTemplate:
         element['subtitle'] = subtitle[:SUBTITLE_CHARACTER_LIMIT]
         for button in buttons:
             button['title'] = button['title'][:BUTTON_TITLE_CHARACTER_LIMIT]
-        element['buttons'] = buttons[:BUTTON_LIMIT]
+        if len(buttons) > 0:
+            element['buttons'] = buttons[:BUTTON_LIMIT]
         if len(self.elements) < ELEMENTS_LIMIT:
             self.elements.append(element)
     def get_message(self):

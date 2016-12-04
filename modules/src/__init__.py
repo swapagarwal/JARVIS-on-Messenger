@@ -20,6 +20,7 @@ __all__ = [
     'video',
     'weather',
     'wiki',
+    'ping',
 ]
 
 # List of modules that send data personalized to the user

@@ -1,6 +1,7 @@
 import requests
 import config
 import os
+from html2text import html2text
 from xml.etree import ElementTree
 from templates.button import *
 
@@ -15,7 +16,7 @@ def process(input, entities):
 
         book_node = data.find('book')
         title = book_node.find('title').text
-        description = book_node.find('description').text
+        description = html2text(book_node.find('description').text)
         average_rating = book_node.find('average_rating').text
         link = book_node.find('link').text
         goodreads_attribution = '- Powered by Goodreads'

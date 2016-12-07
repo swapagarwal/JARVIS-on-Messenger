@@ -4,11 +4,14 @@ import json
 import os
 import requests
 import modules
+import requests_cache
 
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN', config.ACCESS_TOKEN)
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', config.VERIFY_TOKEN)
 
 app = Flask(__name__)
+
+requests_cache.install_cache('jarvis_cache', backend='sqlite', expire_after=999999)
 
 @app.route('/')
 def about():

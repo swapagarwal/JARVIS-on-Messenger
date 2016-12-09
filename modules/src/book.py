@@ -13,8 +13,8 @@ def process(input, entities):
         book_title = entities['book'][0]['value']
         response = requests.get('https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title)
         data = ElementTree.fromstring(response.content)
-
         book_node = data.find('book')
+        author = book_node.find('authors').find('author').find('name').text
         title = book_node.find('title').text
         description = html2text(book_node.find('description').text)
         average_rating = book_node.find('average_rating').text
@@ -22,7 +22,7 @@ def process(input, entities):
         goodreads_attribution = '- Powered by Goodreads'
 
         template = TextTemplate()
-        template.set_text('Title: ' + title + '\nDescription: ' + description)
+        template.set_text('Title: ' + title + '\nAuthor: ' + author + '\nDescription: ' + description)
         template.set_post_text('\nAverage Rating: ' + average_rating + ' / 5' + '\n' + goodreads_attribution)
 
         text = template.get_text()

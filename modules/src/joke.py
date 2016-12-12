@@ -1,5 +1,6 @@
 import requests
 from templates.text import TextTemplate
+from templates.quick_replies import add_quick_reply
 from random import choice
 import json
 import config
@@ -17,8 +18,14 @@ def process(input, entities=None):
         with open(config.JOKES_SOURCE_FILE) as jokes_file:
             jokes = json.load(jokes_file)
             jokes_list = jokes['jokes']
+	    joke = TextTemplate(choice(jokes_list)).get_message()
+	    postback = {
+		'intent': 'joke',
+		'entities': None
+		}
+	    message = add_quick_reply(joke, 'One more!', json.dumps(postback))
             output['input'] = input
-            output['output'] = TextTemplate(choice(jokes_list)).get_message()
+            output['output'] = message
             output['success'] = True
     except:
         output['success'] = False

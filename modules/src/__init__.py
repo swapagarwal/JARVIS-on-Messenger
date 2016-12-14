@@ -13,6 +13,7 @@ __all__ = [
     'joke',
     'movie',
     'music',
+    'password',
     'quote',
     'request',
     'time',

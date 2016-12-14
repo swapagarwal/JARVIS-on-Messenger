@@ -15,6 +15,7 @@ def process_query(input):
         })
         data = r.json()
         intent = data['outcomes'][0]['intent']
+        print('intent',intent)
         entities = data['outcomes'][0]['entities']
         confidence = data['outcomes'][0]['confidence']
         if intent in src.__all__ and confidence > 0.5:

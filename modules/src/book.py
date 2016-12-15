@@ -16,13 +16,14 @@ def process(input, entities):
 
         book_node = data.find('book')
         title = book_node.find('title').text
+        author = book_node.find('authors').find('author').find('name').text
         description = html2text(book_node.find('description').text)
         average_rating = book_node.find('average_rating').text
         link = book_node.find('link').text
         goodreads_attribution = '- Powered by Goodreads'
 
         template = TextTemplate()
-        template.set_text('Title: ' + title + '\nDescription: ' + description)
+        template.set_text('Title: ' + title + '\nAuthor: ' + author + '\nDescription: ' + description)
         template.set_post_text('\nAverage Rating: ' + average_rating + ' / 5' + '\n' + goodreads_attribution)
 
         text = template.get_text()

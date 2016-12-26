@@ -1,18 +1,20 @@
 import requests
+import requests_cache
 from random import randint
-from datetime import datetime, timedelta, date
 from templates.generic import *
 from templates.text import TextTemplate
 
 def process(input, entities=None):
     output = {}
     try:
-        r = requests.get('http://xkcd.com/info.0.json')
-        data = r.json()
-        max_num = data['num']
+        with requests_cache.enabled('xkcd_cache', backend='sqlite', expire_after=3600):
+            # Get the latest comic
+            r = requests.get('http://xkcd.com/info.0.json')
+            data = r.json()
 
-        r = requests.get('http://xkcd.com/%d/info.0.json' % randint(1, max_num) )
-        data = r.json()
+            # Get a random comic between the first and the latest one
+            r = requests.get('http://xkcd.com/%d/info.0.json' % randint(1, data['num']))
+            data = r.json()
 
         title = data['title']
         item_url = 'http://xkcd.com/' + str(data['num']) + '/'

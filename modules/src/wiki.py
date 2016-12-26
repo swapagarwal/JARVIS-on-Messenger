@@ -49,7 +49,7 @@ def process(input, entities):
         error_message += '\nPlease ask me something else, like:'
         error_message += '\n  - wikipedia barack'
         error_message += '\n  - html wiki'
-        error_message += '\n  - wiki sachin tendulkar'
+        error_message += '\n  - who is sachin tendulkar'
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

@@ -18,7 +18,7 @@ class AttachmentTemplate:
     def set_url(self, url=''):
         self.url = url
     def set_type(self, type=''):
-        # Image / Audio / Video / File
+        # image / audio / video / file
         self.type = type
     def get_message(self):
         self.template['attachment']['payload']['url'] = self.url

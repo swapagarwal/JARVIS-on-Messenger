@@ -2,6 +2,7 @@ import requests
 import config
 import os
 import json
+from templates.generic import *
 from templates.text import TextTemplate
 
 NEWS_API_KEY = os.environ.get('NEWS_API_KEY', config.NEWS_API_KEY)
@@ -14,11 +15,11 @@ def process(input, entities):
         data = r.json()
         assert(len(data["articles"])>0)
         template = GenericTemplate()
-        for article in data["articles"]:
-            title = article["title"]
-            description = article["description"]
-            url = article["url"]
-            template.add_element(title= title, url= url, description= description)
+        for article in data['articles']:
+            title = article['title']
+            description = article['description']
+            url = article['url']
+            template.add_element(title= title, item_url= url, description= description)
         output['input'] = input
         output['output'] = template.get_message()
         output['success'] = True

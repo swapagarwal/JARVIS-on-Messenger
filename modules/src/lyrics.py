@@ -1,33 +1,33 @@
 import requests
 import config
+import os
 from bs4 import BeautifulSoup
 from templates.generic import *
 from templates.text import TextTemplate
-import os
+
 
 GENIUS_KEY = os.environ.get('GENIUS_API_KEY', config.GENIUS_API_KEY)
 
 def process(input, entities):
     output = {}
-    try:
-            
+    try:      
         query = entities['lyrics'][0]['value']
-        base_url = "http://api.genius.com"
-        headers = {'Authorization': 'Bearer %s' %(GENIUS_KEY)} 
-        search_url = base_url + "/search"
+        base_url = 'http://api.genius.com'
+        headers = {'Authorization': 'Bearer %s' % (GENIUS_KEY)} 
+        search_url = base_url + '/search'
 
         r = requests.get(search_url, data={'q': query}, headers=headers)
         r = r.json()
-        song_api_path = r["response"]["hits"][0]["result"]["api_path"] 
+        song_api_path = r['response']['hits'][0]['result']['api_path'] 
 
         song_url = base_url + song_api_path
         r = requests.get(song_url, headers=headers)
         r = r.json()
-        path = r["response"]["song"]["path"]
-        page_url = "http://genius.com" + path
+        path = r['response']['song']['path']
+        page_url = 'http://genius.com' + path
 
         lyrics_page = requests.get(page_url)
-        soup = BeautifulSoup(lyrics_page.text, "html.parser")
+        soup = BeautifulSoup(lyrics_page.text, 'html.parser')
         lyrics_div = soup.find('div',{'class': 'song_body-lyrics'})
         lyrics = lyrics_div.find('p').getText()
 
@@ -47,8 +47,7 @@ def process(input, entities):
         error_message += '\n Please ask me somrthing else, like:'
         error_message += '\n Lyrics for the song Wish you were here'
         output['error_msg'] = TextTemplate(error_message).get_message()
-        output['success'] = False
-        
+        output['success'] = False      
     return output
 
 

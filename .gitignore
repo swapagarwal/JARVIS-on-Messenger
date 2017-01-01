@@ -60,6 +60,3 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
-
-#Trash files in Mac
-.DS_Store

@@ -5,34 +5,35 @@ from bs4 import BeautifulSoup
 from templates.generic import *
 from templates.text import TextTemplate
 
-
-GENIUS_KEY = os.environ.get('GENIUS_API_KEY', config.GENIUS_API_KEY)
+MUSIX_KEY = os.environ.get('MUSIX_API_KEY', config.MUSIX_API_KEY)
 
 def process(input, entities):
     output = {}
     try:      
         query = entities['lyrics'][0]['value']
-        base_url = 'http://api.genius.com'
-        headers = {'Authorization': 'Bearer %s' % (GENIUS_KEY)} 
-        search_url = base_url + '/search'
 
-        r = requests.get(search_url, data={'q': query}, headers=headers)
-        r = r.json()
-        song_api_path = r['response']['hits'][0]['result']['api_path'] 
+        payload = {
+            'apikey': MUSIX_KEY,
+            'q_track': query,
+        }
+        
+        r = requests.get('http://api.musixmatch.com/ws/1.1/track.search',params=payload)
+        data = r.json()
 
-        song_url = base_url + song_api_path
-        r = requests.get(song_url, headers=headers)
-        r = r.json()
-        path = r['response']['song']['path']
-        page_url = 'http://genius.com' + path
+        lyrics_url = data['message']['body']['track_list'][0]['track']['track_share_url']
+        track_id = data['message']['body']['track_list'][0]['track']['track_id']
 
-        lyrics_page = requests.get(page_url)
-        soup = BeautifulSoup(lyrics_page.text, 'html.parser')
-        lyrics_div = soup.find('div',{'class': 'song_body-lyrics'})
-        lyrics = lyrics_div.find('p').getText()
+        payload = {
+            'apikey': MUSIX_KEY,
+            'track_id': track_id,
+        }
+
+        r = requests.get('http://api.musixmatch.com/ws/1.1/track.lyrics.get',params=payload)
+        data = r.json()
+        lyrics = '\n'.join(data['message']['body']['lyrics']['lyrics_body'].split('\n')[:-1])
 
         title = query
-        item_url = page_url
+        item_url = lyrics_url
         subtitle = lyrics
 
         template = GenericTemplate()

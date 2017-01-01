@@ -8,7 +8,6 @@ SUBTITLE_CHARACTER_LIMIT = 80
 BUTTON_TITLE_CHARACTER_LIMIT = 20
 BUTTON_LIMIT = 3
 ELEMENTS_LIMIT = 10
-DESCRIPTION_CHARACTER_LIMIT = 160
 
 template = {
     'template_type': 'generic',
@@ -27,10 +26,9 @@ class GenericTemplate:
     def __init__(self):
         self.template = copy(template['value'])
         self.elements = []
-    def add_element(self, title='', description='', item_url='', image_url='', subtitle='', buttons=[]):
+    def add_element(self, title='', item_url='', image_url='', subtitle='', buttons=[]):
         element = {}
         element['title'] = title[:TITLE_CHARACTER_LIMIT]
-        element['description'] = description[:DESCRIPTION_CHARACTER_LIMIT]
         if item_url != '':
             element['item_url'] = item_url
         element['image_url'] = image_url

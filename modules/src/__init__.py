@@ -11,6 +11,7 @@ __all__ = [
     'hello',
     'help',
     'joke',
+    'lyrics',
     'movie',
     'music',
     'quote',
@@ -21,6 +22,7 @@ __all__ = [
     'weather',
     'wiki',
     'xkcd',
+
 ]
 
 # List of modules that send data personalized to the user

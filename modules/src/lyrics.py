@@ -44,6 +44,8 @@ def process(input, entities):
 
     except:
         error_message = 'There was some error while retrieving data from genius.com'
+        error_message += '\n Please ask me somrthing else, like:'
+        error_message += '\n Lyrics for the song Wish you were here'
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
         

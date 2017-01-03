@@ -1,4 +1,5 @@
 import requests
+import requests_cache
 from templates.generic import *
 from templates.text import TextTemplate
 from datetime import datetime
@@ -6,9 +7,11 @@ from datetime import datetime
 def process(input, entities):
     output = {}
     try:
-        music = entities['music'][0]['value']
-        r = requests.get('https://api.spotify.com/v1/search?q=' + music + '&type=track')
-        data = r.json()
+        with requests_cache.enabled('hourly_cache', backend='sqlite', expire_after=3600):
+            music = entities['music'][0]['value']
+            r = requests.get('https://api.spotify.com/v1/search?q=' + music + '&type=track')
+            data = r.json()
+            print r.from_cache
         assert(len(data['tracks']['items']) > 0)
         template = GenericTemplate()
         for track in data['tracks']['items']:

@@ -1,12 +1,14 @@
 import requests
+import requests_cache
 from templates.button import *
 
 def process(input, entities):
     output = {}
     try:
-        movie = entities['movie'][0]['value']
-        r = requests.get('http://www.omdbapi.com/?t=' + movie + '&plot=full&r=json')
-        data = r.json()
+        with requests_cache.enabled('daily_cache', backend='sqlite', expire_after=86400):
+            movie = entities['movie'][0]['value']
+            r = requests.get('http://www.omdbapi.com/?t=' + movie + '&plot=full&r=json')
+            data = r.json()
         output['input'] = input
         template = TextTemplate('Title: ' + data['Title'] + '\nYear: ' + data['Year'] + '\nIMDb Rating: ' + data['imdbRating'] + ' / 10' + '\nPlot: ' + data['Plot'])
         text = template.get_text()

@@ -7,7 +7,7 @@ from templates.text import TextTemplate
 def process(input, entities=None):
     output = {}
     try:
-        with requests_cache.enabled('xkcd_cache', backend='sqlite', expire_after=3600):
+        with requests_cache.enabled('hourly_cache', backend='sqlite', expire_after=3600):
             # Get the latest comic
             r = requests.get('http://xkcd.com/info.0.json')
             data = r.json()

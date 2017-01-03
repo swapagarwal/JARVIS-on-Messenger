@@ -1,15 +1,17 @@
 import requests
+import requests_cache
+
 from templates.text import TextTemplate
 
 def process(input, entities):
     output = {}
     try:
-        from_currency = entities['from_currency'][0]['value'].upper()
-        to_currency = entities['to_currency'][0]['value'].upper()
-        r = requests.get('http://api.fixer.io/latest?base=' + from_currency)
-        data = r.json()
+        with requests_cache.enabled('daily_cache', backend='sqlite', expire_after=86400):
+            from_currency = entities['from_currency'][0]['value'].upper()
+            to_currency = entities['to_currency'][0]['value'].upper()
+            r = requests.get('http://api.fixer.io/latest?base=' + from_currency)
+            data = r.json()
         conversion_rate = data['rates'][to_currency]
-
         conversion_details = '1 %s = %.4f %s' % (from_currency, conversion_rate, to_currency)
         if 'number' in entities:
             amount = entities['number'][0]['value']

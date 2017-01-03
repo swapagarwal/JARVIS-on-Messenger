@@ -1,13 +1,15 @@
 import json
 import wikipedia
 from templates.generic import *
+import requests_cache
 from templates.text import TextTemplate
 
 def process(input, entities):
     output = {}
     try:
-        query = entities['wiki'][0]['value']
-        data = wikipedia.page(query)
+        with requests_cache.enabled('daily_cache', backend='sqlite', expire_after=86400):
+            query = entities['wiki'][0]['value']
+            data = wikipedia.page(query)
         output['input'] = input
         template = TextTemplate('Wikipedia summary of ' + data.title + ':\n' + data.summary)
         text = template.get_text()

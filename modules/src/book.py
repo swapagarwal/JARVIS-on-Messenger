@@ -1,5 +1,6 @@
 import requests
 import config
+import requests_cache
 import os
 from html2text import html2text
 from xml.etree import ElementTree
@@ -10,9 +11,10 @@ GOODREADS_ACCESS_TOKEN = os.environ.get('GOODREADS_ACCESS_TOKEN', config.GOODREA
 def process(input, entities):
     output = {}
     try:
-        book_title = entities['book'][0]['value']
-        response = requests.get('https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title)
-        data = ElementTree.fromstring(response.content)
+        with requests_cache.enabled('daily_cache', backend='sqlite', expire_after=86400):
+            book_title = entities['book'][0]['value']
+            response = requests.get('https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title)
+            data = ElementTree.fromstring(response.content)
 
         book_node = data.find('book')
         author = book_node.find('authors').find('author').find('name').text

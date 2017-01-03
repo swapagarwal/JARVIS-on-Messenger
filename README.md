@@ -3,7 +3,7 @@
 Just A Rather Very Intelligent System, now on Messenger!
 
 [![Build Status](https://travis-ci.org/swapagarwal/JARVIS-on-Messenger.svg?branch=master)](https://travis-ci.org/swapagarwal/JARVIS-on-Messenger)
-![Python](https://img.shields.io/badge/python-2.7-blue.svg)
+![Python 2.7](https://img.shields.io/badge/python-2.7-blue.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/swapagarwal/JARVIS-on-Messenger/master/LICENSE)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/swapagarwal/JARVIS-on-Messenger?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -95,7 +95,14 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 ### Local Development / Testing
 
 1. Clone this repo.
-2. Linux: `sudo apt-get install python-dev libffi-dev libssl-dev`  
+2. Linux: 
+
+**For Ubuntu/Debian based distros:**
+`sudo apt-get install python-dev libffi-dev libssl-dev`  
+
+**For Arch/Antergos:**
+`sudo pacman -S libffi openssl python2-pip`
+
 Windows: These should already be pre-installed in your Python bundle.  
 Mac/OS X:  
 a) If you install Python using brew, the relevant headers are already installed for you. In other words, you don't need python-devel.  

@@ -97,10 +97,10 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 1. Clone this repo.
 2. Linux: 
 
-**For Ubuntu/Debian based distros:**
+*For Ubuntu/Debian based distros:*
 `sudo apt-get install python-dev libffi-dev libssl-dev`  
 
-**For Arch/Antergos:**
+*For Arch/Antergos:*
 `sudo pacman -S libffi openssl python2-pip`
 
 Windows: These should already be pre-installed in your Python bundle.  

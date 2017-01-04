@@ -21,8 +21,15 @@ def process(input, entities=None):
         image_url = data['img'].replace('\\', '')
         subtitle = data['alt']
 
+        item_explained_url = 'http://explainxkcd.com/' + str(data['num']) + '/'
+
         template = GenericTemplate()
-        template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle, buttons=[])
+        
+        buttons = ButtonTemplate()
+        buttons.add_web_url('xkcd Link', item_url)
+        buttons.add_web_url('xkcd Explained Link', item_explained_url)
+
+        template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle, buttons=buttons.get_buttons())
 
         output['input'] = input
         output['output'] = template.get_message()

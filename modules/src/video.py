@@ -10,10 +10,12 @@ YOUTUBE_DATA_API_KEY = os.environ.get('YOUTUBE_DATA_API_KEY', config.YOUTUBE_DAT
 def process(input, entities):
     output = {}
     try:
-        with requests_cache.enabled('hourly_cache', backend='sqlite', expire_after=3600):
-            video = entities['video'][0]['value']
+        video = entities['video'][0]['value']
+        with requests_cache.enabled('video_cache', backend='sqlite', expire_after=3600):
+
             r = requests.get('https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=' + video + '&type=video&key=' + YOUTUBE_DATA_API_KEY)
             data = r.json()
+            
         template = GenericTemplate()
         for item in data['items']:
             title = item['snippet']['title']

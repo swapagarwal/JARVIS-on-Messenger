@@ -1,17 +1,18 @@
 import requests
-from templates.button import *
 import requests_cache
+from templates.button import *
 
 def process(input, entities):
     output = {}
     try:
-        with requests_cache.enabled('daily_cache', backend='sqlite', expire_after=86400):
-            anime = entities['anime'][0]['value']
+        anime = entities['anime'][0]['value']
+        with requests_cache.enabled('anime_cache', backend='sqlite', expire_after=86400):
+
             r = requests.get('https://hummingbird.me/api/v1/search/anime', params={
                 'query': anime
              })
             data = r.json()
-
+            
         template = TextTemplate()
         template.set_text('Title: ' + data[0]['title'] + '\nSynopsis: ' + data[0]['synopsis'])
         template.set_post_text('\nCommunity Rating: ' + str(round(data[0]['community_rating'], 2)) + ' / 5' + '\nStatus: ' + data[0]['status'])

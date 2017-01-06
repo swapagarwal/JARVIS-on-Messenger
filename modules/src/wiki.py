@@ -1,15 +1,13 @@
 import json
 import wikipedia
 from templates.generic import *
-import requests_cache
 from templates.text import TextTemplate
 
 def process(input, entities):
     output = {}
     try:
-        with requests_cache.enabled('daily_cache', backend='sqlite', expire_after=86400):
-            query = entities['wiki'][0]['value']
-            data = wikipedia.page(query)
+        query = entities['wiki'][0]['value']
+        data = wikipedia.page(query)
         output['input'] = input
         template = TextTemplate('Wikipedia summary of ' + data.title + ':\n' + data.summary)
         text = template.get_text()
@@ -54,4 +52,4 @@ def process(input, entities):
         error_message += '\n  - who is sachin tendulkar'
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
-    return output
+return output

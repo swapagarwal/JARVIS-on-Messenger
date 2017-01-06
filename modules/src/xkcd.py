@@ -36,4 +36,4 @@ def process(input, entities=None):
         error_message = 'There was some error while retrieving data from xkcd.'
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
-return output
+    return output

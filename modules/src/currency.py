@@ -1,3 +1,4 @@
+
 import requests
 from templates.text import TextTemplate
 
@@ -27,4 +28,4 @@ def process(input, entities):
         error_message += '\n  - how much is 100 USD to INR'
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
-return output
+    return output

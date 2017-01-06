@@ -3,9 +3,6 @@ ACCESS_TOKEN = '<<ACCESS_TOKEN>>'
 VERIFY_TOKEN = '<<VERIFY_TOKEN>>'
 WIT_AI_ACCESS_TOKEN = 'IKJJJYYVR3X672DHFVS7U7C4L2MQSS2P'
 
-# Assets
-GIPHY_LOGO_IMG = 'assets/giphy-logo.png'
-
 # Offline data sources
 FACTS_SOURCE_FILE = 'data/facts.json'
 JOKES_SOURCE_FILE = 'data/jokes.json'

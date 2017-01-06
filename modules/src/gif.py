@@ -2,12 +2,11 @@ import config
 import json
 import os
 import requests
-from templates.generic import GenericTemplate
+from templates.attachment import AttachmentTemplate
 from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
 
 GIPHY_API_KEY = os.environ.get('GIPHY_API_KEY', config.GIPHY_API_KEY)
-GIPHY_LOGO_IMG = os.environ.get('GIPHY_LOGO_IMG', config.GIPHY_LOGO_IMG)
 
 def process(input, entities=None):
     output = {}
@@ -16,14 +15,12 @@ def process(input, entities=None):
         request_url = 'http://api.giphy.com/v1/gifs/random?tag=%s&api_key=%s' % (tag, GIPHY_API_KEY)
         r = requests.get(request_url)
         data = r.json()
-        template = GenericTemplate()
-        template.add_element(title='Your gif, Sir.', image_url=data['data']['image_url'])
-        template.add_element(title='Found on Giphy', image_url=GIPHY_LOGO_IMG)
+        template = AttachmentTemplate(data['data']['image_url'], type='image')
         postback = {
             'intent': 'gif',
             'entities': entities
         }
-        message = add_quick_reply(template.get_message(), 'Another great gif!', json.dumps(postback))
+        message = add_quick_reply(template.get_message(), 'Another gif, please!', json.dumps(postback))
         output = {
             'input': input,
             'output': message,

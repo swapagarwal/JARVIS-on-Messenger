@@ -1,4 +1,5 @@
 import requests
+import requests_cache
 import config
 import os
 from html2text import html2text
@@ -11,8 +12,10 @@ def process(input, entities):
     output = {}
     try:
         book_title = entities['book'][0]['value']
-        response = requests.get('https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title)
-        data = ElementTree.fromstring(response.content)
+        with requests_cache.enabled('book_cache', backend='sqlite', expire_after=86400):
+            
+            response = requests.get('https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title)
+            data = ElementTree.fromstring(response.content)
 
         book_node = data.find('book')
         author = book_node.find('authors').find('author').find('name').text

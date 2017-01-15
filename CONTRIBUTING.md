@@ -33,7 +33,7 @@ If you'd like to request a new functionality, feel free to do so by opening an i
 
 ## General
 
-Keep the code as simple as possible. No need of obfuscation / code golf.
+Keep the code as simple as possible. No need for obfuscation / code golf.
 
 If you have to explain your code, you're doing it wrong!
 

@@ -1,4 +1,3 @@
-
 import requests
 from templates.text import TextTemplate
 

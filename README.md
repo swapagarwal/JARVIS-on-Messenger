@@ -95,7 +95,10 @@ More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messe
 ### Local Development / Testing
 
 1. Clone this repo.
-2. Linux: `sudo apt-get install python-dev libffi-dev libssl-dev`  
+2. Linux:  
+a) Debian based Linux (Ubuntu, Linux Mint, ...): `sudo apt-get install python-dev libffi-dev libssl-dev`  
+b) Arch Linux: `sudo pacman -S python2 libffi openssl`  
+c) Fedora: `sudo yum install python-devel libffi-devel openssl-devel`  
 Windows: These should already be pre-installed in your Python bundle.  
 Mac/OS X:  
 a) If you install Python using brew, the relevant headers are already installed for you. In other words, you don't need python-devel.  

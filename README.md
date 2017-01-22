@@ -72,7 +72,7 @@ More sample queries can be found [here](https://github.com/swapagarwal/JARVIS-on
 
 ### Usage
 
-JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currently, it's pending approval before the public can engage. If you'd like to be a tester, post [here](https://www.facebook.com/J.A.R.V.I.S.on.Messenger/posts/551338921704902).
+JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger).
 
 ### Local Development / Testing
 
@@ -103,6 +103,7 @@ The "search" endpoint returns the actual bot output, that you get when you inter
 Note that for the search query to work, you have to set your own key (of the module that you want to test) in config.py  
 
 If you want a public endpoint, use the below button to deploy on Heroku and fill the relevant API keys that you would like to use:
+
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ### History

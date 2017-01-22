@@ -12,8 +12,8 @@ def process(input, entities):
     output = {}
     try:
         book_title = entities['book'][0]['value']
+
         with requests_cache.enabled('book_cache', backend='sqlite', expire_after=86400):
-            
             response = requests.get('https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title)
             data = ElementTree.fromstring(response.content)
 

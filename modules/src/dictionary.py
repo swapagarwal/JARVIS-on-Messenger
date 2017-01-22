@@ -11,12 +11,10 @@ def process(input, entities):
     try:
         word = entities['word'][0]['value']
         with requests_cache.enabled('dictionary_cache', backend='sqlite', expire_after=86400):
-
             r = requests.get('https://wordsapiv1.p.mashape.com/words/' + word + '/definitions', headers={
                 'X-Mashape-Key': WORDS_API_KEY
             })
             data = r.json()
-
         output['input'] = input
         output['output'] = TextTemplate('Definition of ' + word + ':\n' + data['definitions'][0]['definition']).get_message()
         output['success'] = True

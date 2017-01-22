@@ -7,10 +7,8 @@ def process(input, entities):
     try:
         movie = entities['movie'][0]['value']
         with requests_cache.enabled('movie_cache', backend='sqlite', expire_after=86400):
-
             r = requests.get('http://www.omdbapi.com/?t=' + movie + '&plot=full&r=json')
             data = r.json()
-            
         output['input'] = input
         template = TextTemplate('Title: ' + data['Title'] + '\nYear: ' + data['Year'] + '\nIMDb Rating: ' + data['imdbRating'] + ' / 10' + '\nPlot: ' + data['Plot'])
         text = template.get_text()

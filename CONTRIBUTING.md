@@ -33,8 +33,12 @@ If you'd like to request a new functionality, feel free to do so by opening an i
 
 ## General
 
+If you're working on something, let us know by creating an issue, or commenting on an existing one. Win-win for everyone!
+
 Keep the code as simple as possible. No need of obfuscation / code golf.
 
 If you have to explain your code, you're doing it wrong!
 
 Apart from these, contributions directly to the framework are also welcome!
+
+You can use the following commits for reference: [coin](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/e3f9f587b9b6d05efb1a2769a4cd75fb4855b4f9), [lyrics](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/d3e7b7c969cc3ca1f8276bab0357c9f3c680b236), [news](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/59beb1ca0a0f5210ebf44809282d0cc7d3d42874), [xkcd](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/e322d312525545d1993fe9bda1c5d78f1407095e), etc.

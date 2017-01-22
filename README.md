@@ -18,6 +18,8 @@ I created JARVIS with two goals in mind:
 
 Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/CONTRIBUTING.md) to see how easy it is to add your code. I'll be waiting for your pull request! :wink:
 
+A massive Thank You to all [contributors](https://github.com/swapagarwal/JARVIS-on-Messenger/graphs/contributors), and congratulations to people who made their first open-source contribution! :tada:
+
 ### Demo (Vimeo)
 
 <a href="https://vimeo.com/163328859" target="_blank" title="Click to open Vimeo link">
@@ -29,7 +31,7 @@ Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARV
 Feel free to add to this list by opening an Issue / Pull Request.
 
 | Name | Sample Query | Source (w/ Attribution) |
-|---|---|---|
+|:-:|:-:|:-:|
 | anime | death note anime | Hummingbird |
 | book | anything you want book | Powered by Goodreads |
 | bye | goodbye | --- |
@@ -46,9 +48,9 @@ Feel free to add to this list by opening an Issue / Pull Request.
 | music | songs by linkin park | Spotify |
 | news | latest news | Powered by NewsAPI |
 | quote | random quote | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/quotes.json) |
-| request | report a bug, request a feature | --- |
+| request | report a bug <br> request a feature | --- |
 | time | time in seattle | TimeZoneDB API |
-| url | shorten google.com, expand http://goo.gl/7aqe | Google URL Shortener |
+| url | shorten google.com <br> expand http://goo.gl/7aqe | Google URL Shortener |
 | video | videos of sia | YouTube |
 | weather | weather in london | Info provided by OpenWeatherMap |
 | wiki | wiki html | MediaWiki API |
@@ -93,11 +95,15 @@ c) `brew install libtins`
 `http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
 The "process" endpoint returns what module the system classifies your query into, say a dictionary query or a song search, etc. Visit the following URLs to understand the output format:  
-http://localhost:5000/process/?q=tell%20me%20a%20joke  
-http://localhost:5000/process/?q=time%20in%20seattle  
-http://localhost:5000/process/?q=convert%2025%20usd%20to%20eur  
-The "search" endpoint returns the actual bot output, that you get when you interact with the bot using that query.  
+`http://localhost:5000/process/?q=tell%20me%20a%20joke`  
+`http://localhost:5000/process/?q=time%20in%20seattle`  
+`http://localhost:5000/process/?q=convert%2025%20usd%20to%20eur`  
+The "search" endpoint returns the actual bot output, that you get when you interact with the bot using that query.
+
 Note that for the search query to work, you have to set your own key (of the module that you want to test) in config.py  
+
+If you want a public endpoint, use the below button to deploy on Heroku and fill the relevant API keys that you would like to use:
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ### History
 

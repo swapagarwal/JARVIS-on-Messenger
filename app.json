@@ -1,0 +1,43 @@
+{
+	"name": "J.A.R.V.I.S. on Messenger",
+	"description": "Just A Rather Very Intelligent System, now on Messenger!",
+	"repository": "https://github.com/swapagarwal/JARVIS-on-Messenger",
+	"success_url": "/",
+	"env": {
+		"ACCESS_TOKEN": {
+			"description": "Facebook Access Token",
+			"required": false
+		},
+		"VERIFY_TOKEN": {
+			"description": "Facebook Verify Token",
+			"required": false
+		},
+		"GOODREADS_ACCESS_TOKEN": {
+			"required": false
+		},
+		"GOOGLE_URL_SHORTENER_API_KEY": {
+			"required": false
+		},
+		"MAPQUEST_CONSUMER_KEY": {
+			"required": false
+		},
+		"MUSIXMATCH_API_KEY": {
+			"required": false
+		},
+		"NEWS_API_KEY": {
+			"required": false
+		},
+		"OPEN_WEATHER_MAP_ACCESS_TOKEN": {
+			"required": false
+		},
+		"TIME_ZONE_DB_API_KEY": {
+			"required": false
+		},
+		"WORDS_API_KEY": {
+			"required": false
+		},
+		"YOUTUBE_DATA_API_KEY": {
+			"required": false
+		}
+	}
+}

@@ -24,36 +24,37 @@ Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARV
   <img src="https://i.vimeocdn.com/video/566604309_640.jpg" alt="JARVIS on Messenger Demo" width="300">
 </a>
 
-### TODO
+### Modules
 
-There are a lot of features that I've planned for JARVIS. Feel free to add to this list by opening an issue / PR.
+Feel free to add to this list by opening an Issue / Pull Request.
 
-- [x] Book Rating ([#11](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/11))
-- [x] Movie Rating
-- [x] Anime Rating ([#41](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/41))
-- [ ] News ([#48](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/48))
-- [x] Weather
-- [x] Currency Conversion ([#18](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/18))
-- [x] Random Quote ([#21](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/21))
-- [x] Random Fact ([#45](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/45))
-- [x] Random Joke
-- [x] Dictionary ([#1](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/1))
-- [x] Wikipedia Summary ([#9](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/9))
-- [ ] Lyrics Search
-- [x] URL Shortener ([#77](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/77))
-- [x] Expand URL
-- [ ] Ping ([#30](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/30))
-- [ ] Restaurant Rating ([#31](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/31))
-- [ ] Calculator ([#46](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/46))
-- [x] Time ([#64](https://github.com/swapagarwal/JARVIS-on-Messenger/pull/64))
-- [x] Music Search
-- [x] Video Search
+| Name | Sample Query | Source (w/ Attribution) |
+|---|---|---|
+| anime | death note anime | Hummingbird |
+| book | anything you want book | Powered by Goodreads |
+| bye | goodbye | --- |
+| coin | flip a coin | --- |
+| currency | usd to eur rate | Fixer.io |
+| dice | roll a die | --- |
+| dictionary | define comfort | Words API |
+| fact | tell me a fact | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/facts.json) |
+| hello | Hi, Jarvis! | --- |
+| help | What can you do? | --- |
+| joke | tell me a joke | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/jokes.json) |
+| lyrics | paradise lyrics | Powered by musiXmatch |
+| movie | iron man 2 movie plot | OMDb API |
+| music | songs by linkin park | Spotify |
+| news | latest news | Powered by NewsAPI |
+| quote | random quote | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/quotes.json) |
+| request | report a bug, request a feature | --- |
+| time | time in seattle | TimeZoneDB API |
+| url | shorten google.com, expand http://goo.gl/7aqe | Google URL Shortener |
+| video | videos of sia | YouTube |
+| weather | weather in london | Info provided by OpenWeatherMap |
+| wiki | wiki html | MediaWiki API |
+| xkcd | show a random xkcd comic | [xkcd](https://xkcd.com/json.html) |
 
-Some advanced features:
-
-- [x] Add templates support (Structured Messages) ([#7](https://github.com/swapagarwal/JARVIS-on-Messenger/issues/7))
-- [x] Integrate with [Wit.ai](https://wit.ai/swapagarwal/JARVIS-on-Messenger) to parse Natural Language
-- [ ] Retain context between queries
+More sample queries can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
 
 ### Structure
 
@@ -71,32 +72,11 @@ Some advanced features:
 
 JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger). Currently, it's pending approval before the public can engage. If you'd like to be a tester, post [here](https://www.facebook.com/J.A.R.V.I.S.on.Messenger/posts/551338921704902).
 
-### Sample Queries
-
-`Hi, Jarvis!`  
-`Are you there?`  
-`tell me a joke`  
-`iron man movie`  
-`define comfort`  
-`wiki html`  
-`anything you want book`  
-`random quote`  
-`usd to eur rate`  
-`tell me a fact`  
-`death note anime`  
-`time in seattle`  
-`songs by linkin park`  
-`shorten google.com`  
-`expand http://goo.gl/7aqe`  
-`weather in london`  
-`videos of sia`  
-More examples can be found [here](https://github.com/swapagarwal/JARVIS-on-Messenger/tree/master/modules/tests).
-
 ### Local Development / Testing
 
 1. Clone this repo.
 2. Linux:  
-a) Debian based Linux (Ubuntu, Linux Mint, ...): `sudo apt-get install python-dev libffi-dev libssl-dev`  
+a) Debian (Ubuntu, Linux Mint, etc.): `sudo apt-get install python-dev libffi-dev libssl-dev`  
 b) Arch Linux: `sudo pacman -S python2 libffi openssl`  
 c) Fedora: `sudo yum install python-devel libffi-devel openssl-devel`  
 Windows: These should already be pre-installed in your Python bundle.  
@@ -112,11 +92,11 @@ c) `brew install libtins`
 `http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
 `http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
-The process query returns what module the system classifies your query into, say a dictionary query or a song search, etc. Visit the following URLs to understand the output format:  
+The "process" endpoint returns what module the system classifies your query into, say a dictionary query or a song search, etc. Visit the following URLs to understand the output format:  
 http://localhost:5000/process/?q=tell%20me%20a%20joke  
 http://localhost:5000/process/?q=time%20in%20seattle  
 http://localhost:5000/process/?q=convert%2025%20usd%20to%20eur  
-The search query returns the actual bot output, that you get when you interact with the bot using that query.  
+The "search" endpoint returns the actual bot output, that you get when you interact with the bot using that query.  
 Note that for the search query to work, you have to set your own key (of the module that you want to test) in config.py  
 
 ### History

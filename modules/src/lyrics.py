@@ -11,7 +11,7 @@ def process(input, entities):
         query = entities['lyrics'][0]['value']
         r = requests.get('http://api.musixmatch.com/ws/1.1/track.search', params={
             'apikey': MUSIXMATCH_API_KEY,
-            'q_track': query,
+            'q_lyrics': query,
             's_track_rating': 'desc'
         })
         data = r.json()

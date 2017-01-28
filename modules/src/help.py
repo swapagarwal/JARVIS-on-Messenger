@@ -1,6 +1,7 @@
 from templates.text import TextTemplate
 
-def process(input, entities=None):
+
+def process(input_query, entities=None):
     help = 'Hi there! I\'m Jarvis, your personal assistant.'
     if entities is not None:
         if 'sender' in entities and 'first_name' in entities['sender']:
@@ -28,7 +29,7 @@ def process(input, entities=None):
     help += '\nHave a nice day. :)'
 
     output = {
-        'input': input,
+        'input': input_query,
         'output': TextTemplate(help).get_message(),
         'success': True
     }

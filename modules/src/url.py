@@ -6,7 +6,8 @@ from templates.text import TextTemplate
 
 GOOGLE_URL_SHORTENER_API_KEY = os.environ.get('GOOGLE_URL_SHORTENER_API_KEY', config.GOOGLE_URL_SHORTENER_API_KEY)
 
-def process(input, entities):
+
+def process(input_query, entities):
     output = {}
     try:
         url = entities['url'][0]['value']
@@ -19,15 +20,15 @@ def process(input, entities):
             data = r.json()
             response = 'Here\'s your original URL:\n' + data['longUrl']
         else:
-            assert(action == 'shorten')
-            r = requests.post('https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTENER_API_KEY, data=json.dumps({
-                'longUrl': url
-            }), headers={
-                'Content-Type': 'application/json'
-            })
+            assert (action == 'shorten')
+            r = requests.post(
+                'https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTENER_API_KEY,
+                data=json.dumps({'longUrl': url}),
+                headers={'Content-Type': 'application/json'}
+            )
             data = r.json()
             response = 'Here\'s your shortened URL:\n' + data['id']
-        output['input'] = input
+        output['input'] = input_query
         output['output'] = TextTemplate(response).get_message()
         output['success'] = True
     except:

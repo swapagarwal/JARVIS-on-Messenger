@@ -6,7 +6,8 @@ from templates.text import TextTemplate
 
 WORDS_API_KEY = os.environ.get('WORDS_API_KEY', config.WORDS_API_KEY)
 
-def process(input, entities):
+
+def process(input_query, entities):
     output = {}
     try:
         word = entities['word'][0]['value']
@@ -15,8 +16,10 @@ def process(input, entities):
                 'X-Mashape-Key': WORDS_API_KEY
             })
             data = r.json()
-        output['input'] = input
-        output['output'] = TextTemplate('Definition of ' + word + ':\n' + data['definitions'][0]['definition']).get_message()
+        output['input'] = input_query
+        output['output'] = TextTemplate(
+            'Definition of ' + word + ':\n' + data['definitions'][0]['definition']
+        ).get_message()
         output['success'] = True
     except:
         error_message = 'I couldn\'t find that definition.'

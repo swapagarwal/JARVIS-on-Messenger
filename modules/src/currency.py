@@ -1,7 +1,8 @@
 import requests
 from templates.text import TextTemplate
 
-def process(input, entities):
+
+def process(input_query, entities):
     output = {}
     try:
         from_currency = entities['from_currency'][0]['value'].upper()
@@ -14,9 +15,11 @@ def process(input, entities):
         if 'number' in entities:
             amount = entities['number'][0]['value']
             if amount != 1:
-                conversion_details += '\n%s %s = %.4f %s' % (amount, from_currency, amount * conversion_rate, to_currency)
+                conversion_details += '\n%s %s = %.4f %s' % (
+                    amount, from_currency, amount * conversion_rate, to_currency
+                )
 
-        output['input'] = input
+        output['input'] = input_query
         output['output'] = TextTemplate(conversion_details).get_message()
         output['success'] = True
     except:

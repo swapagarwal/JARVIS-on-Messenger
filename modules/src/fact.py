@@ -1,10 +1,10 @@
-import requests
 from templates.text import TextTemplate
 from random import choice
 import json
 import config
 
-def process(input, entities=None):
+
+def process(input_query, entities=None):
     output = {}
     try:
         '''
@@ -19,7 +19,7 @@ def process(input, entities=None):
         with open(config.FACTS_SOURCE_FILE) as facts_file:
             facts = json.load(facts_file)
             facts_list = facts['facts']
-            output['input'] = input
+            output['input'] = input_query
             output['output'] = TextTemplate(choice(facts_list)).get_message()
             output['success'] = True
     except:

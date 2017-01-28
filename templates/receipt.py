@@ -16,6 +16,7 @@ template = {
     }
 }
 
+
 class ReceiptTemplate:
     def __init__(self, recipient_name='', order_number='', currency='', payment_method='', timestamp='', order_url=''):
         self.template = copy(template['value'])
@@ -31,9 +32,9 @@ class ReceiptTemplate:
         self.address = {}
         self.summary = {}
         self.adjustments = []
+
     def add_element(self, title='', subtitle='', quantity=-1, price=0, currency='', image_url=''):
-        element = {}
-        element['title'] = title
+        element = {'title': title}
         if subtitle != '':
             element['subtitle'] = subtitle
         if quantity != -1:
@@ -44,6 +45,7 @@ class ReceiptTemplate:
         if image_url != '':
             element['image_url'] = image_url
         self.elements.append(element)
+
     def set_address(self, street_1='', street_2='', city='', postal_code='', state='', country=''):
         self.address['street_1'] = street_1
         if street_2 != '':
@@ -52,6 +54,7 @@ class ReceiptTemplate:
         self.address['postal_code'] = postal_code
         self.address['state'] = state
         self.address['country'] = country
+
     def set_summary(self, subtotal=-1, shipping_cost=-1, total_tax=-1, total_cost=0):
         if subtotal != -1:
             self.summary['subtotal'] = subtotal
@@ -60,16 +63,16 @@ class ReceiptTemplate:
         if total_tax != -1:
             self.summary['total_tax'] = total_tax
         self.summary['total_cost'] = total_cost
+
     def add_adjustment(self, name='', amount=0):
-        adjustment = {}
-        adjustment['name'] = name
-        adjustment['amount'] = amount
+        adjustment = {'name': name, 'amount': amount}
         self.adjustments.append(adjustment)
+
     def get_message(self):
         self.template['attachment']['payload']['elements'] = self.elements
         if self.address != {}:
             self.template['attachment']['payload']['address'] = self.address
         self.template['attachment']['payload']['summary'] = self.summary
-        if self.adjustments != []:
+        if self.adjustments:
             self.template['attachment']['payload']['adjustments'] = self.adjustments
         return self.template

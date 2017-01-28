@@ -1,7 +1,8 @@
 import random
 from templates.text import TextTemplate
 
-def process(input, entities=None):
+
+def process(input_query, entities=None):
     greetings = [
         'Welcome home, sir...',
         'All wrapped up here, sir. Will there be anything else?',
@@ -16,7 +17,7 @@ def process(input, entities=None):
             sender_name = entities['sender']['first_name']
             greetings = [greeting.replace('sir', sender_name) for greeting in greetings]
     output = {
-        'input': input,
+        'input': input_query,
         'output': TextTemplate(random.choice(greetings)).get_message(),
         'success': True
     }

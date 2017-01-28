@@ -5,7 +5,8 @@ from templates.button import *
 
 MUSIXMATCH_API_KEY = os.environ.get('MUSIXMATCH_API_KEY', config.MUSIXMATCH_API_KEY)
 
-def process(input, entities):
+
+def process(input_query, entities):
     output = {}
     try:
         query = entities['lyrics'][0]['value']
@@ -36,7 +37,7 @@ def process(input, entities):
         template = ButtonTemplate(template.get_text())
         template.add_web_url('Full Lyrics', lyrics_url)
 
-        output['input'] = input
+        output['input'] = input_query
         output['output'] = template.get_message()
         output['success'] = True
     except:
@@ -46,5 +47,5 @@ def process(input, entities):
         error_message += '\n  - lyrics of the song hall of fame'
         error_message += '\n  - What are the lyrics to see you again?'
         output['error_msg'] = TextTemplate(error_message).get_message()
-        output['success'] = False      
+        output['success'] = False
     return output

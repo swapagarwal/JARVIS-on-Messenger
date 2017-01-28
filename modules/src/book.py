@@ -8,13 +8,16 @@ from templates.button import *
 
 GOODREADS_ACCESS_TOKEN = os.environ.get('GOODREADS_ACCESS_TOKEN', config.GOODREADS_ACCESS_TOKEN)
 
-def process(input, entities):
+
+def process(input_query, entities):
     output = {}
     try:
         book_title = entities['book'][0]['value']
 
         with requests_cache.enabled('book_cache', backend='sqlite', expire_after=86400):
-            response = requests.get('https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title)
+            response = requests.get(
+                'https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title
+            )
             data = ElementTree.fromstring(response.content)
 
         book_node = data.find('book')
@@ -33,7 +36,7 @@ def process(input, entities):
         template = ButtonTemplate(text)
         template.add_web_url('Goodreads Link', link)
 
-        output['input'] = input
+        output['input'] = input_query
         output['output'] = template.get_message()
         output['success'] = True
     except:

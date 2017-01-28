@@ -1,6 +1,7 @@
 from copy import deepcopy as copy
 
 from button import ButtonTemplate
+
 ButtonTemplate.get_buttons = lambda self: self.template['attachment']['payload']['buttons']
 
 TITLE_CHARACTER_LIMIT = 80
@@ -22,13 +23,14 @@ template = {
     }
 }
 
+
 class GenericTemplate:
     def __init__(self):
         self.template = copy(template['value'])
         self.elements = []
+
     def add_element(self, title='', item_url='', image_url='', subtitle='', buttons=[]):
-        element = {}
-        element['title'] = title[:TITLE_CHARACTER_LIMIT]
+        element = {'title': title[:TITLE_CHARACTER_LIMIT]}
         if item_url != '':
             element['item_url'] = item_url
         element['image_url'] = image_url
@@ -40,6 +42,7 @@ class GenericTemplate:
             element['buttons'] = buttons[:BUTTON_LIMIT]
         if len(self.elements) < ELEMENTS_LIMIT:
             self.elements.append(element)
+
     def get_message(self):
         self.template['attachment']['payload']['elements'] = self.elements
         return self.template

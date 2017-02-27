@@ -24,6 +24,7 @@ def process(input, entities=None):
     help += '\n  - show a random xkcd comic'
     help += '\n  - latest news'
     help += '\n  - paradise lyrics'
+    help += '\n  - twitter @potus'
     help += '\n\nI\'m always learning, so do come back and say hi from time to time!'
     help += '\nHave a nice day. :)'
 

@@ -38,6 +38,18 @@
 		},
 		"YOUTUBE_DATA_API_KEY": {
 			"required": false
+		},
+		"TWI_CONSUMER_KEY": {
+			"required": false
+		},
+		"TWI_CONSUMER_SECRET": {
+			"required": false
+		},
+		"TWI_ACCESS_TOKEN": {
+			"required": false
+		},
+		"TWI_ACCESS_TOKEN_SECRET": {
+			"required": false
 		}
 	}
 }

@@ -22,10 +22,9 @@ def process(input, entities=None):
             message = TextTemplate(choice(facts_list)).get_message()
 			
             postback_fact = {
-			
-				'intent': 'fact',
+			    'intent': 'fact',
 				'entities': None
-            }
+				}
 			
 			
             output['input'] = input

@@ -1,5 +1,6 @@
 import requests
 from templates.text import TextTemplate
+from templates.quick_replies import add_quick_reply
 from random import choice
 import json
 import config
@@ -25,9 +26,19 @@ def process(input, entities=None):
                 'intent': 'fact',
                 'entities': None
             }
+            postback_joke = {
+                'intent': 'joke',
+                'entities': None
+            }
+            postback_quote = {
+                'intent': 'quote',
+                'entities': None
+            }
 			
-            output['input'] = input
             message = add_quick_reply(message, 'One more!', json.dumps(postback_fact))
+            message = add_quick_reply(message, 'Tell me a joke', json.dumps(postback_joke))
+            message = add_quick_reply(message, 'Show me aquote', json.dumps(postback_quote))
+            output['input'] = input
             output['output'] = message
             output['success'] = True
     except:

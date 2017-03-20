@@ -35,9 +35,9 @@ def process(input, entities=None):
                 'entities': None
             }
 			
-            message = add_quick_reply(message, 'One more!', json.dumps(postback_fact))
-            message = add_quick_reply(message, 'Tell me a joke', json.dumps(postback_joke))
-            message = add_quick_reply(message, 'Show me a quote', json.dumps(postback_quote))
+            message = add_quick_reply(message, 'Another fact!', json.dumps(postback_fact))
+            message = add_quick_reply(message, 'Tell me a joke.', json.dumps(postback_joke))
+            message = add_quick_reply(message, 'Show me a quote.', json.dumps(postback_quote))
             output['input'] = input
             output['output'] = message
             output['success'] = True

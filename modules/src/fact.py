@@ -22,10 +22,9 @@ def process(input, entities=None):
             message = TextTemplate(choice(facts_list)).get_message()
 			
             postback_fact = {
-			    'intent': 'fact',
-				'entities': None
-				}
-			
+                'intent': 'fact',
+                'entities': None
+            }
 			
             output['input'] = input
             message = add_quick_reply(message, 'One more!', json.dumps(postback_fact))

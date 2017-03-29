@@ -18,7 +18,13 @@ def process(input, entities=None):
             jokes = json.load(jokes_file)
             jokes_list = jokes['jokes']
             output['input'] = input
-            output['output'] = TextTemplate(choice(jokes_list)).get_message()
+            joke = TextTemplate(choice(jokes_list)).get_message()
+            postback = {
+                'intent': 'joke',
+                'entities': None
+            }
+            message = add_quick_reply(joke, 'Another one...', json.dumps(postback))
+            output['output'] = message
             output['success'] = True
     except:
         output['success'] = False

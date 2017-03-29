@@ -54,9 +54,9 @@ def process(input, entities):
                
             
         holding+= ("Powered by Guardian Football")
-            output['input'] = input
-            output['output'] = TextTemplate(holding).get_message()
-            output['success'] = True
+        output['input'] = input
+        output['output'] = TextTemplate(holding).get_message()
+        output['success'] = True
     except:
         error_message = 'I couldn\'t get the league table you asked for.'
         error_message += '\nPlease ask me something else, like:'

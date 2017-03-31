@@ -1,5 +1,6 @@
 import requests
 from templates.text import TextTemplate
+from templates.quick_replies import add_quick_reply
 from random import choice
 import json
 import config

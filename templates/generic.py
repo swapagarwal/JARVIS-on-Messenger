@@ -1,6 +1,6 @@
 from copy import deepcopy as copy
 
-from button import ButtonTemplate
+from .button import ButtonTemplate
 ButtonTemplate.get_buttons = lambda self: self.template['attachment']['payload']['buttons']
 
 TITLE_CHARACTER_LIMIT = 80

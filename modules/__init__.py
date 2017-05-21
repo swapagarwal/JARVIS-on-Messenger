@@ -3,7 +3,7 @@ import json
 import os
 import requests
 import sys
-from src import *
+from .src import *
 from templates.text import TextTemplate
 
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)

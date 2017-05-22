@@ -17,7 +17,8 @@ def process(input, entities):
 
         template = TextTemplate()
         template.set_text('Title: ' + top_anime['canonicalTitle'] + '\nSynopsis: ' + top_anime['synopsis'])
-        template.set_post_text('\nAverage Rating: ' + top_anime['averageRating'] + '%')
+        template.set_post_text('\nAverage Rating: ' + top_anime['averageRating']
+                                + '\nYoutube Video: https://www.youtube.com/watch?v=' + top_anime[youtubeVideoId] + '%')
         text = template.get_text()
 
         template = ButtonTemplate(text)

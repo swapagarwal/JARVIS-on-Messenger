@@ -22,6 +22,7 @@ def process(input, entities):
 
         template = ButtonTemplate(text)
         template.add_web_url('Kitsu URL', 'https://kitsu.io/anime/' + top_anime['slug'])
+        template.add_web_url('Youtube URL', 'https://youtube.com/' + top_anime['youtubeVideoId'])
 
         output['input'] = input
         output['output'] = template.get_message()

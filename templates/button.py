@@ -3,7 +3,7 @@ from copy import deepcopy as copy
 from text import TextTemplate
 TextTemplate.get_text = lambda self: self.get_message()['text']
 
-TEXT_CHARACTER_LIMIT = 320
+TEXT_CHARACTER_LIMIT = 640
 
 template = {
     'template_type': 'button',

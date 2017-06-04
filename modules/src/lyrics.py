@@ -11,7 +11,7 @@ def process(input, entities):
         query = entities['lyrics'][0]['value']
         r = requests.get('http://api.musixmatch.com/ws/1.1/track.search', params={
             'apikey': MUSIXMATCH_API_KEY,
-            'q_track': query,
+            'q_lyrics': query,
             's_track_rating': 'desc'
         })
         data = r.json()
@@ -46,5 +46,5 @@ def process(input, entities):
         error_message += '\n  - lyrics of the song hall of fame'
         error_message += '\n  - What are the lyrics to see you again?'
         output['error_msg'] = TextTemplate(error_message).get_message()
-        output['success'] = False      
+        output['success'] = False
     return output

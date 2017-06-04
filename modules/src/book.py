@@ -20,6 +20,7 @@ def process(input, entities):
         book_node = data.find('book')
         author = book_node.find('authors').find('author').find('name').text
         title = book_node.find('title').text
+        author = book_node.find('authors').find('author').find('name').text
         description = html2text(book_node.find('description').text)
         average_rating = book_node.find('average_rating').text
         link = book_node.find('link').text

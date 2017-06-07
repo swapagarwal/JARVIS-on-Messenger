@@ -1,6 +1,7 @@
 import requests
 import config
 import os
+from templates.generic import *
 from templates.text import TextTemplate
 
 HOWTO_API_KEY = os.environ.get('HOWTO_API_KEY', config.HOWTO_API_KEY)

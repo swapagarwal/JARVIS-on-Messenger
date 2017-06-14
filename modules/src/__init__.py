@@ -21,6 +21,7 @@ __all__ = [
     'url',
     'video',
     'weather',
+    'webcheck',
     'wiki',
     'xkcd',
 ]

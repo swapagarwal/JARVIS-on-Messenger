@@ -18,6 +18,7 @@ __all__ = [
     'quote',
     'request',
     'time',
+    'urban',
     'url',
     'video',
     'weather',

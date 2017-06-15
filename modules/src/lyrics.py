@@ -51,11 +51,12 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t find any lyrics matching your query.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - paradise lyrics'
-        error_message += '\n  - lyrics of the song hall of fame'
-        error_message += '\n  - What are the lyrics to see you again?'
+        error_message = """\
+        I couldn't find any lyrics matching your query.
+        Please ask me something else, like:
+          - paradise lyrics
+          - lyrics of the song hall of fame
+          - What are the lyrics to see you again?"""
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

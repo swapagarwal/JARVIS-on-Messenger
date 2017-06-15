@@ -20,11 +20,12 @@ def process(input, entities):
         output['output'] = TextTemplate(conversion_details).get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t convert between those currencies.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - HKD to USD'
-        error_message += '\n  - USD to EUR rate'
-        error_message += '\n  - how much is 100 USD to INR'
+        error_message = """\
+        I couldn't convert between those currencies.
+        Please ask me something else, like:
+          - HKD to USD
+          - USD to EUR rate
+          - how much is 100 USD to INR"""
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

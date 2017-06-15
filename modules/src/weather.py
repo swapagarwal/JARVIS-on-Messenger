@@ -19,11 +19,12 @@ def process(input, entities):
         output['output'] = TextTemplate('Location: ' + location_data[0]['display_name'] + '\nWeather: ' + weather_data['weather'][0]['description'] + '\nTemperature: ' + str(weather_data['main']['temp']) + ' ' + degree_sign + 'C / ' + str(temperature_in_fahrenheit) + ' ' + degree_sign + 'F\n- Info provided by OpenWeatherMap').get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t get the weather info you asked for.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - tell me the weather in London'
-        error_message += '\n  - weather Delhi'
-        error_message += '\n  - What\'s the weather in Texas?'
+        error_message = """\
+        I couldn't get the weather info you asked for.
+        Please ask me something else, like:
+          - tell me the weather in London
+          - weather Delhi
+          - What's the weather in Texas?"""
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

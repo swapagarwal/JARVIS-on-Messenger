@@ -35,6 +35,7 @@ def process(input, entities):
         error_message += '\nPlease ask me something else, like:'
         error_message += '\nurban lol'
         error_message += '\nlol urban'
+        error_message += '\nurbandictionary lol'
         error_message += '\nslang lol'
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False

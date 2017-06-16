@@ -1,4 +1,4 @@
-import modules 
+import modules
 
 def test_ping():
     assert('ping' == modules.process_query('is google.com up')[0])

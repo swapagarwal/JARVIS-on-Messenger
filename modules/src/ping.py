@@ -1,15 +1,19 @@
 import requests
 
 from templates.text import TextTemplate
-from urlparse       import urlparse
+from urlparse import urlparse
+
 
 def process(input, entities):
     output = {}
     try:
         url = entities['url'][0]['value']
-        if '//' not in url:
-          url = '%s%s'%('//', url)
-        url = urlparse(url).hostname
+        if urlparse(url).scheme:
+            url = urlparse(url).hostname
+        else:
+            url = urlparse('//' + url).hostname
+        if url is None:
+            raise Exception("Cannot understand url!")
         r = requests.get('https://isitup.org/' + url + '.json')
         data = r.json()
         status = data['status_code']

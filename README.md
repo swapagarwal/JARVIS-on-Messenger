@@ -107,6 +107,14 @@ If you want a public endpoint, use the below button to deploy on Heroku and fill
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+### TL;DR for Beginners
+
+1. J.A.R.V.I.S. runs on Python 2
+1. For the search query to work, you have to set your own key (of the module that you want to test) in config.py
+1. Best place to ask anything: https://gitter.im/swapagarwal/JARVIS-on-Messenger
+1. Some issues are reserved for you! https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit
+1. If you're working on something, let everyone know by creating an issue, or commenting on an existing one so that work is not duplicated.
+
 ### History
 
 I started out with rule-based model but it didn't scale well so now I've shifted to Natural Language Processing.

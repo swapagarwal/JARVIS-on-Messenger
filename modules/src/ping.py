@@ -3,24 +3,22 @@ import requests
 from templates.text import TextTemplate
 from urlparse import urlparse
 
-
 def process(input, entities):
     output = {}
     try:
         url = entities['url'][0]['value']
-        if urlparse(url).scheme:
-            url = urlparse(url).hostname
-        else:
-            url = urlparse('//' + url).hostname
-        if url is None:
-            raise Exception("Cannot understand url!")
-        r = requests.get('https://isitup.org/' + url + '.json')
+        if not urlparse(url).scheme:
+            url = "https://" + url
+        hostname = urlparse(url).hostname
+        if hostname is None:
+            raise Exception("Please enter a valid hostname to check availability.")
+        r = requests.get('https://isitup.org/' + hostname + '.json')
         data = r.json()
         status = data['status_code']
         if status == 1:
-            text = url + ' is up.'
+            text = hostname + ' is up.'
         elif status == 2:
-            text = url + ' seems to be down!'
+            text = hostname + ' seems to be down!'
         elif status == 3:
             text = 'Please enter a valid domain to check availability.'
         else:

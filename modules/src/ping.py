@@ -1,5 +1,6 @@
 import requests
 
+from templates.generic import *
 from templates.text import TextTemplate
 from urlparse import urlparse
 
@@ -17,14 +18,20 @@ def process(input, entities):
         status = data['status_code']
         if status == 1:
             text = hostname + ' is up.'
+            image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/check-circle/256/0/27ae60_none.png'
         elif status == 2:
             text = hostname + ' seems to be down!'
+            image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/times-circle/256/0/c0392b_none.png'
         elif status == 3:
             text = 'Please enter a valid domain to check availability.'
+            image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/exclamation-circle/256/0/f1c40f_none.png'
         else:
             raise Exception("Something unexpected happened!")
+        template = GenericTemplate()
+        template.set_image_aspect_ratio_to_square()
+        template.add_element(title=text, image_url=image_url)
         output['input'] = input
-        output['output'] = TextTemplate(text).get_message()
+        output['output'] = template.get_message()
         output['success'] = True
     except:
         error_message = 'There seems to be a problem looking up that domain.'

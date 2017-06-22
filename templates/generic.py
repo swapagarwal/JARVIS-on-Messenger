@@ -16,6 +16,7 @@ template = {
             'type': 'template',
             'payload': {
                 'template_type': 'generic',
+                'image_aspect_ratio': 'horizontal',
                 'elements': []
             }
         }
@@ -26,6 +27,8 @@ class GenericTemplate:
     def __init__(self):
         self.template = copy(template['value'])
         self.elements = []
+    def set_image_aspect_ratio_to_square(self):
+        self.template['attachment']['payload']['image_aspect_ratio'] = 'square'
     def add_element(self, title='', item_url='', image_url='', subtitle='', buttons=[]):
         element = {}
         element['title'] = title[:TITLE_CHARACTER_LIMIT]

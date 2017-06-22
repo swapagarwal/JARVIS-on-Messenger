@@ -18,17 +18,17 @@ def process(input, entities):
         status = data['status_code']
         if status == 1:
             text = hostname + ' is up.'
-            image_url = 'http://fa2png.io/r/font-awesome/check-circle/?color=c0392b&margin=0&size=256'
+            image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/check-circle/256/0/27ae60_none.png'
         elif status == 2:
             text = hostname + ' seems to be down!'
-            image_url = 'http://fa2png.io/r/font-awesome/times-circle/?color=c0392b&margin=0&size=256'
+            image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/times-circle/256/0/c0392b_none.png'
         elif status == 3:
             text = 'Please enter a valid domain to check availability.'
-            image_url = 'http://fa2png.io/r/font-awesome/exclamation-circle/?color=f1c40f&margin=0&size=256'
+            image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/exclamation-circle/256/0/f1c40f_none.png'
         else:
             raise Exception("Something unexpected happened!")
         template = GenericTemplate()
-
+        template.set_image_aspect_ratio_to_square()
         template.add_element(title=text, image_url=image_url)
         output['input'] = input
         output['output'] = template.get_message()

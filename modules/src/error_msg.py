@@ -39,6 +39,11 @@ EXAMPLE_TIME = """
     - india time
     - time at paris"""
     
+EXAMPLE_VIDEOS = """
+    - sia videos
+    - videos by eminem
+    - video coldplay"""
+    
 EXAMPLE_WEATHER = """
     - tell me the weather in London
     - weather Delhi

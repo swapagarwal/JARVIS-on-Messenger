@@ -4,6 +4,7 @@ import config
 import os
 from templates.generic import *
 from templates.text import TextTemplate
+from error_msg import QUERY_ERROR
 
 YOUTUBE_DATA_API_KEY = os.environ.get('YOUTUBE_DATA_API_KEY', config.YOUTUBE_DATA_API_KEY)
 
@@ -28,12 +29,7 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = """\
-        I couldn't find any videos matching your query.
-        Please ask me something else, like:
-          - sia videos
-          - videos by eminem
-          - video coldplay"""
+        error_message = QUERY_ERROR.format('videos') + EXAMPLE_VIDEOS
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

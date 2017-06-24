@@ -1,5 +1,6 @@
 import requests
 from templates.text import TextTemplate
+from error_msg import CONVERT_ERROR, EXAMPLE_CONVERSIONS
 
 def process(input, entities):
     output = {}
@@ -20,12 +21,7 @@ def process(input, entities):
         output['output'] = TextTemplate(conversion_details).get_message()
         output['success'] = True
     except:
-        error_message = """\
-        I couldn't convert between those currencies.
-        Please ask me something else, like:
-          - HKD to USD
-          - USD to EUR rate
-          - how much is 100 USD to INR"""
+        error_message = CONVERT_ERROR.format('currencies') + EXAMPLE_CONVERSIONS
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

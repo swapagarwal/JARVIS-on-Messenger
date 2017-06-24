@@ -1,6 +1,7 @@
 import requests
 import requests_cache
 from templates.button import *
+from error_msg import QUERY_ERROR, EXAMPLE_MOVIES
 
 def process(input, entities):
     output = {}
@@ -17,12 +18,7 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = """\
-        I couldn't find that movie.
-        Please ask me something else, like:
-          - batman movie
-          - iron man 2 movie plot
-          - What is the rating of happiness movie?"""
+        error_message = QUERY_ERROR.format('movie') + EXAMPLE_MOVIES
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

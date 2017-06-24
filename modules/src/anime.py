@@ -1,6 +1,7 @@
 import requests
 import requests_cache
 from templates.button import *
+from error_msg import QUERY_ERROR, EXAMPLE_ANIME
 
 def process(input, entities):
     output = {}
@@ -27,12 +28,7 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = """\
-        I couldn't find any anime matching your query.
-        Please ask me something else, like:
-            - Death Note anime
-            - Dragon ball super anime status
-            - What is the anime rating of One Punch Man?"""
+        error_message = QUERY_ERROR.format('anime') + EXAMPLE_ANIME
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

@@ -5,6 +5,7 @@ import os
 from html2text import html2text
 from xml.etree import ElementTree
 from templates.button import *
+from error_msg import QUERY_ERROR, EXAMPLE_BOOKS
 
 GOODREADS_ACCESS_TOKEN = os.environ.get('GOODREADS_ACCESS_TOKEN', config.GOODREADS_ACCESS_TOKEN)
 
@@ -37,12 +38,7 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = """\
-        I couldn't find any book matching your query.
-        Please ask me something else, like:
-          - book timeline
-          - harry potter book plot
-          - little women book rating"""
+        error_message = QUERY_ERROR.format('books') + EXAMPLE_BOOKS
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

@@ -27,12 +27,9 @@ def process(input, entities):
             image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/exclamation-circle/256/0/f1c40f_none.png'
         else:
             raise Exception("Something unexpected happened!")
-        
-        is_up_url = 'https://isitup.org/' + hostname
         buttons = ButtonTemplate()
-        buttons.add_web_url('isitup.org Link' , is_up_url)
-        buttons.add_web_url('Site Link', url)
-
+        buttons.add_web_url('View More Info' , 'https://isitup.org/' + hostname)
+        buttons.add_web_url('Go To Website', hostname)
         template = GenericTemplate()
         template.set_image_aspect_ratio_to_square()
         template.add_element(title=text, image_url=image_url, buttons=buttons.get_buttons())

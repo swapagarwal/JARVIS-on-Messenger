@@ -20,10 +20,6 @@ def process(input, entities=None):
             quotes = json.load(quotes_file)
             quotes_list = quotes['quotes']
             message = TextTemplate(choice(quotes_list)).get_message()
-            postback_joke = {
-                'intent': 'joke',
-                'entities': None
-            }
             postback_quote = {
                 'intent': 'quote',
                 'entities': None
@@ -32,9 +28,13 @@ def process(input, entities=None):
                 'intent': 'fact',
                 'entities': None
             }
-            message = add_quick_reply(message, 'One more!', json.dumps(postback_quote))
+            postback_joke = {
+                'intent': 'joke',
+                'entities': None
+            }
+            message = add_quick_reply(message, 'Another one!', json.dumps(postback_quote))
+            message = add_quick_reply(message, 'Show me a fact.', json.dumps(postback_fact))
             message = add_quick_reply(message, 'Tell me a joke.', json.dumps(postback_joke))
-            message = add_quick_reply(message, 'Tell me a fact.', json.dumps(postback_fact))
             output['input'] = input
             output['output'] = message
             output['success'] = True

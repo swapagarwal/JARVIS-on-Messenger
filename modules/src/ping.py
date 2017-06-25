@@ -15,6 +15,7 @@ def process(input, entities):
             raise Exception("Please enter a valid hostname to check availability.")
         r = requests.get('https://isitup.org/' + hostname + '.json')
         data = r.json()
+
         status = data['status_code']
         if status == 1:
             text = hostname + ' is up.'
@@ -27,12 +28,15 @@ def process(input, entities):
             image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/exclamation-circle/256/0/f1c40f_none.png'
         else:
             raise Exception("Something unexpected happened!")
+
         buttons = ButtonTemplate()
-        buttons.add_web_url('View More Info' , 'https://isitup.org/' + hostname)
-        buttons.add_web_url('Go To Website', hostname)
+        buttons.add_web_url('View more info', 'https://isitup.org/' + hostname)
+        buttons.add_web_url('Go to website', hostname)
+
         template = GenericTemplate()
         template.set_image_aspect_ratio_to_square()
         template.add_element(title=text, image_url=image_url, buttons=buttons.get_buttons())
+
         output['input'] = input
         output['output'] = template.get_message()
         output['success'] = True

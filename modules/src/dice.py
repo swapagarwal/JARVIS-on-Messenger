@@ -1,17 +1,17 @@
 import json
 import random
-from templates.text import TextTemplate
+from templates.attachment import AttachmentTemplate
 from templates.quick_replies import add_quick_reply
 
-dice_sides = {1: 'https://upload.wikimedia.org/wikipedia/commons/6/62/Kismet-Ace.png',
-              2: 'https://upload.wikimedia.org/wikipedia/commons/6/6d/Kismet-Deuce.png',
-              3: 'https://upload.wikimedia.org/wikipedia/commons/f/f2/Kismet-Trey.png',
-              4: 'https://upload.wikimedia.org/wikipedia/commons/1/11/Kismet-Four.png',
-              5: 'https://upload.wikimedia.org/wikipedia/commons/8/8e/Kismet-Five.png',
-              6: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Kismet-Six.png'}
+dice_sides = {1: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-one/256/0/e74c3c_none.png',
+              2: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-two/256/0/e74c3c_none.png',
+              3: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-three/256/0/e74c3c_none.png',
+              4: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-four/256/0/e74c3c_none.png',
+              5: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-five/256/0/e74c3c_none.png',
+              6: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-six/256/0/e74c3c_none.png'}
 
 def process(input, entities=None):
-    roll = TextTemplate(dice_sides[random.randint(1, 6)]).get_message()
+    roll = AttachmentTemplate(dice_sides[random.randint(1, 6)], type='image').get_message()
     postback = {
         'intent': 'dice',
         'entities': None

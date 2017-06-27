@@ -1,4 +1,5 @@
 from copy import deepcopy as copy
+import json
 
 from text import TextTemplate
 TextTemplate.get_text = lambda self: self.get_message()['text']
@@ -33,7 +34,7 @@ class ButtonTemplate:
         postback_button = {}
         postback_button['type'] = 'postback'
         postback_button['title'] = title
-        postback_button['payload'] = payload
+        postback_button['payload'] = json.dumps(payload)
         self.template['attachment']['payload']['buttons'].append(postback_button)
     def set_text(self, text=''):
         self.text = text

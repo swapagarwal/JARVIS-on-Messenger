@@ -1,4 +1,5 @@
 from copy import deepcopy as copy
+import json
 
 QUICK_REPLIES_LIMIT = 11
 TITLE_CHARACTER_LIMIT = 20
@@ -13,6 +14,6 @@ def add_quick_reply(message, title='', payload=''):
         # TODO: location + image_url
         quick_reply['content_type'] = 'text'
         quick_reply['title'] = title[:TITLE_CHARACTER_LIMIT]
-        quick_reply['payload'] = payload[:PAYLOAD_CHARACTER_LIMIT]
+        quick_reply['payload'] = json.dumps(payload)[:PAYLOAD_CHARACTER_LIMIT]
         message_with_quick_reply['quick_replies'].append(quick_reply)
     return message_with_quick_reply

@@ -8,6 +8,12 @@ from templates.text import TextTemplate
 
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)
 
+def generate_postback(module):
+    return {
+        'intent': module,
+        'entities': None
+    }
+
 def process_query(input):
     try:
         r = requests.get('https://api.wit.ai/message?v=20160420&q=' + input, headers={

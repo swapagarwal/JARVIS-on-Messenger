@@ -1,10 +1,13 @@
-import requests
-import config
-import os
 import json
+import os
+
+import requests
+
+import config
 from templates.text import TextTemplate
 
 GOOGLE_URL_SHORTENER_API_KEY = os.environ.get('GOOGLE_URL_SHORTENER_API_KEY', config.GOOGLE_URL_SHORTENER_API_KEY)
+
 
 def process(input, entities):
     output = {}
@@ -19,12 +22,13 @@ def process(input, entities):
             data = r.json()
             response = 'Here\'s your original URL:\n' + data['longUrl']
         else:
-            assert(action == 'shorten')
-            r = requests.post('https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTENER_API_KEY, data=json.dumps({
-                'longUrl': url
-            }), headers={
-                'Content-Type': 'application/json'
-            })
+            assert (action == 'shorten')
+            r = requests.post('https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTENER_API_KEY,
+                              data=json.dumps({
+                                  'longUrl': url
+                              }), headers={
+                    'Content-Type': 'application/json'
+                })
             data = r.json()
             response = 'Here\'s your shortened URL:\n' + data['id']
         output['input'] = input

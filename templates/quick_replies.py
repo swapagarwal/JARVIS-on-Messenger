@@ -1,9 +1,10 @@
-from copy import deepcopy as copy
 import json
+from copy import deepcopy as copy
 
 QUICK_REPLIES_LIMIT = 11
 TITLE_CHARACTER_LIMIT = 20
 PAYLOAD_CHARACTER_LIMIT = 1000
+
 
 def add_quick_reply(message, title='', payload=''):
     message_with_quick_reply = copy(message)

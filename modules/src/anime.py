@@ -1,6 +1,8 @@
 import requests
 import requests_cache
+
 from templates.button import *
+
 
 def process(input, entities):
     output = {}
@@ -17,7 +19,10 @@ def process(input, entities):
 
         template = TextTemplate()
         template.set_text('Title: ' + top_anime['canonicalTitle'] + '\nSynopsis: ' + top_anime['synopsis'])
-        template.set_post_text('\nAverage Rating: {0}%\nPopularity Rank: {1}\nRating Rank: {2}\nEpisode Count: {3}'.format(top_anime['averageRating'], str(top_anime['popularityRank']), str(top_anime['ratingRank']), str(top_anime['episodeCount'])))
+        template.set_post_text(
+            '\nAverage Rating: {0}%\nPopularity Rank: {1}\nRating Rank: {2}\nEpisode Count: {3}'.format(
+                top_anime['averageRating'], str(top_anime['popularityRank']), str(top_anime['ratingRank']),
+                str(top_anime['episodeCount'])))
         text = template.get_text()
 
         template = ButtonTemplate(text)

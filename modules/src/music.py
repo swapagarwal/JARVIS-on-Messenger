@@ -1,8 +1,11 @@
+from datetime import datetime
+
 import requests
 import requests_cache
+
 from templates.generic import *
 from templates.text import TextTemplate
-from datetime import datetime
+
 
 def process(input, entities):
     output = {}
@@ -11,7 +14,7 @@ def process(input, entities):
         with requests_cache.enabled('music_cache', backend='sqlite', expire_after=3600):
             r = requests.get('https://api.spotify.com/v1/search?q=' + music + '&type=track')
             data = r.json()
-        assert(len(data['tracks']['items']) > 0)
+        assert (len(data['tracks']['items']) > 0)
         template = GenericTemplate()
         for track in data['tracks']['items']:
             title = track['name']
@@ -25,7 +28,8 @@ def process(input, entities):
             buttons = ButtonTemplate()
             buttons.add_web_url('Preview Track', track['preview_url'])
             buttons.add_web_url('Open in Spotify', 'https://embed.spotify.com/openspotify/?spuri=' + track['uri'])
-            template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle, buttons=buttons.get_buttons())
+            template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle,
+                                 buttons=buttons.get_buttons())
         output['input'] = input
         output['output'] = template.get_message()
         output['success'] = True

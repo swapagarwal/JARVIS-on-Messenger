@@ -1,9 +1,11 @@
-import modules
-from templates.text import TextTemplate
-from templates.quick_replies import add_quick_reply
-from random import choice
 import json
+from random import choice
+
 import config
+import modules
+from templates.quick_replies import add_quick_reply
+from templates.text import TextTemplate
+
 
 def process(input, entities=None):
     output = {}

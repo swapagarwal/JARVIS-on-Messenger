@@ -114,6 +114,7 @@ If you want a public endpoint, use the below button to deploy on Heroku and fill
 1. Best place to ask anything: https://gitter.im/swapagarwal/JARVIS-on-Messenger
 1. Some issues are reserved for you! https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit
 1. If you're working on something, let everyone know by creating an issue, or commenting on an existing one so that work is not duplicated.
+1. Prefer using an IDE (Use [PyCharm](https://www.jetbrains.com/pycharm/download/) if you don't have any preference yet)
 
 ### History
 

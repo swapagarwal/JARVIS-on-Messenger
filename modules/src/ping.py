@@ -1,8 +1,10 @@
+from urlparse import urlparse
+
 import requests
 
 from templates.generic import *
 from templates.text import TextTemplate
-from urlparse import urlparse
+
 
 def process(input, entities):
     output = {}

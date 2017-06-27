@@ -1,9 +1,12 @@
-import requests
-import config
 import os
+
+import requests
+
+import config
 from templates.button import *
 
 MUSIXMATCH_API_KEY = os.environ.get('MUSIXMATCH_API_KEY', config.MUSIXMATCH_API_KEY)
+
 
 def process(input, entities):
     output = {}

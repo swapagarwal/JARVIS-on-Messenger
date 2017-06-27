@@ -1,5 +1,6 @@
-import modules
 import random
+
+import modules
 from templates.attachment import AttachmentTemplate
 from templates.quick_replies import add_quick_reply
 
@@ -11,6 +12,7 @@ dice_sides = {
     5: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-five/256/0/e74c3c_none.png',
     6: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-six/256/0/e74c3c_none.png'
 }
+
 
 def process(input, entities=None):
     message = AttachmentTemplate(dice_sides[random.randint(1, 6)], type='image').get_message()

@@ -1,8 +1,11 @@
+from random import randint
+
 import requests
 import requests_cache
-from random import randint
+
 from templates.generic import *
 from templates.text import TextTemplate
+
 
 def process(input, entities=None):
     output = {}
@@ -27,7 +30,8 @@ def process(input, entities=None):
         buttons.add_web_url('Explanation Link', explanation_url)
 
         template = GenericTemplate()
-        template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle, buttons=buttons.get_buttons())
+        template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle,
+                             buttons=buttons.get_buttons())
 
         output['input'] = input
         output['output'] = template.get_message()

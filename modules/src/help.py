@@ -1,5 +1,6 @@
 from templates.text import TextTemplate
 
+
 def process(input, entities=None):
     help = 'Hi there! I\'m Jarvis, your personal assistant.'
     if entities is not None:

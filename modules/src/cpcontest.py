@@ -1,6 +1,6 @@
 import requests
-import os
 from templates.text import TextTemplate
+from templates.button import ButtonTemplate
 
 
 def process(input, entities):

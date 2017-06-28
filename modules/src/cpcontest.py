@@ -10,7 +10,6 @@ def process(input, entities):
         r = requests.get('https://cpcontest-api.herokuapp.com/')
         data = r.json()
 
-        template = GenericTemplate()
         buttons = ButtonTemplate()
 
         # Number of results to be displayed

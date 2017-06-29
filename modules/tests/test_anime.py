@@ -47,3 +47,12 @@ def test_anime():
     assert('https://www.youtube.com' in payload_buttons[1]['url'])
     assert('title' in payload_buttons[1].keys())
     assert(payload_buttons[1]['title'] == "YouTube URL")
+
+    # Test a bad query to ensure the error is handled gracefully
+
+    bad_search = '?!>< anime'
+    error_string = "I couldn't find any anime matching your query"
+
+    assert('anime' == modules.process_query('?!>< anime')[0])
+    assert('text' in modules.search(bad_search))
+    assert(modules.search(bad_search)['text'][:45] == error_string)

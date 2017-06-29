@@ -18,7 +18,8 @@ def test_anime():
 
     # Test that the expected title was returned
 
-    assert(response_payload['text'][:17] == 'Title: Death Note')
+    expected_title = 'Title: Death Note'
+    assert(response_payload['text'][:len(expected_title)] == expected_title)
 
     # Test that an average rating was returned
 
@@ -51,9 +52,11 @@ def test_anime():
     # Test a bad query to ensure the error is handled gracefully
 
     bad_search = '?!>< anime'
-    error_string = "I couldn't find any anime matching your query"
-    error_len = len(error_string)
+    expected_error = "I couldn't find any anime matching your query"
+
+    response = modules.search(bad_search)
 
     assert('anime' == modules.process_query('?!>< anime')[0])
-    assert('text' in modules.search(bad_search))
-    assert(modules.search(bad_search)['text'][:error_len] == error_string)
+    assert('text' in response)
+    assert(len(response['text']) >= len(expected_error))
+    assert(response['text'][:len(expected_error)] == expected_error)

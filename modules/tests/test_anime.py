@@ -52,7 +52,8 @@ def test_anime():
 
     bad_search = '?!>< anime'
     error_string = "I couldn't find any anime matching your query"
+    error_len = len(error_string)
 
     assert('anime' == modules.process_query('?!>< anime')[0])
     assert('text' in modules.search(bad_search))
-    assert(modules.search(bad_search)['text'][:45] == error_string)
+    assert(modules.search(bad_search)['text'][:error_len] == error_string)

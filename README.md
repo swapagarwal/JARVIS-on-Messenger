@@ -32,7 +32,7 @@ Feel free to add to this list by opening an Issue / Pull Request.
 
 | Name | Sample Query | Source (w/ Attribution) |
 |:-:|:-:|:-:|
-| anime | death note anime | Hummingbird |
+| anime | death note anime | Kitsu |
 | book | anything you want book | Powered by Goodreads |
 | bye | goodbye | --- |
 | coin | flip a coin | --- |

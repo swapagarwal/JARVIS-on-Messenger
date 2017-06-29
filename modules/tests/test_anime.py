@@ -2,15 +2,19 @@ import modules
 import json
 
 
-def test_anime():
+def test_intents():
     assert ('anime' == modules.process_query('Death Note anime')[0])
     assert ('anime' == modules.process_query('Dragon ball super anime status')[0])
     assert ('anime' == modules.process_query('What is the anime rating of One Punch Man?')[0])
     assert ('anime' != modules.process_query('something random')[0])
 
+    
+
+def test_payload():
+
     response = modules.search('Death Note anime')
     response_payload = response['attachment']['payload']
-    
+
     # Test that a payload was returned as a string
 
     assert(type(response_payload['text']) is str 
@@ -49,14 +53,13 @@ def test_anime():
     assert('title' in payload_buttons[1].keys())
     assert(payload_buttons[1]['title'] == "YouTube URL")
 
+def test_bad():
+
     # Test a bad query to ensure the error is handled gracefully
 
     bad_search = '?!>< anime'
-    expected_error = "I couldn't find any anime matching your query"
+    assert('anime' == modules.process_query(bad_search)[0])
 
+    # This will cause the test to fail if any exceptions are raised.
     response = modules.search(bad_search)
-
-    assert('anime' == modules.process_query('?!>< anime')[0])
-    assert('text' in response)
-    assert(len(response['text']) >= len(expected_error))
-    assert(response['text'][:len(expected_error)] == expected_error)
+    assert('text' in response)    

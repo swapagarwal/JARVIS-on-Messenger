@@ -28,6 +28,7 @@ def process(input, entities):
             buttons = ButtonTemplate()
             buttons.add_web_url('Preview Track', track['preview_url'])
             buttons.add_web_url('Open in Spotify', 'https://embed.spotify.com/openspotify/?spuri=' + track['uri'])
+            template.set_image_aspect_ratio_to_square()
             template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle,
                                  buttons=buttons.get_buttons())
         output['input'] = input

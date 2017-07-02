@@ -9,7 +9,7 @@ def process(input, entities):
         choices = entities['choices'][0]['value']
         choices = re.split(pattern, choices)
         choices = choices[1:].split(' ')
-        if choices == []: 
+        if choices == []:
             raise ValueError("Empty List")
         output = {
             'input': input,

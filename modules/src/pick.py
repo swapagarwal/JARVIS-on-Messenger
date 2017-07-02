@@ -23,4 +23,4 @@ def process(input, entities):
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
 
-return output
+    return output

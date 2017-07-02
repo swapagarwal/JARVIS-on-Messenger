@@ -3,9 +3,9 @@ from templates.text import TextTemplate
 
 def process(input, entities):
     try:
-        pattern='^pick\s'
-        choices=entities['choices'][0]['value']
-        choices=re.split(pattern,choices)
+        pattern = '^pick\s'
+        choices = entities['choices'][0]['value']
+        choices = re.split(pattern, choices)
         choices = choices[1:].split(' ')
         if choices == []: raise ValueError("Empty List")
         output = {

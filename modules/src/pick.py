@@ -1,5 +1,7 @@
-import random, re
+import random
+import re
 from templates.text import TextTemplate
+
 
 def process(input, entities):
     try:
@@ -7,7 +9,8 @@ def process(input, entities):
         choices = entities['choices'][0]['value']
         choices = re.split(pattern, choices)
         choices = choices[1:].split(' ')
-        if choices == []: raise ValueError("Empty List")
+        if choices == []: 
+            raise ValueError("Empty List")
         output = {
             'input': input,
             'output': TextTemplate(random.choice(choices)).get_message(),

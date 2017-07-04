@@ -16,6 +16,7 @@ def process(input, entities):
             data = r.json()
         assert (len(data['tracks']['items']) > 0)
         template = GenericTemplate()
+        template.set_image_aspect_ratio_to_square()
         for track in data['tracks']['items']:
             title = track['name']
             item_url = track['external_urls']['spotify']

@@ -8,16 +8,14 @@ def test_intents():
     assert ('anime' == modules.process_query('What is the anime rating of One Punch Man?')[0])
     assert ('anime' != modules.process_query('something random')[0])
 
-    
 
 def test_payload():
-
     response = modules.search('Death Note anime')
     response_payload = response['attachment']['payload']
 
     # Test that a payload was returned as a string
 
-    assert(type(response_payload['text']) is str 
+    assert(type(response_payload['text']) is str
             or type(response_payload is unicode))
 
     # Test that the expected title was returned
@@ -62,4 +60,4 @@ def test_bad():
 
     # This will cause the test to fail if any exceptions are raised.
     response = modules.search(bad_search)
-    assert('text' in response)    
+    assert('text' in response)

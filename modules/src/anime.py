@@ -11,7 +11,8 @@ def process(input, entities):
 
         with requests_cache.enabled('anime_cache', backend='sqlite', expire_after=86400):
             r = requests.get('https://kitsu.io/api/edge/anime', params={
-                'filter[text]': anime
+                'filter[text]': anime,
+                'page[limit]': 1
             })
             data = r.json()
 

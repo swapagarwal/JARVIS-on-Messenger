@@ -1,11 +1,14 @@
+import os
+
 import requests
 import requests_cache
+
 import config
-import os
 from templates.text import TextTemplate
 from error_msg import QUERY_ERROR, EXAMPLE_DEFINITIONS
 
 WORDS_API_KEY = os.environ.get('WORDS_API_KEY', config.WORDS_API_KEY)
+
 
 def process(input, entities):
     output = {}
@@ -17,7 +20,8 @@ def process(input, entities):
             })
             data = r.json()
         output['input'] = input
-        output['output'] = TextTemplate('Definition of ' + word + ':\n' + data['definitions'][0]['definition']).get_message()
+        output['output'] = TextTemplate(
+            'Definition of ' + word + ':\n' + data['definitions'][0]['definition']).get_message()
         output['success'] = True
     except:
         error_message = QUERY_ERROR.format('definition') + EXAMPLE_DEFINITIONS

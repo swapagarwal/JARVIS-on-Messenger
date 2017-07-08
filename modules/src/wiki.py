@@ -1,8 +1,9 @@
-import json
 import wikipedia
+
 from templates.generic import *
 from templates.text import TextTemplate
 from error_msg import QUERY_ERROR, EXAMPLE_WIKI
+
 
 def process(input, entities):
     output = {}
@@ -38,10 +39,11 @@ def process(input, entities):
                         ]
                     }
                 }
-                buttons.add_postback('Wikipedia Summary', json.dumps(payload))
-                template.add_element(title=data.title, item_url=data.url, image_url=image_url, buttons=buttons.get_buttons())
+                buttons.add_postback('Wikipedia Summary', payload)
+                template.add_element(title=data.title, item_url=data.url, image_url=image_url,
+                                     buttons=buttons.get_buttons())
             except (wikipedia.exceptions.PageError, wikipedia.exceptions.DisambiguationError):
-                pass # Some suggestions don't map to a page; skipping them..
+                pass  # Some suggestions don't map to a page; skipping them..
         output['input'] = input
         output['output'] = template.get_message()
         output['success'] = True

@@ -1,25 +1,24 @@
-import requests
-from templates.text import TextTemplate
-from random import choice
 import json
+from random import choice
+
 import config
+import modules
+from templates.quick_replies import add_quick_reply
+from templates.text import TextTemplate
+
 
 def process(input, entities=None):
     output = {}
     try:
-        '''
-        # Programming quotes
-        r = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
-        data = r.json()
-        output['input'] = input
-        output['output'] = TextTemplate(data['quote'] + ' - ' + data['author']).get_message()
-        output['success'] = True
-        '''
         with open(config.QUOTES_SOURCE_FILE) as quotes_file:
             quotes = json.load(quotes_file)
             quotes_list = quotes['quotes']
+            message = TextTemplate(choice(quotes_list)).get_message()
+            message = add_quick_reply(message, 'Another one!', modules.generate_postback('quote'))
+            message = add_quick_reply(message, 'Show me a fact.', modules.generate_postback('fact'))
+            message = add_quick_reply(message, 'Tell me a joke.', modules.generate_postback('joke'))
             output['input'] = input
-            output['output'] = TextTemplate(choice(quotes_list)).get_message()
+            output['output'] = message
             output['success'] = True
     except:
         output['success'] = False

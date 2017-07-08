@@ -1,13 +1,16 @@
+import os
+from xml.etree import ElementTree
+
 import requests
 import requests_cache
-import config
-import os
 from html2text import html2text
-from xml.etree import ElementTree
+
+import config
 from templates.button import *
 from error_msg import QUERY_ERROR, EXAMPLE_BOOKS
 
 GOODREADS_ACCESS_TOKEN = os.environ.get('GOODREADS_ACCESS_TOKEN', config.GOODREADS_ACCESS_TOKEN)
+
 
 def process(input, entities):
     output = {}
@@ -15,7 +18,8 @@ def process(input, entities):
         book_title = entities['book'][0]['value']
 
         with requests_cache.enabled('book_cache', backend='sqlite', expire_after=86400):
-            response = requests.get('https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title)
+            response = requests.get(
+                'https://www.goodreads.com/book/title.xml?key=' + GOODREADS_ACCESS_TOKEN + '&title=' + book_title)
             data = ElementTree.fromstring(response.content)
 
         book_node = data.find('book')

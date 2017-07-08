@@ -1,6 +1,8 @@
 import requests
+
 from templates.text import TextTemplate
 from error_msg import CONVERT_ERROR, EXAMPLE_CONVERSIONS
+
 
 def process(input, entities):
     output = {}
@@ -15,7 +17,8 @@ def process(input, entities):
         if 'number' in entities:
             amount = entities['number'][0]['value']
             if amount != 1:
-                conversion_details += '\n%s %s = %.4f %s' % (amount, from_currency, amount * conversion_rate, to_currency)
+                conversion_details += '\n%s %s = %.4f %s' % (
+                amount, from_currency, amount * conversion_rate, to_currency)
 
         output['input'] = input
         output['output'] = TextTemplate(conversion_details).get_message()

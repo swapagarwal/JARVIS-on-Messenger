@@ -63,3 +63,6 @@ target/
 
 # PyCharm
 .idea/
+
+#Cache
+xkcd_cache.sqlite

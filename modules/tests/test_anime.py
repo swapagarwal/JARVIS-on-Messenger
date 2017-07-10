@@ -9,28 +9,36 @@ the module is not just anticipating the test and giving a
 canned response. These titles can be changed to any title
 that returns an anime from the API.'''
 
-TEST_TITLES = ['Death Note', 'One Punch Man', 'Dragon Ball Super',
-        'Miss Kobayashi\'s Dragon Maid', 'Sailor Moon', 'Attack on Titan']
+TEST_TITLES = ['One Punch Man', 'Dragon Ball Super', 'Dragon Ball Z',
+        'Sailor Moon', 'Attack on Titan', 'Bananya']
 
 random.shuffle(TEST_TITLES)
 
-
-def get_title_from_api(title):
+def get_data_from_api(title):
     r = requests.get('https://kitsu.io/api/edge/anime', params={'filter[text]' : title,
-        'page[limit]' : 1})
+            'page[limit]' : 1})
     data = r.json()
-    expected_title = data['data'][0]['attributes']['canonicalTitle']
 
+    return data
+
+
+def get_title_from_data(title):
+    expected_title = get_data_from_api(title)['data'][0]['attributes']['canonicalTitle']
     return expected_title
 
 
-def get_average_rating_from_api(title):
-    r = requests.get('https://kitsu.io/api/edge/anime', params={'filter[text]' : title,
-        'page[limit]' : 1})
-    data = r.json()
-    expected_rating = data['data'][0]['attributes']['averageRating']
-
+def get_average_rating_from_data(title):
+    expected_rating = get_data_from_api(title)['data'][0]['attributes']['averageRating']
     return expected_rating
+
+
+def get_popularity_rank_from_data(title):
+    expected_rank = get_data_from_api(title)['data'][0]['attributes']['popularityRank']
+    return expected_rank
+
+def get_episode_count_from_data(title):
+    expected_count = get_data_from_api(title)['data'][0]['attributes']['episodeCount']
+    return expected_count
 
 
 def test_intents():
@@ -40,7 +48,7 @@ def test_intents():
     assert ('anime' != modules.process_query('something random')[0])
 
 
-def test_titles():
+def test_payloads():
     for title in TEST_TITLES:
 
         response = modules.search(title + ' anime')
@@ -53,7 +61,7 @@ def test_titles():
 
         # Test that the expected title was returned
 
-        expected_title = get_title_from_api(title)
+        expected_title = get_title_from_data(title)
 
         assert(response_payload['text'].startswith('Title: ' + expected_title))
 
@@ -104,68 +112,70 @@ def test_average_rating():
     for title in TEST_TITLES:
 
         response = modules.search(title + ' anime')
+      
         response_payload = response['attachment']['payload']
 
         # Test that the average rating is a decimal percentage
 
         synopsis = response_payload['text']
+      
         '''Parse the payload text, tokenizing by newlines.'''
         tokens = synopsis.split('\n')
 
         '''Find the token that begins with 'Average Rating: '''
-        sought_token = 0
+        sought_token = False
         current_token = 0
-        while sought_token == 0:
+        while sought_token == False:
             checked_token = tokens[current_token]
             if checked_token.startswith('Average Rating: '):
-           
-               '''Set the sought token flag to exit the loop.'''
-               sought_token = 1
+                
+                '''Set the sought token flag to exit the loop.'''
+                sought_token = True
 
-               '''Remove the title.'''
-               rating_token = checked_token.replace('Average Rating: ', '')
+                '''Remove the title.'''
+                rating_token = checked_token.replace('Average Rating: ', '')
 
-               decimal_points = 0
-               percent_signs = 0
+                decimal_points = 0
+                percent_signs = 0
 
-               '''Test that the value of the rating is correct based
-               on the API's response.'''
+                '''Test that the value of the rating is correct based
+                on the API's response.'''
 
-               expected_rating = float(get_average_rating_from_api(title))
-               response_rating = float(rating_token.replace('%', ''))
-               assert(expected_rating == response_rating)
+                expected_rating = get_average_rating_from_data(title)
+                response_rating = rating_token.split('%')[0]
+                assert(expected_rating == response_rating)
 
-               '''Each character in the number string should be
-               a digit, a decimal, or a percent sign.'''
-               for character in rating_token:
-                   assert(character.isdigit() or character == '.'
-                           or character == '%')
-                   if character == '.':
-                       decimal_points += 1
-                   elif character == '%':
-                       percent_signs += 1
+                '''Each character in the number string should be
+                a digit, a decimal, or a percent sign.'''
+                for character in rating_token:
+                    assert(character.isdigit() or character == '.'
+                            or character == '%')
+                    if character == '.':
+                        decimal_points += 1
+                    elif character == '%':
+                        percent_signs += 1
 
-               '''Test that there is exactly one decimal and exactly
-               one percent sign.'''
-               assert(decimal_points == 1 and percent_signs == 1)
+                '''Test that there is exactly one decimal and exactly
+                one percent sign.'''
+                assert(decimal_points == 1 and percent_signs == 1)
 
-               '''Further split the token on the decimal sign to get
-               the truncated whole number and ensure it is 
-               between 0% and 100% (inclusive.)'''
-               value_token = rating_token.split('.')[0]
-               value_token = int(value_token)
-               assert(value_token >= 0 and value_token <= 100)
+                '''Further split the token on the decimal sign to get
+                the truncated whole number and ensure it is 
+                between 0% and 100% (inclusive.)'''
+                value_token = rating_token.split('.')[0]
+                value_token = int(value_token)
+                assert(value_token >= 0 and value_token <= 100)
 
-               '''Test that the whole value, including the decimal part, is
-               less than or equal to 100% by making sure if the whole
-               number part is 100, the decimal part is exactly zero.'''
-               if value_token == 100:
+                '''Test that the whole value, including the decimal part, is
+                less than or equal to 100% by making sure if the whole
+                number part is 100, the decimal part is exactly zero.'''
+                if value_token == 100:
 
-                   '''Get the decimal part by splitting on the decimal point
-                   and taking the second token, then dropping the percent sign.'''
-                   decimal_token = rating_token.split('.')[1]
-                   decimal_token.replace('%', '')
-                   assert(int(decimal_token) == 0)
+                    '''Get the decimal part by splitting on the decimal point
+                    and taking the second token, then dropping the percent sign.'''
+                    decimal_token = rating_token.split('.')[1]
+                    decimal_token.replace('%', '')
+                    assert(int(decimal_token) == 0)
 
             else:
                current_token += 1
@@ -184,8 +194,71 @@ def test_popularity_rank():
         synopsis = response_payload['text']
         tokens = synopsis.split('\n')
 
-        '''Find the token that begins with 'Average Rating: '''
-        sought_token = 0
+        '''Find the token that begins with Popularity Rank: '''
+        sought_token = False
         current_token = 0
-        while sought_token == 0:
+        while sought_token == False:
+            checked_token = tokens[current_token]
+            if checked_token.startswith('Popularity Rank: '):
+           
+               '''Set the sought token flag to exit the loop.'''
+               sought_token = True
 
+               '''Remove the title.'''
+               rating_token = checked_token.replace('Popularity Rank: ', '')
+
+               '''The ranking should be a positive, non-zero integer.'''
+
+               rank_value = int(rating_token)
+               assert(rank_value > 0)
+
+               '''Test that the value of the rank is correct based
+               on the API's response.'''
+
+               expected_rank = get_popularity_rank_from_data(title)
+               assert(int(rating_token) == int(expected_rank))
+
+
+            else:
+               current_token += 1
+
+
+def test_episode_count():
+
+    for title in TEST_TITLES:
+
+        response = modules.search(title + ' anime')
+        response_payload = response['attachment']['payload']
+
+        # Test that the episode count is an integer
+
+        synopsis = response_payload['text']
+        tokens = synopsis.split('\n')
+
+        '''Find the token that begins with Episode Count: '''
+        sought_token = False
+        current_token = 0
+        
+        while sought_token == False:
+            checked_token = tokens[current_token]
+            if checked_token.startswith('Episode Count: '):
+
+                '''Set the sought token flag to exit the loop.'''
+                sought_token = True
+
+                '''Remove the title.'''
+                count_token = checked_token.replace('Episode Count: ', '')
+
+                '''The count should be a positive integer, or the
+                string None.'''
+
+                assert(count_token == "None" or int(count_token) > 0)
+
+                '''Test that the value of the count is correct based
+                on the API's response.'''
+
+                expected_count = get_episode_count_from_data(title)
+                assert(count_token == str(expected_count))
+
+            else:
+                current_token += 1

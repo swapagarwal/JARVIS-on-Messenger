@@ -4,16 +4,16 @@ import requests
 import requests_cache
 import random
 
+''' Shuffling the list of test titles allows us to ensure
+the module is not just anticipating the test and giving a
+canned response. These titles can be changed to any title
+that returns an anime from the API.'''
+
 TEST_TITLES = ['Death Note', 'One Punch Man', 'Dragon Ball Super',
         'Miss Kobayashi\'s Dragon Maid', 'Sailor Moon', 'Attack on Titan']
 
 random.shuffle(TEST_TITLES)
 
-def test_intents():
-    assert ('anime' == modules.process_query('Death Note anime')[0])
-    assert ('anime' == modules.process_query('Dragon ball super anime status')[0])
-    assert ('anime' == modules.process_query('What is the anime rating of One Punch Man?')[0])
-    assert ('anime' != modules.process_query('something random')[0])
 
 def get_title_from_api(title):
     r = requests.get('https://kitsu.io/api/edge/anime', params={'filter[text]' : title,
@@ -31,6 +31,13 @@ def get_average_rating_from_api(title):
     expected_rating = data['data'][0]['attributes']['averageRating']
 
     return expected_rating
+
+
+def test_intents():
+    assert ('anime' == modules.process_query('Death Note anime')[0])
+    assert ('anime' == modules.process_query('Dragon ball super anime status')[0])
+    assert ('anime' == modules.process_query('What is the anime rating of One Punch Man?')[0])
+    assert ('anime' != modules.process_query('something random')[0])
 
 
 def test_titles():
@@ -112,7 +119,7 @@ def test_average_rating():
             checked_token = tokens[current_token]
             if checked_token.startswith('Average Rating: '):
            
-               '''Set the sought token flag to exit the loop'''
+               '''Set the sought token flag to exit the loop.'''
                sought_token = 1
 
                '''Remove the title.'''
@@ -124,9 +131,9 @@ def test_average_rating():
                '''Test that the value of the rating is correct based
                on the API's response.'''
 
-               expected_rating = get_average_rating_from_api(title)
-               response_rating = rating_token.replace('%', '')
-               assert(float(expected_rating) == float(response_rating))
+               expected_rating = float(get_average_rating_from_api(title))
+               response_rating = float(rating_token.replace('%', ''))
+               assert(expected_rating == response_rating)
 
                '''Each character in the number string should be
                a digit, a decimal, or a percent sign.'''
@@ -158,24 +165,27 @@ def test_average_rating():
                    and taking the second token, then dropping the percent sign.'''
                    decimal_token = rating_token.split('.')[1]
                    decimal_token.replace('%', '')
-                   decimal_token = int(decimal_token)
-                   assert(decimal_token == 0)
+                   assert(int(decimal_token) == 0)
 
             else:
                current_token += 1
 
-'''
+
+
 def test_popularity_rank():
 
-    response = modules.search(TEST_TITLE + ' anime')
-    response_payload = response['attachment']['payload']
+    for title in TEST_TITLES:
 
-    # Test that the popularity rank is an integer
+        response = modules.search(title + ' anime')
+        response_payload = response['attachment']['payload']
 
-    synopsis = response_payload['text']
-    tokens = synopsis.split('\n')
+        # Test that the popularity rank is an integer
 
+        synopsis = response_payload['text']
+        tokens = synopsis.split('\n')
 
-    for token in tokens:
-        if token.startswith('Popularity Rating: '):
-'''
+        '''Find the token that begins with 'Average Rating: '''
+        sought_token = 0
+        current_token = 0
+        while sought_token == 0:
+

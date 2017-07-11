@@ -147,15 +147,15 @@ def test_average_rating():
         '''Remove the title.'''
         rating_token = checked_token.replace('Average Rating: ', '')
 
-        decimal_points = 0
-        percent_signs = 0
-
         '''Test that the value of the rating is correct based
         on the API's response.'''
 
         expected_rating = get_average_rating_from_data(title)
         response_rating = rating_token.split('%')[0]
         assert(expected_rating == response_rating)
+
+        decimal_points = 0
+        percent_signs = 0
 
         '''Each character in the number string should be
         a digit, a decimal, or a percent sign.'''

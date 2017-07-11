@@ -42,6 +42,20 @@ def get_episode_count_from_data(title):
     return expected_count
 
 
+def get_kitsu_link_from_data(title):
+    expected_url = ('https://kitsu.io/anime/' + 
+        get_data_from_api(title)['data'][0]['attributes']['slug'])
+
+    return expected_url
+
+
+def get_youtube_link_from_data(title):
+    expected_url = ('https://www.youtube.com/watch?v=' + 
+        get_data_from_api(title)['data'][0]['attributes']['youtubeVideoId'])
+
+    return expected_url
+
+
 def test_intents():
     assert ('anime' == modules.process_query('Death Note anime')[0])
     assert ('anime' == modules.process_query('Dragon ball super anime status')[0])
@@ -113,13 +127,13 @@ def test_average_rating():
     for title in TEST_TITLES:
 
         response = modules.search(title + ' anime')
-      
+
         response_payload = response['attachment']['payload']
 
         # Test that the average rating is a decimal percentage
 
         synopsis = response_payload['text']
-      
+
         '''Parse the payload text, tokenizing by newlines.'''
         tokens = synopsis.split('\n')
 
@@ -129,7 +143,7 @@ def test_average_rating():
         while sought_token == False:
             checked_token = tokens[current_token]
             if checked_token.startswith('Average Rating: '):
-                
+
                 '''Set the sought token flag to exit the loop.'''
                 sought_token = True
 
@@ -173,14 +187,14 @@ def test_average_rating():
                 if value_token == 100:
 
                     '''Get the decimal part by splitting on the decimal point
-                    and taking the second token, then dropping the percent sign.'''
+                    and taking the second token, then dropping the percent 
+                    sign.'''
                     decimal_token = rating_token.split('.')[1]
                     decimal_token.replace('%', '')
                     assert(int(decimal_token) == 0)
 
             else:
                current_token += 1
-
 
 
 def test_popularity_rank():
@@ -201,7 +215,7 @@ def test_popularity_rank():
         while sought_token == False:
             checked_token = tokens[current_token]
             if checked_token.startswith('Popularity Rank: '):
-           
+
                '''Set the sought token flag to exit the loop.'''
                sought_token = True
 
@@ -218,7 +232,6 @@ def test_popularity_rank():
 
                expected_rank = get_popularity_rank_from_data(title)
                assert(int(rating_token) == int(expected_rank))
-
 
             else:
                current_token += 1
@@ -239,7 +252,7 @@ def test_episode_count():
         '''Find the token that begins with Episode Count: '''
         sought_token = False
         current_token = 0
-        
+
         while sought_token == False:
             checked_token = tokens[current_token]
             if checked_token.startswith('Episode Count: '):
@@ -253,7 +266,8 @@ def test_episode_count():
                 '''The count should be a positive integer, or the
                 string None.'''
 
-                assert(count_token == "None" or int(count_token) > 0)
+                if count_token != "None":
+                    assert(int(count_token) > 0)
 
                 '''Test that the value of the count is correct based
                 on the API's response.'''
@@ -263,3 +277,23 @@ def test_episode_count():
 
             else:
                 current_token += 1
+
+
+def test_kitsu_link():
+
+    for title in TEST_TITLES:
+
+        response = modules.search(title + ' anime')
+        response_url = response['attachment']['payload']['buttons'][0]['url']
+
+        assert(response_url == get_kitsu_link_from_data(title))
+
+
+def test_youtube_link():
+
+    for title in TEST_TITLES:
+
+        response = modules.search(title + ' anime')
+        response_url = response['attachment']['payload']['buttons'][1]['url']
+
+        assert(response_url == get_youtube_link_from_data(title))

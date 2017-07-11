@@ -10,7 +10,8 @@ canned response. These titles can be changed to any title
 that returns an anime from the API.'''
 
 TEST_TITLES = ['One Punch Man', 'Dragon Ball Super', 'Dragon Ball Z',
-        'Sailor Moon', 'Attack on Titan', 'Bananya']
+        'Sailor Moon', 'Attack on Titan', 'Bananya', 
+        'Jojo\'s Bizzare Adventure']
 
 random.shuffle(TEST_TITLES)
 
@@ -48,7 +49,7 @@ def test_intents():
     assert ('anime' != modules.process_query('something random')[0])
 
 
-def test_payloads():
+def test_payloads(capsys):
     for title in TEST_TITLES:
 
         response = modules.search(title + ' anime')

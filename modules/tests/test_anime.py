@@ -15,8 +15,8 @@ random.shuffle(TEST_TITLES)
 
 
 def get_data_from_api(title):
-    r = requests.get('https://kitsu.io/api/edge/anime', params={'filter[text]' : title,
-                     'page[limit]' : 1})
+    r = requests.get('https://kitsu.io/api/edge/anime', params={'filter[text]': title,
+                     'page[limit]': 1})
     data = r.json()
 
     return data

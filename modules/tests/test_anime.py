@@ -16,7 +16,7 @@ random.shuffle(TEST_TITLES)
 
 def get_data_from_api(title):
     r = requests.get('https://kitsu.io/api/edge/anime', params={'filter[text]' : title,
-                    'page[limit]' : 1})
+                     'page[limit]' : 1})
     data = r.json()
 
     return data
@@ -44,7 +44,7 @@ def get_episode_count_from_data(title):
 
 def get_kitsu_link_from_data(title):
     expected_url = ('https://kitsu.io/anime/' +
-                   get_data_from_api(title)['data'][0]['attributes']['slug'])
+                    get_data_from_api(title)['data'][0]['attributes']['slug'])
 
     return expected_url
 
@@ -63,7 +63,7 @@ def test_intents():
     assert ('anime' != modules.process_query('something random')[0])
 
 
-def test_payloads(capsys):
+def test_payloads():
     for title in TEST_TITLES:
 
         response = modules.search(title + ' anime')

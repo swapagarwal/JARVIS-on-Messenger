@@ -8,8 +8,8 @@ canned response. These titles can be changed to any title
 that returns an anime from the API.'''
 
 TEST_TITLES = ['One Punch Man', 'Dragon Ball Super', 'Dragon Ball Z',
-              'Sailor Moon', 'Attack on Titan', 'Bananya',
-              'Jojo\'s Bizzare Adventure']
+               'Sailor Moon', 'Attack on Titan', 'Bananya',
+               'Jojo\'s Bizzare Adventure']
 
 random.shuffle(TEST_TITLES)
 
@@ -43,15 +43,15 @@ def get_episode_count_from_data(title):
 
 
 def get_kitsu_link_from_data(title):
-    expected_url = ('https://kitsu.io/anime/' + 
-        get_data_from_api(title)['data'][0]['attributes']['slug'])
+    expected_url = ('https://kitsu.io/anime/' +
+                   get_data_from_api(title)['data'][0]['attributes']['slug'])
 
     return expected_url
 
 
 def get_youtube_link_from_data(title):
     expected_url = ('https://www.youtube.com/watch?v=' +
-                   get_data_from_api(title)['data'][0]['attributes']['youtubeVideoId'])
+                    get_data_from_api(title)['data'][0]['attributes']['youtubeVideoId'])
 
     return expected_url
 
@@ -72,7 +72,7 @@ def test_payloads(capsys):
         # Test that a payload was returned as a string
 
         assert(type(response_payload['text']) is str
-              or type(response_payload is unicode))
+               or type(response_payload is unicode))
 
         # Test that the expected title was returned
 
@@ -143,9 +143,6 @@ def test_average_rating():
             current_token += 1
 
         checked_token = tokens[current_token]
-        
-        '''Set the sought token flag to exit the loop.'''
-        sought_token = True
 
         '''Remove the title.'''
         rating_token = checked_token.replace('Average Rating: ', '')
@@ -164,7 +161,7 @@ def test_average_rating():
         a digit, a decimal, or a percent sign.'''
         for character in rating_token:
             assert(character.isdigit() or character == '.'
-                  or character == '%')
+                   or character == '%')
             if character == '.':
                 decimal_points += 1
             elif character == '%':
@@ -211,7 +208,7 @@ def test_popularity_rank():
 
         while not (tokens[current_token].startswith('Popularity Rank: ')):
             current_token += 1
-        
+
         checked_token = tokens[current_token]
 
         '''Remove the title.'''
@@ -247,7 +244,7 @@ def test_episode_count():
         while not (tokens[current_token].startswith('Episode Count: ')):
             current_token += 1
         checked_token = tokens[current_token]
-        
+
         '''Remove the title.'''
         count_token = checked_token.replace('Episode Count: ', '')
 

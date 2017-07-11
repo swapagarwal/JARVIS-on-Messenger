@@ -1,7 +1,5 @@
 import modules
-import json
 import requests
-import requests_cache
 import random
 
 ''' Shuffling the list of test titles allows us to ensure
@@ -10,14 +8,15 @@ canned response. These titles can be changed to any title
 that returns an anime from the API.'''
 
 TEST_TITLES = ['One Punch Man', 'Dragon Ball Super', 'Dragon Ball Z',
-        'Sailor Moon', 'Attack on Titan', 'Bananya', 
-        'Jojo\'s Bizzare Adventure']
+              'Sailor Moon', 'Attack on Titan', 'Bananya',
+              'Jojo\'s Bizzare Adventure']
 
 random.shuffle(TEST_TITLES)
 
+
 def get_data_from_api(title):
     r = requests.get('https://kitsu.io/api/edge/anime', params={'filter[text]' : title,
-            'page[limit]' : 1})
+                    'page[limit]' : 1})
     data = r.json()
 
     return data
@@ -37,6 +36,7 @@ def get_popularity_rank_from_data(title):
     expected_rank = get_data_from_api(title)['data'][0]['attributes']['popularityRank']
     return expected_rank
 
+
 def get_episode_count_from_data(title):
     expected_count = get_data_from_api(title)['data'][0]['attributes']['episodeCount']
     return expected_count
@@ -50,8 +50,8 @@ def get_kitsu_link_from_data(title):
 
 
 def get_youtube_link_from_data(title):
-    expected_url = ('https://www.youtube.com/watch?v=' + 
-        get_data_from_api(title)['data'][0]['attributes']['youtubeVideoId'])
+    expected_url = ('https://www.youtube.com/watch?v=' +
+                   get_data_from_api(title)['data'][0]['attributes']['youtubeVideoId'])
 
     return expected_url
 
@@ -72,7 +72,7 @@ def test_payloads(capsys):
         # Test that a payload was returned as a string
 
         assert(type(response_payload['text']) is str
-                or type(response_payload is unicode))
+              or type(response_payload is unicode))
 
         # Test that the expected title was returned
 
@@ -138,63 +138,60 @@ def test_average_rating():
         tokens = synopsis.split('\n')
 
         '''Find the token that begins with 'Average Rating: '''
-        sought_token = False
         current_token = 0
-        while sought_token == False:
-            checked_token = tokens[current_token]
-            if checked_token.startswith('Average Rating: '):
+        while not (tokens[current_token].startswith('Average Rating: ')):
+            current_token += 1
 
-                '''Set the sought token flag to exit the loop.'''
-                sought_token = True
+        checked_token = tokens[current_token]
+        
+        '''Set the sought token flag to exit the loop.'''
+        sought_token = True
 
-                '''Remove the title.'''
-                rating_token = checked_token.replace('Average Rating: ', '')
+        '''Remove the title.'''
+        rating_token = checked_token.replace('Average Rating: ', '')
 
-                decimal_points = 0
-                percent_signs = 0
+        decimal_points = 0
+        percent_signs = 0
 
-                '''Test that the value of the rating is correct based
-                on the API's response.'''
+        '''Test that the value of the rating is correct based
+        on the API's response.'''
 
-                expected_rating = get_average_rating_from_data(title)
-                response_rating = rating_token.split('%')[0]
-                assert(expected_rating == response_rating)
+        expected_rating = get_average_rating_from_data(title)
+        response_rating = rating_token.split('%')[0]
+        assert(expected_rating == response_rating)
 
-                '''Each character in the number string should be
-                a digit, a decimal, or a percent sign.'''
-                for character in rating_token:
-                    assert(character.isdigit() or character == '.'
-                            or character == '%')
-                    if character == '.':
-                        decimal_points += 1
-                    elif character == '%':
-                        percent_signs += 1
+        '''Each character in the number string should be
+        a digit, a decimal, or a percent sign.'''
+        for character in rating_token:
+            assert(character.isdigit() or character == '.'
+                  or character == '%')
+            if character == '.':
+                decimal_points += 1
+            elif character == '%':
+                percent_signs += 1
 
-                '''Test that there is exactly one decimal and exactly
-                one percent sign.'''
-                assert(decimal_points == 1 and percent_signs == 1)
+        '''Test that there is exactly one decimal and exactly
+        one percent sign.'''
+        assert(decimal_points == 1 and percent_signs == 1)
 
-                '''Further split the token on the decimal sign to get
-                the truncated whole number and ensure it is 
-                between 0% and 100% (inclusive.)'''
-                value_token = rating_token.split('.')[0]
-                value_token = int(value_token)
-                assert(value_token >= 0 and value_token <= 100)
+        '''Further split the token on the decimal sign to get
+        the truncated whole number and ensure it is
+        between 0% and 100% (inclusive.)'''
+        value_token = rating_token.split('.')[0]
+        value_token = int(value_token)
+        assert(value_token >= 0 and value_token <= 100)
 
-                '''Test that the whole value, including the decimal part, is
-                less than or equal to 100% by making sure if the whole
-                number part is 100, the decimal part is exactly zero.'''
-                if value_token == 100:
+        '''Test that the whole value, including the decimal part, is
+        less than or equal to 100% by making sure if the whole
+        number part is 100, the decimal part is exactly zero.'''
+        if value_token == 100:
 
-                    '''Get the decimal part by splitting on the decimal point
-                    and taking the second token, then dropping the percent 
-                    sign.'''
-                    decimal_token = rating_token.split('.')[1]
-                    decimal_token.replace('%', '')
-                    assert(int(decimal_token) == 0)
-
-            else:
-               current_token += 1
+            '''Get the decimal part by splitting on the decimal point
+            and taking the second token, then dropping the percent
+            sign.'''
+            decimal_token = rating_token.split('.')[1]
+            decimal_token.replace('%', '')
+            assert(int(decimal_token) == 0)
 
 
 def test_popularity_rank():
@@ -210,31 +207,25 @@ def test_popularity_rank():
         tokens = synopsis.split('\n')
 
         '''Find the token that begins with Popularity Rank: '''
-        sought_token = False
         current_token = 0
-        while sought_token == False:
-            checked_token = tokens[current_token]
-            if checked_token.startswith('Popularity Rank: '):
 
-               '''Set the sought token flag to exit the loop.'''
-               sought_token = True
+        while not (tokens[current_token].startswith('Popularity Rank: ')):
+            current_token += 1
+        
+        checked_token = tokens[current_token]
 
-               '''Remove the title.'''
-               rating_token = checked_token.replace('Popularity Rank: ', '')
+        '''Remove the title.'''
+        rating_token = checked_token.replace('Popularity Rank: ', '')
 
-               '''The ranking should be a positive, non-zero integer.'''
+        '''The ranking should be a positive, non-zero integer.'''
+        rank_value = int(rating_token)
+        assert(rank_value > 0)
 
-               rank_value = int(rating_token)
-               assert(rank_value > 0)
+        '''Test that the value of the rank is correct based
+        on the API's response.'''
 
-               '''Test that the value of the rank is correct based
-               on the API's response.'''
-
-               expected_rank = get_popularity_rank_from_data(title)
-               assert(int(rating_token) == int(expected_rank))
-
-            else:
-               current_token += 1
+        expected_rank = get_popularity_rank_from_data(title)
+        assert(int(rating_token) == int(expected_rank))
 
 
 def test_episode_count():
@@ -250,33 +241,27 @@ def test_episode_count():
         tokens = synopsis.split('\n')
 
         '''Find the token that begins with Episode Count: '''
-        sought_token = False
+
         current_token = 0
 
-        while sought_token == False:
-            checked_token = tokens[current_token]
-            if checked_token.startswith('Episode Count: '):
+        while not (tokens[current_token].startswith('Episode Count: ')):
+            current_token += 1
+        checked_token = tokens[current_token]
+        
+        '''Remove the title.'''
+        count_token = checked_token.replace('Episode Count: ', '')
 
-                '''Set the sought token flag to exit the loop.'''
-                sought_token = True
+        '''The count should be a positive integer, or the
+        string None.'''
 
-                '''Remove the title.'''
-                count_token = checked_token.replace('Episode Count: ', '')
+        if count_token != "None":
+            assert(int(count_token) > 0)
 
-                '''The count should be a positive integer, or the
-                string None.'''
+            '''Test that the value of the count is correct based
+            on the API's response.'''
 
-                if count_token != "None":
-                    assert(int(count_token) > 0)
-
-                '''Test that the value of the count is correct based
-                on the API's response.'''
-
-                expected_count = get_episode_count_from_data(title)
-                assert(count_token == str(expected_count))
-
-            else:
-                current_token += 1
+            expected_count = get_episode_count_from_data(title)
+            assert(count_token == str(expected_count))
 
 
 def test_kitsu_link():

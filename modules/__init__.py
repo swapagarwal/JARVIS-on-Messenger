@@ -48,6 +48,8 @@ def search(input, sender=None, postback=False):
                 'fields': 'first_name',
                 'access_token': os.environ.get('ACCESS_TOKEN', config.ACCESS_TOKEN)
             })
+            if entities is None:
+                entities = {}
             entities['sender'] = r.json()
         data = sys.modules['modules.src.' + intent].process(input, entities)
         if data['success']:

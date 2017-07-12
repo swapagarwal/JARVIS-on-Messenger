@@ -7,24 +7,28 @@ Just A Rather Very Intelligent System, now on Messenger!
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/swapagarwal/JARVIS-on-Messenger/master/LICENSE)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/swapagarwal/JARVIS-on-Messenger?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Messenger is now used by 900 million people every month. With the launch of Send / Receive API, bots are about to [take](http://time.com/4291214/facebook-messenger-bots/) [over](http://www.computerworld.com/article/3055588/social-media/an-army-of-chatbots-will-take-over-facebook-here-s-why.html).
+Messenger is now used by 1.2 billion people every month. With the launch of Send / Receive API, bots are about to [take](http://time.com/4291214/facebook-messenger-bots/) [over](http://www.computerworld.com/article/3055588/social-media/an-army-of-chatbots-will-take-over-facebook-here-s-why.html).
+
+### Usage
+
+JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger).
+
+### Demo (Vimeo)
+
+<a href="https://vimeo.com/226022581" target="_blank" title="Click to open Vimeo link">
+  <img src="https://i.vimeocdn.com/video/645512677_640.jpg" alt="JARVIS on Messenger Demo" width="300">
+</a>
 
 ### Why?
 
 I created JARVIS with two goals in mind:
 
 1. It should have a lot of useful features (both fun and commonly used).
-2. Anyone can contribute to this project. (As this is module-based, anybody with a decent knowledge of Python can contribute.) One of the prime goals of this project is to lower the entry barrier in the world of open source.
+1. Anyone can contribute to this project. (As this is module-based, anybody with a decent knowledge of Python can contribute.) One of the prime goals of this project is to lower the entry barrier in the world of open source.
 
 Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/CONTRIBUTING.md) to see how easy it is to add your code. I'll be waiting for your pull request! :wink:
 
 A massive Thank You to all [contributors](https://github.com/swapagarwal/JARVIS-on-Messenger/graphs/contributors), and congratulations to people who made their first open-source contribution! :tada:
-
-### Demo (Vimeo)
-
-<a href="https://vimeo.com/163328859" target="_blank" title="Click to open Vimeo link">
-  <img src="https://i.vimeocdn.com/video/566604309_640.jpg" alt="JARVIS on Messenger Demo" width="300">
-</a>
 
 ### Modules
 
@@ -32,7 +36,7 @@ Feel free to add to this list by opening an Issue / Pull Request.
 
 | Name | Sample Query | Source (w/ Attribution) |
 |:-:|:-:|:-:|
-| anime | death note anime | Hummingbird |
+| anime | death note anime | Kitsu |
 | book | anything you want book | Powered by Goodreads |
 | bye | goodbye | --- |
 | coin | flip a coin | --- |
@@ -50,6 +54,7 @@ Feel free to add to this list by opening an Issue / Pull Request.
 | ping | ping google.com | Is it up? |
 | quote | random quote | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/quotes.json) |
 | request | report a bug <br> request a feature | --- |
+| thanks | Thank you! | --- |
 | time | time in seattle | TimeZoneDB API |
 | url | shorten google.com <br> expand http://goo.gl/7aqe | Google URL Shortener |
 | video | videos of sia | YouTube |
@@ -70,10 +75,6 @@ More sample queries can be found [here](https://github.com/swapagarwal/JARVIS-on
 ├── CONTRIBUTING.md  # contributing guidelines
 └── jarvis.py        # the main bot
 ```
-
-### Usage
-
-JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger).
 
 ### Local Development / Testing
 
@@ -126,3 +127,7 @@ I've created a new branch [`legacy`](https://github.com/swapagarwal/JARVIS-on-Me
 
 P.S. If you've come this far, you might as well contribute.
 Looking for a place to start? Take a look at some of the [low-hanging fruits](https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit)!
+
+### References
+
+* https://github.com/toddmotto/public-apis

@@ -268,6 +268,8 @@ def test_kitsu_link():
         response = modules.search(title + ' anime')
         response_url = response['attachment']['payload']['buttons'][0]['url']
 
+        # Test that response's Kitsu URL matches the API's.
+
         assert(response_url == get_kitsu_link_from_data(title))
 
 
@@ -277,5 +279,7 @@ def test_youtube_link():
 
         response = modules.search(title + ' anime')
         response_url = response['attachment']['payload']['buttons'][1]['url']
+
+        # Test that the response's Youtube URL matches the API's.
 
         assert(response_url == get_youtube_link_from_data(title))

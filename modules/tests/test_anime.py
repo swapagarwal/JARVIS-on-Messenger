@@ -127,7 +127,6 @@ def test_average_rating():
     for title in TEST_TITLES:
 
         response = modules.search(title + ' anime')
-
         response_payload = response['attachment']['payload']
 
         # Test that the average rating is a decimal percentage

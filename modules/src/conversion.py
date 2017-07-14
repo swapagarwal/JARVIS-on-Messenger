@@ -53,7 +53,10 @@ abbreviation={'m':'meter', 'km':'kilometer', 'cm':'centimeter','mm':'millimeter'
 def process(message=raw_input(),entities=None):
     pattern=r'\sto\s|\sin\s'
     re.compile(pattern)
-    values=re.split(pattern,message)
+    values=re.split(pattern,message.lower())
+    print "values = ",values
+    values[0]=re.split(r"^convert ",values[0])
+    values[0]=values[0][-1]
     print "values = ",values
     unit2=values[-1].lower().strip()
     print "unit2 = ",unit2

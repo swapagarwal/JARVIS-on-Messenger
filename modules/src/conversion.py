@@ -50,12 +50,12 @@ abbreviation={'m':'meter', 'km':'kilometer', 'cm':'centimeter','mm':'millimeter'
                 'ns':'nanosecond','ps':'picosecond','d':'day'}
 
                 
-def process(message=raw_input("Enter Message: "),entities=None):
+def process(input,entities):
     output={}
     try:
         pattern=r'\sto\s|\sin\s'
         re.compile(pattern)
-        values=re.split(pattern,message)
+        values=re.split(pattern,entities)
         print "values = ",values
         unit2=values[-1].lower().strip()
         print "unit2 = ",unit2

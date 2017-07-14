@@ -1,7 +1,7 @@
 #Jarvis Conversions
-#import json
-#from templates.text import TextTemplate
-#from templates.quick_replies import add_quick_reply
+import json
+from templates.text import TextTemplate
+from templates.quick_replies import add_quick_reply
 
 import re
 
@@ -51,46 +51,63 @@ abbreviation={'m':'meter', 'km':'kilometer', 'cm':'centimeter','mm':'millimeter'
 
                 
 def process(message=raw_input("Enter Message: "),entities=None):
-    pattern=r'\sto\s|\sin\s'
-    re.compile(pattern)
-    values=re.split(pattern,message)
-    print "values = ",values
-    unit2=values[-1].lower().strip()
-    print "unit2 = ",unit2
+    output={}
     try:
-        number,unit1=values[0].strip().split(' ')
-    except ValueError:
-        number,unit1,unit3=values[0].strip().split(' ')
-        unit1=unit1+" "+unit3
-    try:
-        unit1=abbreviation[unit1]
-    except KeyError:
-        pass
-    try:
-        unit2=abbreviation[unit2]
-    except KeyError:    
-        pass        
-    if unit2 in meter.keys():
-        return linearConversion(float(number),unit1.lower(),unit2)
-    
-    if unit2 in squareMeter.keys():
-        return areaConversion(float(number),unit1.lower(),unit2)
+        pattern=r'\sto\s|\sin\s'
+        re.compile(pattern)
+        values=re.split(pattern,message)
+        print "values = ",values
+        unit2=values[-1].lower().strip()
+        print "unit2 = ",unit2
+        try:
+            number,unit1=values[0].strip().split(' ')
+        except ValueError:
+            number,unit1,unit3=values[0].strip().split(' ')
+            unit1=unit1+" "+unit3
+        try:
+            unit1=abbreviation[unit1]
+        except KeyError:
+            pass
+        try:
+            unit2=abbreviation[unit2]
+        except KeyError:    
+            pass        
+        if unit2 in meter.keys():
+            result=linearConversion(float(number),unit1.lower(),unit2)
         
-    if unit2 in cubicMeter.keys():
-        return volumeLengthConversion(float(number),unit1.lower(),unit2)
+        if unit2 in squareMeter.keys():
+            result=areaConversion(float(number),unit1.lower(),unit2)
+            
+        if unit2 in cubicMeter.keys():
+            result=volumeLengthConversion(float(number),unit1.lower(),unit2)
+        
+        if unit2 in liter.keys():
+            result=volumeConversion(float(number),unit1.lower(),unit2)
+        
+        if unit2 in gram.keys():
+            result=weightConversion(float(number),unit1.lower(),unit2)
+        
+        if unit2 in minute.keys():
+            result=timeConversion(float(number),unit1.lower(),unit2)
+                                                                
+        if unit2 in celcius.keys():
+            result=temperatureConversion(float(number),unit1.lower(),unit2)    
+        
+        output['input']=input
+        output['output']=TextTemplate(result).get_message()
+        output['success']=True
     
-    if unit2 in liter.keys():
-        return volumeConversion(float(number),unit1.lower(),unit2)
+    except:
+        error_message = 'I couldn\'t convert between those currencies.'
+        error_message += '\nPlease try something like this :'
+        error_message += '\n  - 182 cm to ft'
+        error_message += '\n  - 100 gallon in l'
+        error_message += '\n  - 98.4 f in celcius'
+        output['error_msg'] = TextTemplate(error_message).get_message()
+        output['success'] = False    
     
-    if unit2 in gram.keys():
-        return weightConversion(float(number),unit1.lower(),unit2)
+    return output
     
-    if unit2 in minute.keys():
-        return timeConversion(float(number),unit1.lower(),unit2)
-                                                             
-    if unit2 in celcius.keys():
-        return temperatureConversion(float(number),unit1.lower(),unit2)    
-
 def linearConversion(number,unit1,unit2):
     #Length Conversions
     par2=meter[str(unit2)]
@@ -170,4 +187,3 @@ def temperatureConversion(number,unit1,unit2):
             print "ans = ",ans
         elif unit1==unit2: ans=1    
     return str(str(number)+" "+unit1+" = "+str(ans)+" "+unit2)        
-                     

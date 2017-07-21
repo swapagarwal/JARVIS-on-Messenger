@@ -19,6 +19,7 @@ def process(input, entities):
                 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=' + video + '&type=video&key=' + YOUTUBE_DATA_API_KEY)
             data = r.json()
         template = GenericTemplate()
+        template.set_image_aspect_ratio_to_square()
         for item in data['items']:
             title = item['snippet']['title']
             item_url = 'https://www.youtube.com/watch?v=' + item['id']['videoId']

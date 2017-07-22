@@ -24,7 +24,7 @@ JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger).
 I created JARVIS with two goals in mind:
 
 1. It should have a lot of useful features (both fun and commonly used).
-2. Anyone can contribute to this project. (As this is module-based, anybody with a decent knowledge of Python can contribute.) One of the prime goals of this project is to lower the entry barrier in the world of open source.
+1. Anyone can contribute to this project. (As this is module-based, anybody with a decent knowledge of Python can contribute.) One of the prime goals of this project is to lower the entry barrier in the world of open source.
 
 Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/CONTRIBUTING.md) to see how easy it is to add your code. I'll be waiting for your pull request! :wink:
 
@@ -126,3 +126,7 @@ I've created a new branch [`legacy`](https://github.com/swapagarwal/JARVIS-on-Me
 
 P.S. If you've come this far, you might as well contribute.
 Looking for a place to start? Take a look at some of the [low-hanging fruits](https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit)!
+
+### References
+
+* https://github.com/toddmotto/public-apis

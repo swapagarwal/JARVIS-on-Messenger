@@ -30,6 +30,13 @@ Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARV
 
 A massive Thank You to all [contributors](https://github.com/swapagarwal/JARVIS-on-Messenger/graphs/contributors), and congratulations to people who made their first open-source contribution! :tada:
 
+### Demo (Vimeo)
+
+<a href="https://vimeo.com/226022581" target="_blank" title="Click to open Vimeo link">
+  <img src="https://i.vimeocdn.com/video/645512677_640.jpg" alt="JARVIS on Messenger Demo" width="300">
+</a>
+
+>>>>>>> Update demo video (#246)
 ### Modules
 
 Feel free to add to this list by opening an Issue / Pull Request.

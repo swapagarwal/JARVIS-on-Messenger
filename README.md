@@ -22,7 +22,7 @@ A massive Thank You to all [contributors](https://github.com/swapagarwal/JARVIS-
 
 ### Demo (Vimeo)
 
-<a href="https://vimeo.com/163328859" target="_blank" title="Click to open Vimeo link">
+<a href="https://vimeo.com/226022581" target="_blank" title="Click to open Vimeo link">
   <img src="https://i.vimeocdn.com/video/566604309_640.jpg" alt="JARVIS on Messenger Demo" width="300">
 </a>
 

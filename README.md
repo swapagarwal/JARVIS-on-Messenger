@@ -7,7 +7,17 @@ Just A Rather Very Intelligent System, now on Messenger!
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/swapagarwal/JARVIS-on-Messenger/master/LICENSE)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/swapagarwal/JARVIS-on-Messenger?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Messenger is now used by 900 million people every month. With the launch of Send / Receive API, bots are about to [take](http://time.com/4291214/facebook-messenger-bots/) [over](http://www.computerworld.com/article/3055588/social-media/an-army-of-chatbots-will-take-over-facebook-here-s-why.html).
+Messenger is now used by 1.2 billion people every month. With the launch of Send / Receive API, bots are about to [take](http://time.com/4291214/facebook-messenger-bots/) [over](http://www.computerworld.com/article/3055588/social-media/an-army-of-chatbots-will-take-over-facebook-here-s-why.html).
+
+### Usage
+
+JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger).
+
+### Demo (Vimeo)
+
+<a href="https://vimeo.com/226022581" target="_blank" title="Click to open Vimeo link">
+  <img src="https://i.vimeocdn.com/video/645512677_640.jpg" alt="JARVIS on Messenger Demo" width="300">
+</a>
 
 ### Why?
 
@@ -20,19 +30,13 @@ Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARV
 
 A massive Thank You to all [contributors](https://github.com/swapagarwal/JARVIS-on-Messenger/graphs/contributors), and congratulations to people who made their first open-source contribution! :tada:
 
-### Demo (Vimeo)
-
-<a href="https://vimeo.com/226022581" target="_blank" title="Click to open Vimeo link">
-  <img src="https://i.vimeocdn.com/video/645512677_640.jpg" alt="JARVIS on Messenger Demo" width="300">
-</a>
-
 ### Modules
 
 Feel free to add to this list by opening an Issue / Pull Request.
 
 | Name | Sample Query | Source (w/ Attribution) |
 |:-:|:-:|:-:|
-| anime | death note anime | Hummingbird |
+| anime | death note anime | Kitsu |
 | book | anything you want book | Powered by Goodreads |
 | bye | goodbye | --- |
 | coin | flip a coin | --- |
@@ -70,10 +74,6 @@ More sample queries can be found [here](https://github.com/swapagarwal/JARVIS-on
 ├── CONTRIBUTING.md  # contributing guidelines
 └── jarvis.py        # the main bot
 ```
-
-### Usage
-
-JARVIS is at your service [here](http://m.me/J.A.R.V.I.S.on.Messenger).
 
 ### Local Development / Testing
 

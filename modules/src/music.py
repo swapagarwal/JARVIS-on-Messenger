@@ -1,53 +1,43 @@
-import config
-
+import json
+import os
 from datetime import datetime
 
 import requests
 import requests_cache
-import json
 
+import config
 from templates.generic import *
 from templates.text import TextTemplate
 
-# Spotify returns 401 if request fails due to no/invalid auth token.
-UNAUTHORIZED = 401
+SPOTIFY_API_KEY = os.environ.get('SPOTIFY_API_KEY', config.SPOTIFY_API_KEY)
+UNAUTHORIZED = 401  # Spotify returns 401 if request fails due to no / invalid auth token
 
 
 def api_search(auth_token, search_term):
-    with requests_cache.enabled('music_cache', backend='sqlite',
-                                expire_after=3600):
+    with requests_cache.enabled('music_cache', backend='sqlite', expire_after=3600):
         headers = {'Authorization': 'Bearer ' + auth_token}
-        r = requests.get('https://api.spotify.com/v1/search?q=' + search_term +
-                         '&type=track', headers=headers)
+        r = requests.get('https://api.spotify.com/v1/search?q=' + search_term + '&type=track', headers=headers)
     return r
 
 
 def process(input, entities):
     output = {}
     try:
-
         music = entities['music'][0]['value']
 
         with open(config.SPOTIFY_TOKEN_FILE) as token_file:
-            token = json.load(token_file)['current_token']
+            token = json.load(token_file)['ACCESS_TOKEN']
         r = api_search(token, music)
-
         if r.status_code == UNAUTHORIZED:
-
-            auth_url = "https://accounts.spotify.com/api/token"
-            headers = {'Authorization': 'Basic ' + config.SPOTIFY_API_KEY}
+            auth_url = 'https://accounts.spotify.com/api/token'
+            headers = {'Authorization': 'Basic ' + SPOTIFY_API_KEY}
             payload = {'grant_type': 'client_credentials'}
-
             r = requests.post(auth_url, headers=headers, data=payload)
-
             new_token = r.json()['access_token']
-
             with open(config.SPOTIFY_TOKEN_FILE, 'w') as token_file:
-                token_dict = {'current_token': new_token}
+                token_dict = {'ACCESS_TOKEN': new_token}
                 json.dump(token_dict, token_file)
-
             r = api_search(new_token, music)
-
         data = r.json()
 
         assert (len(data['tracks']['items']) > 0)
@@ -69,7 +59,6 @@ def process(input, entities):
         output['input'] = input
         output['output'] = template.get_message()
         output['success'] = True
-	
     except:
         error_message = 'I couldn\'t find any music matching your query.'
         error_message += '\nPlease ask me something else, like:'
@@ -78,5 +67,4 @@ def process(input, entities):
         error_message += '\n  - play hotel california'
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
-    
     return output

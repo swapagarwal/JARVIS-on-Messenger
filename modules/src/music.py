@@ -23,7 +23,6 @@ def api_search(auth_token, search_term):
 def process(input, entities):
     output = {}
     try:
-
         music = entities['music'][0]['value']
 
         with open(config.SPOTIFY_TOKEN_FILE) as token_file:
@@ -60,7 +59,6 @@ def process(input, entities):
         output['input'] = input
         output['output'] = template.get_message()
         output['success'] = True
-	
     except:
         error_message = 'I couldn\'t find any music matching your query.'
         error_message += '\nPlease ask me something else, like:'
@@ -69,5 +67,4 @@ def process(input, entities):
         error_message += '\n  - play hotel california'
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
-    
     return output

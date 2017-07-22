@@ -9,7 +9,6 @@ JOKES_SOURCE_FILE = 'data/jokes.json'
 QUOTES_SOURCE_FILE = 'data/quotes.json'
 
 # Access token files
-<<<<<<< HEAD
 SPOTIFY_TOKEN_FILE = 'spotify_token.json'
 
 # API Keys
@@ -23,4 +22,3 @@ SPOTIFY_API_KEY = '<<SPOTIFY_API_KEY>>'
 TIME_ZONE_DB_API_KEY = '<<TIME_ZONE_DB_API_KEY>>'
 WORDS_API_KEY = '<<WORDS_API_KEY>>'
 YOUTUBE_DATA_API_KEY = '<<YOUTUBE_DATA_API_KEY>>'
-SPOTIFY_API_KEY = '<<SPOTIFY_API_KEY>>'

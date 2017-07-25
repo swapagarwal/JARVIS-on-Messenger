@@ -54,6 +54,7 @@ Feel free to add to this list by opening an Issue / Pull Request.
 | ping | ping google.com | Is it up? |
 | quote | random quote | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/quotes.json) |
 | request | report a bug <br> request a feature | --- |
+| thanks | Thank you! | --- |
 | time | time in seattle | TimeZoneDB API |
 | url | shorten google.com <br> expand http://goo.gl/7aqe | Google URL Shortener |
 | video | videos of sia | YouTube |

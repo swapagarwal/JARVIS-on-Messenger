@@ -61,4 +61,4 @@ def search(input, sender=None, postback=False):
                 return TextTemplate('Something didn\'t work as expected! I\'ll report this to my master.').get_message()
     else:
         return TextTemplate(
-            'I\'m sorry; I\'m not sure I understand what you\'re trying to say sir.\nTry typing "help" or "request"').get_message()
+            'I\'m sorry; I\'m not sure I understand what you\'re trying to say.\nTry typing "help" or "request"').get_message()

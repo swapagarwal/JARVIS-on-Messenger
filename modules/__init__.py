@@ -29,7 +29,6 @@ def process_query(input):
         entities = data['outcomes'][0]['entities']
         confidence = data['outcomes'][0]['confidence'] if 'intent' not in data['outcomes'][0] \
             ['entities'] else data['outcomes'][0]['entities']['intent'][0]['confidence']
-        print intent, confidence
         if intent in src.__all__ and confidence > 0.5:
             return intent, entities
         else:

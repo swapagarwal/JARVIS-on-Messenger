@@ -7,6 +7,8 @@ Just A Rather Very Intelligent System, now on Messenger!
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20🐳%20🚀-FFDD67.svg)](https://gitmoji.carloscuesta.me)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/swapagarwal/JARVIS-on-Messenger/master/LICENSE)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/swapagarwal/JARVIS-on-Messenger?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Contributors](https://img.shields.io/github/contributors/swapagarwal/JARVIS-on-Messenger.svg)](https://github.com/swapagarwal/JARVIS-on-Messenger/graphs/contributors)
+[![Beginner Issues](https://img.shields.io/github/issues/swapagarwal/JARVIS-on-Messenger/Low-Hanging%20Fruit.svg?label=low-hanging%20fruits)](https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit)
 
 Messenger is now used by 1.2 billion people every month. With the launch of Send / Receive API, bots are about to [take](http://time.com/4291214/facebook-messenger-bots/) [over](http://www.computerworld.com/article/3055588/social-media/an-army-of-chatbots-will-take-over-facebook-here-s-why.html).
 

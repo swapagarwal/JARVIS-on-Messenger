@@ -18,7 +18,6 @@ def process(input, entities):
         output['success'] = True
     except wikipedia.exceptions.DisambiguationError as e:
         template = GenericTemplate()
-        template.set_image_aspect_ratio_to_square()
         image_url = 'https://en.wikipedia.org/static/images/project-logos/enwiki-2x.png'
         pageids = set()
         for option in e.options:

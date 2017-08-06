@@ -48,7 +48,7 @@ Feel free to add to this list by opening an Issue / Pull Request.
 | help | What can you do? | --- |
 | joke | tell me a joke | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/jokes.json) |
 | lyrics | paradise lyrics | Powered by musiXmatch |
-| movie | iron man 2 movie plot | OMDb API |
+| movie | iron man 2 movie plot | <img src="/images/powered_by_tmdb.png"/> |
 | music | songs by linkin park | Spotify |
 | news | latest news | Powered by NewsAPI |
 | ping | ping google.com | Is it up? |

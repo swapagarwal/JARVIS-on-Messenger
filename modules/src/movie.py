@@ -1,7 +1,7 @@
 import requests
 import requests_cache
-import config
 
+import config
 from templates.button import *
 
 
@@ -43,15 +43,12 @@ def process(input, entities):
         template.add_web_url('IMDb Link', 'https://www.imdb.com/title/' + data['imdb_id'] +'/')
         output['output'] = template.get_message()
         output['success'] = True
-
     except:
         error_message = 'I couldn\'t find that movie.'
         error_message += '\nPlease ask me something else, like:'
         error_message += '\n  - batman movie'
         error_message += '\n  - iron man 2 movie plot'
         error_message += '\n  - What is the rating of happyness movie?'
-
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
-
     return output

@@ -15,10 +15,12 @@ def process(input, entities):
         # endorsed or certified by TMDb."
 
         with requests_cache.enabled('movie_cache', backend='sqlite', expire_after=86400):
-            request_str = 'https://api.themoviedb.org/3/search/movie?api_key='
-            request_str += config.TMDB_API_KEY + '&query=' + movie
-            request_str += '&page=1&include_adult=false'
-            r = requests.get(request_str)
+            r = requests.get('http://api.themoviedb.org/3/search/movie', params={
+                'api_key': config.TMDB_API_KEY,
+                'query': movie,
+                'page': '1',
+                'include_adult': False
+            })
             data = r.json()
             tmdb_id = str(data['results'][0]['id'])
 
@@ -26,9 +28,11 @@ def process(input, entities):
             # to get the movie's IMDB ID.
 
             request_str = 'https://api.themoviedb.org/3/movie/' + tmdb_id
-            request_str += '?api_key=' + config.TMDB_API_KEY
 
-            r = requests.get(request_str)
+
+            r = requests.get('https://api.themoviedb.org/3/movie/' + tmdb_id, params ={
+                'api_key': config.TMDB_API_KEY
+            })
             data = r.json()
 
         output['input'] = input
@@ -43,12 +47,13 @@ def process(input, entities):
         template.add_web_url('IMDb Link', 'https://www.imdb.com/title/' + data['imdb_id'] +'/')
         output['output'] = template.get_message()
         output['success'] = True
-    except:
+    except Exception, e:
         error_message = 'I couldn\'t find that movie.'
         error_message += '\nPlease ask me something else, like:'
         error_message += '\n  - batman movie'
         error_message += '\n  - iron man 2 movie plot'
         error_message += '\n  - What is the rating of happyness movie?'
+
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

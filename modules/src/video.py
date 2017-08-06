@@ -21,11 +21,16 @@ def process(input, entities):
         template = GenericTemplate()
         for item in data['items']:
             title = item['snippet']['title']
-            item_url = 'https://www.youtube.com/watch?v=' + item['id']['videoId']
-            image_url = item['snippet']['thumbnails']['high']['url']
             subtitle = item['snippet']['channelTitle']
+            image_url = item['snippet']['thumbnails']['high']['url']
             buttons = ButtonTemplate()
-            buttons.add_web_url('YouTube Link', 'https://www.youtube.com/watch?v=' + item['id']['videoId'])
+            try:
+                # Video result from search
+                item_url = 'https://www.youtube.com/watch?v=' + item['id']['videoId']
+                buttons.add_web_url('YouTube Link', 'https://www.youtube.com/watch?v=' + item['id']['videoId'])
+            except:
+                # Channel result from search
+                item_url = 'https://www.youtube.com/channel/' + item['id']['channelId']
             buttons.add_web_url('Channel Link', 'https://www.youtube.com/channel/' + item['snippet']['channelId'])
             template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle,
                                  buttons=buttons.get_buttons())

@@ -5,6 +5,7 @@ import requests_cache
 
 import config
 from templates.text import TextTemplate
+from error_msg import QUERY_ERROR, EXAMPLE_DEFINITIONS
 
 WORDS_API_KEY = os.environ.get('WORDS_API_KEY', config.WORDS_API_KEY)
 
@@ -23,11 +24,7 @@ def process(input, entities):
             'Definition of ' + word + ':\n' + data['definitions'][0]['definition']).get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t find that definition.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - define comfort'
-        error_message += '\n  - cloud definition'
-        error_message += '\n  - what does an accolade mean?'
+        error_message = QUERY_ERROR.format('definition') + EXAMPLE_DEFINITIONS
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

@@ -6,6 +6,7 @@ import requests_cache
 import config
 from templates.generic import *
 from templates.text import TextTemplate
+from error_msg import QUERY_ERROR
 
 YOUTUBE_DATA_API_KEY = os.environ.get('YOUTUBE_DATA_API_KEY', config.YOUTUBE_DATA_API_KEY)
 
@@ -33,11 +34,7 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t find any videos matching your query.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - sia videos'
-        error_message += '\n  - videos by eminem'
-        error_message += '\n  - video coldplay'
+        error_message = QUERY_ERROR.format('videos') + EXAMPLE_VIDEOS
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

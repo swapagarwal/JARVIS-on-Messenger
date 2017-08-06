@@ -5,6 +5,7 @@ import requests_cache
 
 import config
 from templates.button import *
+from error_msg import QUERY_ERROR, EXAMPLE_MOVIES
 
 # This product uses the TMDb API but is not endorsed or certified by TMDb.
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY', config.TMDB_API_KEY)
@@ -45,11 +46,7 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t find that movie.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - batman movie'
-        error_message += '\n  - iron man 2 movie plot'
-        error_message += '\n  - What is the rating of happyness movie?'
+        error_message = QUERY_ERROR.format('movie') + EXAMPLE_MOVIES
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

@@ -27,11 +27,7 @@ def process(input, entities):
                 'abbreviation']).get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t get the time at the location you specified.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - time in new york'
-        error_message += '\n  - india time'
-        error_message += '\n  - time at paris'
+        error_message = LOCATION_ERROR.format('time') + EXAMPLE_TIME
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

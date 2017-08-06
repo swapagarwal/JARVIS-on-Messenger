@@ -2,6 +2,7 @@ import wikipedia
 
 from templates.generic import *
 from templates.text import TextTemplate
+from error_msg import QUERY_ERROR, EXAMPLE_WIKI
 
 
 def process(input, entities):
@@ -47,11 +48,7 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t find any wikipedia results matching your query.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - wikipedia barack'
-        error_message += '\n  - html wiki'
-        error_message += '\n  - who is sachin tendulkar'
+        error_message = QUERY_ERROR.format('wikipedia results') + EXAMPLE_WIKI
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

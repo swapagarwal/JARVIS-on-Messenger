@@ -4,6 +4,7 @@ import requests
 
 import config
 from templates.text import TextTemplate
+from error_msg import LOCATION_ERROR, EXAMPLE_WEATHER
 
 MAPQUEST_CONSUMER_KEY = os.environ.get('MAPQUEST_CONSUMER_KEY', config.MAPQUEST_CONSUMER_KEY)
 OPEN_WEATHER_MAP_ACCESS_TOKEN = os.environ.get('OPEN_WEATHER_MAP_ACCESS_TOKEN', config.OPEN_WEATHER_MAP_ACCESS_TOKEN)
@@ -29,11 +30,7 @@ def process(input, entities):
                 temperature_in_fahrenheit) + ' ' + degree_sign + 'F\n- Info provided by OpenWeatherMap').get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t get the weather info you asked for.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - tell me the weather in London'
-        error_message += '\n  - weather Delhi'
-        error_message += '\n  - What\'s the weather in Texas?'
+        error_message = LOCATION_ERROR.format('weather') + EXAMPLE_WEATHER
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

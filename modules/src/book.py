@@ -7,6 +7,7 @@ from html2text import html2text
 
 import config
 from templates.button import *
+from error_msg import QUERY_ERROR, EXAMPLE_BOOKS
 
 GOODREADS_ACCESS_TOKEN = os.environ.get('GOODREADS_ACCESS_TOKEN', config.GOODREADS_ACCESS_TOKEN)
 
@@ -41,11 +42,7 @@ def process(input, entities):
         output['output'] = template.get_message()
         output['success'] = True
     except:
-        error_message = 'I couldn\'t find any book matching your query.'
-        error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - book timeline'
-        error_message += '\n  - harry potter book plot'
-        error_message += '\n  - little women book rating'
+        error_message = QUERY_ERROR.format('books') + EXAMPLE_BOOKS
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

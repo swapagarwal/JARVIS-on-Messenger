@@ -2,35 +2,36 @@ from templates.text import TextTemplate
 
 
 def process(input, entities=None):
-    help = 'Hi there! I\'m Jarvis, your personal assistant.'
-    if entities is not None:
+    helper = 'Hi there! I\'m Jarvis, your personal assistant.\n'
+    if entities:
         if 'sender' in entities and 'first_name' in entities['sender']:
-            sender_name = entities['sender']['first_name']
-            help = help.replace('there', sender_name)
-    help += '\n\nYou can tell me things like:'
-    help += '\n  - define comfort'
-    help += '\n  - iron man 2 movie plot'
-    help += '\n  - tell me a joke/quote/fact'
-    help += '\n  - wiki html'
-    help += '\n  - anything you want book'
-    help += '\n  - usd to eur rate'
-    help += '\n  - death note anime'
-    help += '\n  - time in seattle'
-    help += '\n  - songs by linkin park'
-    help += '\n  - shorten google.com'
-    help += '\n  - weather in london'
-    help += '\n  - videos of sia'
-    help += '\n  - flip a coin'
-    help += '\n  - roll a die'
-    help += '\n  - show a random xkcd comic'
-    help += '\n  - latest news'
-    help += '\n  - paradise lyrics'
-    help += '\n\nI\'m always learning, so do come back and say hi from time to time!'
-    help += '\nHave a nice day. :)'
+            helper = helper.replace('there', entities['sender']['first_name'])
+    helper += """
+    You can tell me things like:
+      - define comfort
+      - iron man 2 movie plot
+      - tell me a joke/quote/fact
+      - wiki html
+      - anything you want book
+      - usd to eur rate
+      - death note anime
+      - time in seattle
+      - songs by linkin park
+      - shorten google.com
+      - weather in london
+      - videos of sia
+      - flip a coin
+      - roll a die
+      - show a random xkcd comic
+      - latest news
+      - paradise lyrics
+      
+    I'm always learning, so do come back and say hi from time to time!
+    Have a nice day. :)"""
 
     output = {
         'input': input,
-        'output': TextTemplate(help).get_message(),
+        'output': TextTemplate(helper).get_message(),
         'success': True
     }
     return output

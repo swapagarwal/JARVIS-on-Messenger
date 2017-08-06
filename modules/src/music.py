@@ -16,6 +16,7 @@ def process(input, entities):
             data = r.json()
         assert (len(data['tracks']['items']) > 0)
         template = GenericTemplate()
+        template.set_image_aspect_ratio_to_square()
         for track in data['tracks']['items']:
             title = track['name']
             item_url = track['external_urls']['spotify']
@@ -28,7 +29,6 @@ def process(input, entities):
             buttons = ButtonTemplate()
             buttons.add_web_url('Preview Track', track['preview_url'])
             buttons.add_web_url('Open in Spotify', 'https://embed.spotify.com/openspotify/?spuri=' + track['uri'])
-            template.set_image_aspect_ratio_to_square()
             template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle,
                                  buttons=buttons.get_buttons())
         output['input'] = input

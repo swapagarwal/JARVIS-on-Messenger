@@ -16,7 +16,7 @@ def process(input, entities):
 
         with requests_cache.enabled('movie_cache', backend='sqlite', expire_after=86400):
             request_str = 'https://api.themoviedb.org/3/search/movie?api_key='
-            request_str += config.THE_MOVIE_DATABASE_API_KEY + '&query=' + movie
+            request_str += config.TMDB_API_KEY + '&query=' + movie
             request_str += '&page=1&include_adult=false'
             r = requests.get(request_str)
             data = r.json()
@@ -26,7 +26,7 @@ def process(input, entities):
             # to get the movie's IMDB ID.
 
             request_str = 'https://api.themoviedb.org/3/movie/' + tmdb_id
-            request_str += '?api_key=' + config.THE_MOVIE_DATABASE_API_KEY
+            request_str += '?api_key=' + config.TMDB_API_KEY
 
             r = requests.get(request_str)
             data = r.json()

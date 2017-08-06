@@ -16,25 +16,26 @@ def process(input, entities):
         movie = entities['movie'][0]['value']
 
         with requests_cache.enabled('movie_cache', backend='sqlite', expire_after=86400):
-            # Make a search request to the API to get the movie's TMDB ID.
+            # Make a search request to the API to get the movie's TMDb ID
             r = requests.get('http://api.themoviedb.org/3/search/movie', params={
                 'api_key': TMDB_API_KEY,
                 'query': movie,
-                'page': '1',
                 'include_adult': False
             })
             data = r.json()
+
+            assert (len(data['results']) > 0)
             tmdb_id = str(data['results'][0]['id'])
 
-            # Make another request to the API using the movie's TMDB ID to get the movie's IMDB ID.
-            r = requests.get('https://api.themoviedb.org/3/movie/' + tmdb_id, params ={
+            # Make another request to the API using the movie's TMDb ID to get the movie's IMDb ID
+            r = requests.get('https://api.themoviedb.org/3/movie/' + tmdb_id, params={
                 'api_key': TMDB_API_KEY
             })
             data = r.json()
 
         template = TextTemplate('Title: ' + data['title'] +
-                                '\nYear: ' + data['release_date'][0:4] +
-                                '\nAverage Rating: ' + str(data['vote_average']) + '/10' +
+                                '\nYear: ' + data['release_date'][:4] +
+                                '\nAverage Rating: ' + str(data['vote_average']) + ' / 10' +
                                 '\nOverview: ' + data['overview'])
         text = template.get_text()
         template = ButtonTemplate(text)

@@ -17,7 +17,6 @@ def process(input, entities=None):
         data = r.json()
         assert (len(data['articles']) > 0)
         template = GenericTemplate()
-        template.set_image_aspect_ratio_to_square()
         for article in data['articles']:
             title = article['title']
             description = article['description']

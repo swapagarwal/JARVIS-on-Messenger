@@ -16,21 +16,23 @@ def process(input, entities):
         video = entities['video'][0]['value']
         with requests_cache.enabled('video_cache', backend='sqlite', expire_after=3600):
             r = requests.get(
-                'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=' + video + '&type=video&key=' + YOUTUBE_DATA_API_KEY)
+                'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=' + video + '&key=' + YOUTUBE_DATA_API_KEY)
             data = r.json()
         template = GenericTemplate()
         for item in data['items']:
             title = item['snippet']['title']
             subtitle = item['snippet']['channelTitle']
             image_url = item['snippet']['thumbnails']['high']['url']
+            kind = item['id']['kind'].lower()
             buttons = ButtonTemplate()
-            try:
-                # Video result from search
+            if kind == "youtube#video":
                 item_url = 'https://www.youtube.com/watch?v=' + item['id']['videoId']
-                buttons.add_web_url('YouTube Link', 'https://www.youtube.com/watch?v=' + item['id']['videoId'])
-            except:
-                # Channel result from search
+                buttons.add_web_url('Video Link', item_url)
+            elif kind == "youtube#channel":
                 item_url = 'https://www.youtube.com/channel/' + item['id']['channelId']
+            elif kind == "youtube#playlist":
+                item_url = 'https://www.youtube.com/playlist?list=' + item['id']['playlistId']
+                buttons.add_web_url('Playlist Link', item_url)
             buttons.add_web_url('Channel Link', 'https://www.youtube.com/channel/' + item['snippet']['channelId'])
             template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle,
                                  buttons=buttons.get_buttons())

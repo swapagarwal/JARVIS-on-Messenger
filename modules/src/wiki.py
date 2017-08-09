@@ -13,6 +13,7 @@ def process(input, entities):
         template = TextTemplate('Wikipedia summary of ' + data.title + ':\n' + data.summary)
         text = template.get_text()
         template = ButtonTemplate(text)
+        template.set_image_aspect_ratio_to_square()
         template.add_web_url('Wikipedia Link', data.url)
         output['output'] = template.get_message()
         output['success'] = True

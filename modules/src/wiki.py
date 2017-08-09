@@ -19,7 +19,6 @@ def process(input, entities):
     except wikipedia.exceptions.DisambiguationError as e:
         template = GenericTemplate()
         template.set_image_aspect_ratio_to_square()
-        image_url = 'https://en.wikipedia.org/static/images/project-logos/enwiki-2x.png'
         pageids = set()
         for option in e.options:
             try:
@@ -40,7 +39,7 @@ def process(input, entities):
                     }
                 }
                 buttons.add_postback('Wikipedia Summary', payload)
-                template.add_element(title=data.title, item_url=data.url, image_url=image_url,
+                template.add_element(title=data.title, item_url=data.url, image_url=data.images[0],
                                      buttons=buttons.get_buttons())
             except (wikipedia.exceptions.PageError, wikipedia.exceptions.DisambiguationError):
                 pass  # Some suggestions don't map to a page; skipping them..

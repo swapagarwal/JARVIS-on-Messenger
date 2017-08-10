@@ -32,6 +32,7 @@ def process(input, entities=None):
         buttons.add_web_url('Explanation Link', explanation_url)
 
         template = GenericTemplate()
+        template.set_image_aspect_ratio_to_square()
         template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle,
                              buttons=buttons.get_buttons())
 

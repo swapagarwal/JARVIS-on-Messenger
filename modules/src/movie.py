@@ -5,6 +5,7 @@ import requests_cache
 
 import config
 from templates.button import *
+from imdb import IMDb
 
 # This product uses the TMDb API but is not endorsed or certified by TMDb.
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY', config.TMDB_API_KEY)
@@ -12,6 +13,8 @@ TMDB_API_KEY = os.environ.get('TMDB_API_KEY', config.TMDB_API_KEY)
 
 def process(input, entities):
     output = {}
+    ia = IMDb()
+
     try:
         movie = entities['movie'][0]['value']
 
@@ -33,9 +36,16 @@ def process(input, entities):
             })
             data = r.json()
 
+        # fetch the rating from IMDB
+        imdb_id = data['imdb_id']
+        imdb_search = ia.search_movie(imdb_id)
+        imdb_search = imdb_search[0]
+        ia.update(imdb_search)
+
         template = TextTemplate('Title: ' + data['title'] +
                                 '\nYear: ' + data['release_date'][:4] +
-                                '\nAverage Rating: ' + str(data['vote_average']) + ' / 10' +
+                                '\nTMDB Rating: ' + str(data['vote_average']) + ' / 10' +
+                                '\nIMDB Rating: ' + str(imdb_search['rating']) + ' / 10' +
                                 '\nOverview: ' + data['overview'])
         text = template.get_text()
         template = ButtonTemplate(text)

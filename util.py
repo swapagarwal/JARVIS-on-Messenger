@@ -22,8 +22,6 @@ class GetConfig:
         import os
         import config
 
-
-
         try:
             self.result = os.environ.get(line_name, config.api_keys[line_name])
         except:

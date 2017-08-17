@@ -39,10 +39,11 @@ def process(input, entities):
                     }
                 }
                 buttons.add_postback('Wikipedia Summary', payload)
-                base_url = 'https://en.wikipedia.org/static/images/project-logos/enwiki-2x.png'
-                if len(data.images)>0:
-                	base_url = data.images[0]
-                template.add_element(title=data.title, item_url=data.url, image_url=base_url,
+                if len(data.images) > 0:
+                    image_url = data.images[0]
+                else:
+                    image_url = 'https://en.wikipedia.org/static/images/project-logos/enwiki-2x.png'
+                template.add_element(title=data.title, item_url=data.url, image_url=image_url,
                                      buttons=buttons.get_buttons())
             except (wikipedia.exceptions.PageError, wikipedia.exceptions.DisambiguationError):
                 pass  # Some suggestions don't map to a page; skipping them..

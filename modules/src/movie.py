@@ -2,6 +2,7 @@ import os
 
 import requests
 import requests_cache
+from imdb import IMDb
 
 import config
 from templates.button import *
@@ -33,9 +34,14 @@ def process(input, entities):
             })
             data = r.json()
 
+        # Fetch movie rating from IMDb
+        ia = IMDb()
+        imdb_id = data['imdb_id']
+        imdb_movie = ia.get_movie(imdb_id[2:])
+
         template = TextTemplate('Title: ' + data['title'] +
                                 '\nYear: ' + data['release_date'][:4] +
-                                '\nAverage Rating: ' + str(data['vote_average']) + ' / 10' +
+                                '\nIMDb Rating: ' + str(imdb_movie['rating']) + ' / 10' +
                                 '\nOverview: ' + data['overview'])
         text = template.get_text()
         template = ButtonTemplate(text)

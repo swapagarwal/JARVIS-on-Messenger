@@ -24,9 +24,11 @@ def process_query(input):
             'Authorization': 'Bearer %s' % WIT_AI_ACCESS_TOKEN
         })
         data = r.json()
-        intent = data['outcomes'][0]['intent']
+        intent = data['outcomes'][0]['intent'] if 'intent' not in data['outcomes'][0] \
+            ['entities'] else data['outcomes'][0]['entities']['intent'][0]['value']
         entities = data['outcomes'][0]['entities']
-        confidence = data['outcomes'][0]['confidence']
+        confidence = data['outcomes'][0]['confidence'] if 'intent' not in data['outcomes'][0] \
+            ['entities'] else data['outcomes'][0]['entities']['intent'][0]['confidence']
         if intent in src.__all__ and confidence > 0.5:
             return intent, entities
         else:

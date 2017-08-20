@@ -9,7 +9,7 @@ JOKES_SOURCE_FILE = 'data/jokes.json'
 QUOTES_SOURCE_FILE = 'data/quotes.json'
 
 # Access token files
-SPOTIFY_TOKEN_FILE = 'spotify_token.json'
+SPOTIFY_TOKEN_FILE = 'tokens/spotify_token.json'
 
 # API Keys
 GOODREADS_ACCESS_TOKEN = '<<GOODREADS_ACCESS_TOKEN>>'

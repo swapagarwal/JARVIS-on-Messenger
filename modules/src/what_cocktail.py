@@ -60,7 +60,12 @@ cocktails = {
     "Martinez": {"Gin": "50 ml", "Red Vermouth": "10 ml", "Dry Vermouth": "5 ml", "Maraschino Liqueur": "5 ml", "Angosturra Bitters": "1 Dash", "Orange Peel": "To Garnish"},
     "Rob Roy": {"Single Malt Whisky": "50 ml", "Sweet Vermouth": "25 ml", "Cherry": "1"},
     "Manhattan": {"Whisky": "50 ml", "Sweet Vermouth": "25 ml", "Angosturra Bitters": "1 Dash", "Orange peel": "To Garnish", "Marraschino Cherry": "1"},
-
+    "Singapore Sling": {"Gin": "25 ml", "Cherry Brandy": "25 ml", "Benedictine": "5 ml", "Lemon Juice": "25 ml", "Grenadine": "10 ml", "Soda Water": "1 Splash"},
+    "Sloe Gin Fizz": {"Sloe Gin": "50 ml", "Sparkling Water": "100 ml", "Lemon Juice": "25 ml", "Sugar Syrup": "10 ml", "Orange": "1 Slice", "Cherry": "1"},
+    "French 75": {"Gin": "25 ml", "Lemon Juice": "10 ml", "Sugar Syrup": "5 ml", "Champagne": "To Top Up", "Lemon Peel": "To Garnish"},
+    "Rum Punch": {"Dark Rum": "75 ml", "Apple Juice": "50 ml", "Lemon Juice": "20 ml", "Caramel Syrup": "15 ml", "Ginger Beer": "50 ml", "Angosturra Bitters": "1 Dash", "Ginger": "1 piece grated", "Cinnamon Stick": "", "Lemon": "2 Wedges", "Orange": "1 Wedge"},
+    "Sprtiz Al Bitter": {"Prosecco": "90 ml", "Campari": "45 ml", "Soda Water": "To Top Up", "Orange": "1 Slice"},
+    "Aperol Aperitivo": {"Soave Wine":"90 ml", "Aperol": "60 ml", "Soda Water": "To Top Up"},
              }
 
 

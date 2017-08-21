@@ -17,6 +17,7 @@ __all__ = [
     'news',
     'ping',
     'quote',
+    'recipe',
     'request',
     'thanks',
     'time',

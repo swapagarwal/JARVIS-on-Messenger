@@ -57,6 +57,7 @@ Feel free to add to this list by opening an Issue / Pull Request.
 | news | latest news | Powered by NewsAPI |
 | ping | ping google.com | Is it up? |
 | quote | random quote | [JARVIS](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/quotes.json) |
+| recipe | chicken recipe | Powered by EdamamAPI |
 | request | report a bug <br> request a feature | --- |
 | thanks | Thank you! | --- |
 | time | time in seattle | TimeZoneDB API |

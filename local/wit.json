@@ -8,5 +8,11 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"chicken recipe": {
+		"intent": "recipe",
+		"entities": [{
+			"value": "chicken"
+		}]
 	}
 }

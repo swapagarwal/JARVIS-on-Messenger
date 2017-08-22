@@ -1,9 +1,11 @@
 import os
+from random import randint
 
 import requests
 
 import config
 from templates.text import TextTemplate
+from templates.button import ButtonTemplate
 
 EDAMAM_RECIPE_API_KEY = os.environ.get('EDAMAM_RECIPE_API_KEY', config.EDAMAM_RECIPE_API_KEY)
 EDAMAM_RECIPE_APP_ID = os.environ.get('EDAMAM_RECIPE_APP_ID', config.EDAMAM_RECIPE_APP_ID)
@@ -15,7 +17,8 @@ def process(input, entities):
         food = entities['recipe'][0]['value']
         r = requests.get('https://api.edamam.com/search?q=' + food +
             '&app_id=' + EDAMAM_RECIPE_APP_ID + '&app_key=' + EDAMAM_RECIPE_API_KEY)
-        recipe_data = r.json()
+        recipes = r.json()
+        recipe_data = recipes['hits'][randint(0, len(recipes['hits']))]['recipe']
 
         title = 'Title: ' + recipe_data['label']
         ingredients = ''

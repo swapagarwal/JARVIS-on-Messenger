@@ -100,11 +100,12 @@ c) `brew install libtins`
 `http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
 `http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
-The "process" endpoint returns what module the system classifies your query into, say a dictionary query or a song search, etc. Visit the following URLs to understand the output format:  
+* The "process" endpoint returns what module the system classifies your query into, say a dictionary query or a song search, etc. Visit the following URLs to understand the output format:  
 `http://localhost:5000/process/?q=tell%20me%20a%20joke`  
 `http://localhost:5000/process/?q=time%20in%20seattle`  
 `http://localhost:5000/process/?q=convert%2025%20usd%20to%20eur`  
-The "search" endpoint returns the actual bot output, that you get when you interact with the bot using that query.
+> You can mock the results for local testing by adding your queries [here](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/local/wit.json).
+* The "search" endpoint returns the actual bot output, that you get when you interact with the bot using that query.
 
 Note that for the search query to work, you have to set your own key (of the module that you want to test) in config.py  
 

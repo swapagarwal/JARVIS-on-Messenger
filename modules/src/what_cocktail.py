@@ -2,7 +2,10 @@
 ''' argh what cocktail can i make with these ingredients? search and return a cocktail which has
 the most matching ingredients'''
 
-def search():
+def search(drinks, cocktails):
+    matched_drinks = {x: drinks[x] for x in cocktails}
+    print(matched_drinks)
+
 
 
 def spell_check():
@@ -66,8 +69,24 @@ cocktails = {
     "Rum Punch": {"Dark Rum": "75 ml", "Apple Juice": "50 ml", "Lemon Juice": "20 ml", "Caramel Syrup": "15 ml", "Ginger Beer": "50 ml", "Angosturra Bitters": "1 Dash", "Ginger": "1 piece grated", "Cinnamon Stick": "", "Lemon": "2 Wedges", "Orange": "1 Wedge"},
     "Sprtiz Al Bitter": {"Prosecco": "90 ml", "Campari": "45 ml", "Soda Water": "To Top Up", "Orange": "1 Slice"},
     "Aperol Aperitivo": {"Soave Wine":"90 ml", "Aperol": "60 ml", "Soda Water": "To Top Up"},
+    "Macapeel": {"Brandy": "50 ml", "Stewed Apples": "1 tbsp", "Raisins": "5", "Sugar Syrup": "5 ml", "Cinnamon": "A Pinch", "Ginger": "A Pinch", "Nutmeg": "A Pinch", "Orange Zest": "1 tsp", "Egg": "White", "Lemon Juice": "10 ml"},
              }
 
 
 base_spirits = ["whiskey", "vodka", "tequila", "gin", "brandy"]
 liqueur_list = ["cointreau", "amaretto"]
+
+
+spirit1 = input("What spirit do you have?")
+
+if spirit1 in cocktails:
+    search(spirit1)
+    spirit2 = input("Do you have a second spirit to add?")
+    if spirit2 in cocktails:
+        search(spirit2, spirit1)
+        liqueur1 = input("Do you have a liqueur to add?")
+        if liqueur1 in cocktails:
+            search(liqueur1, spirit2)
+
+            print("How does a %s sound to you?" %(search(liqueur1, spirit2)))
+

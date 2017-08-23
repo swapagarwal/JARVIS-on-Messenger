@@ -1,6 +1,7 @@
 #rewrite the program and then release it onto telegram and messenger!
 ''' argh what cocktail can i make with these ingredients? search and return a cocktail which has
 the most matching ingredients'''
+import enchant
 
 def search(drinks, cocktails):
     matched_drinks = {x: drinks[x] for x in cocktails}
@@ -8,9 +9,13 @@ def search(drinks, cocktails):
 
 
 
-def spell_check():
-
-
+def spell_check(word):
+    d = enchant.Dict("en_GB")
+    if word in cocktails:
+        pass
+    elif word not in cocktails:
+        d.check(word)
+        d.suggest(word)
 
 def print_nice():
 
@@ -78,15 +83,31 @@ liqueur_list = ["cointreau", "amaretto"]
 
 
 spirit1 = input("What spirit do you have?")
+spell_check(spirit1)
 
 if spirit1 in cocktails:
     search(spirit1)
     spirit2 = input("Do you have a second spirit to add?")
+    spell_check(spirit2)
     if spirit2 in cocktails:
         search(spirit2, spirit1)
         liqueur1 = input("Do you have a liqueur to add?")
+        spell_check(liqueur1)
+    else:
+        liqueur1 = input("Do you have a liqueur to add?")
+        search(liqueur1, spirit1)
+        print("How does a %s sound to you?" %(search(liqueur1, spirit1)))
+
         if liqueur1 in cocktails:
             search(liqueur1, spirit2)
 
             print("How does a %s sound to you?" %(search(liqueur1, spirit2)))
+
+        elif liqueur1 not in cocktails:
+            print()
+            print("No Liqueur and just one spirit, ok well let's make a highball")
+            mixer = input("What mixer do you have?")
+            spell_check(mixer)
+            search(mixer, spirit1)
+            print("How does a %s sound to you?" %(search(mixer, spirit1)))
 

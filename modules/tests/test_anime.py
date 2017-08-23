@@ -15,30 +15,35 @@ random.shuffle(TEST_TITLES)
 
 
 def get_data_from_api(title):
-    r = requests.get('https://kitsu.io/api/edge/anime', params={'filter[text]': title,
-                     'page[limit]': 1})
+    r = requests.get('https://kitsu.io/api/edge/anime',
+                     params={'filter[text]': title,
+                             'page[limit]': 1})
     data = r.json()
 
     return data
 
 
 def get_title_from_data(title):
-    expected_title = get_data_from_api(title)['data'][0]['attributes']['canonicalTitle']
+    response = get_data_from_api(title)
+    expected_title = response['data'][0]['attributes']['canonicalTitle']
     return expected_title
 
 
 def get_average_rating_from_data(title):
-    expected_rating = get_data_from_api(title)['data'][0]['attributes']['averageRating']
+    response = get_data_from_api(title)
+    expected_rating = response['data'][0]['attributes']['averageRating']
     return expected_rating
 
 
 def get_popularity_rank_from_data(title):
-    expected_rank = get_data_from_api(title)['data'][0]['attributes']['popularityRank']
+    response = get_data_from_api(title)
+    expected_rank = response['data'][0]['attributes']['popularityRank']
     return expected_rank
 
 
 def get_episode_count_from_data(title):
-    expected_count = get_data_from_api(title)['data'][0]['attributes']['episodeCount']
+    response =  get_data_from_api(title)
+    expected_count = response['data'][0]['attributes']['episodeCount']
     return expected_count
 
 
@@ -50,8 +55,9 @@ def get_kitsu_link_from_data(title):
 
 
 def get_youtube_link_from_data(title):
+    response = get_data_from_api(title)
     expected_url = ('https://www.youtube.com/watch?v=' +
-                    get_data_from_api(title)['data'][0]['attributes']['youtubeVideoId'])
+                    response['data'][0]['attributes']['youtubeVideoId'])
 
     return expected_url
 

@@ -26,8 +26,11 @@ def matches(match):
         print("Or...")
 
 def print_nice(statement):
-    statement = re.sub(r':','', statement)
-    print(statement)# Use this function to edit out commas, brackets etc
+    statement = str(statement)
+    statement = re.sub(r'[{}:\']', '', statement)
+    print(statement)
+
+
 
 
 
@@ -95,6 +98,10 @@ for v in i:
 for x in ingredients:
     print_nice(x)
 
+
+
+
+
 spirit1 = input("What spirit do you have?").title()
 if spirit1 in ingredients:
     search(spirit1, cocktails)
@@ -105,5 +112,6 @@ if spirit1 in ingredients:
         if liqueur in ingredients:
             search(ingredients, spirit2)
 
-
+else:
+    print("Go to the offy!")
 

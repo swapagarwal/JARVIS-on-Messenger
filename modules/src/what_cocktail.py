@@ -2,13 +2,14 @@
 ''' argh what cocktail can i make with these ingredients? search and return a cocktail which has
 the most matching ingredients'''
 import enchant
+import re
 
-def search(drinks, cocktails):
-    for k in cocktails:
-        for v in cocktails[k]:
+def search(drinks, dictionary):
+    for key, value in dictionary.items():
+        for v in value:
             if drinks in v:
-                print(k)
                 print()
+                print(key, value)
 
 def spell_check(word): #this function is not picking anything up yet
     d = enchant.Dict("en_GB")
@@ -25,6 +26,7 @@ def matches(match):
         print("Or...")
 
 def print_nice(statement):
+    statement = re.sub(r':','', statement)
     print(statement)# Use this function to edit out commas, brackets etc
 
 
@@ -81,6 +83,9 @@ cocktails = {
              }
 
 
+
+
+
 i = list(cocktails.values())
 ingredients = []
 for v in i:
@@ -88,40 +93,17 @@ for v in i:
         ingredients.append(v)
 
 for x in ingredients:
-    print(x)
-
+    print_nice(x)
 
 spirit1 = input("What spirit do you have?").title()
-spell_check(spirit1)
-
 if spirit1 in ingredients:
     search(spirit1, cocktails)
+    spirit2 = input("Do you want to add a second spirit?").title()
+    if spirit2 in ingredients:
+        search(spirit2, spirit1)
+        liqueur = input("Do you have any liqueur?").title()
+        if liqueur in ingredients:
+            search(ingredients, spirit2)
 
-spirit2 = input("Do you have a second spirit to add?").title()
-spell_check(spirit2)
-
-
-if spirit2 in ingredients:
-    search(spirit2, spirit1)
-    liqueur1 = input("Do you have a liqueur to add?").title()
-    spell_check(liqueur1)
-
-else:
-    liqueur1 = input("Do you have a liqueur to add?").title()
-    search(liqueur1, spirit1)
-    print("How does a %s sound to you?" %(search(liqueur1, spirit1)))
-    if liqueur1 in ingredients:
-        search(liqueur1, spirit2)
-        print("How does a %s sound to you?" %(search(liqueur1, spirit2)))
-
-
-
-    elif liqueur1 not in ingredients:
-        print()
-        print("No Liqueur and just one spirit, ok well let's make a highball")
-        mixer = input("What mixer do you have?").title()
-        spell_check(mixer)
-        search(mixer, spirit1)
-        print("How does a %s sound to you?" %(search(mixer, spirit1)))
 
 

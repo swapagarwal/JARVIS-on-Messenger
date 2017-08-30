@@ -7,7 +7,7 @@ import re
 def search(drinks, dictionary):
     for key, value in dictionary.items():
         for v in value:
-            if drinks in v:
+            if v == drinks:
                 print()
                 print(key, value)
 
@@ -89,7 +89,7 @@ cocktails = {
 
 
 
-i = list(cocktails.values())
+i = list(cocktails.values()) #This turns everything into chunks of strings, so searching for an exact ingredient doesn't work
 ingredients = []
 for v in i:
     if v not in ingredients:
@@ -99,19 +99,20 @@ for x in ingredients:
     print_nice(x)
 
 
-
-
-
 spirit1 = input("What spirit do you have?").title()
-if spirit1 in ingredients:
-    search(spirit1, cocktails)
-    spirit2 = input("Do you want to add a second spirit?").title()
-    if spirit2 in ingredients:
-        search(spirit2, spirit1)
-        liqueur = input("Do you have any liqueur?").title()
-        if liqueur in ingredients:
-            search(ingredients, spirit2)
 
-else:
-    print("Go to the offy!")
+for spirit1 in cocktails: #This is not running through to the search function and skipping straight down to the else statement
+    if True:
+        spirit1 = search(spirit1, cocktails)
+        spirit2 = input("Do you want to add a second spirit?").title()
+        for spirit2 in cocktails:
+            if True:
+                spirit2 = search(spirit2, spirit1)
+                liqueur = input("Do you have any liqueur?").title()
+                for liqueur in cocktails:
+                    if True:
+                        print(search(liqueur, spirit2))
+
+    else:
+        print("Go to the offy!")
 

@@ -1,4 +1,4 @@
-#rewrite the program and then release it onto telegram and messenger!
+#rewrite the program (which a burglar stole from me!) and then release it onto telegram and messenger!
 ''' argh what cocktail can i make with these ingredients? search and return a cocktail which has
 the most matching ingredients'''
 import enchant
@@ -30,7 +30,10 @@ def print_nice(statement):
     statement = re.sub(r'[{}:\']', '', statement)
     print(statement)
 
-
+def dict_lookup(ing, dict):
+    for item in dict:
+        if ing in item:
+            return True
 
 
 
@@ -99,20 +102,24 @@ for x in ingredients:
     print_nice(x)
 
 
+
+
+
 spirit1 = input("What spirit do you have?").title()
+if dict_lookup(spirit1, cocktails) is True:
+    spirit1 = search(spirit1, cocktails)
+    spirit2 = input("Do you want to add a second spirit?").title()
+    if dict_lookup(spirit2, cocktails) is True:
 
-for spirit1 in cocktails: #This is not running through to the search function and skipping straight down to the else statement
-    if True:
-        spirit1 = search(spirit1, cocktails)
-        spirit2 = input("Do you want to add a second spirit?").title()
-        for spirit2 in cocktails:
-            if True:
-                spirit2 = search(spirit2, spirit1)
-                liqueur = input("Do you have any liqueur?").title()
-                for liqueur in cocktails:
-                    if True:
-                        print(search(liqueur, spirit2))
 
-    else:
-        print("Go to the offy!")
+
+
+        spirit2 = search(spirit2, spirit1)   # not searching through spirit1 as it is not a dictionary!!
+        liqueur = input("Do you have any liqueur?").title()
+
+
+
+
+else:
+    print("Go to the offy!")
 

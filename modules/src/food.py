@@ -55,7 +55,7 @@ def process(input,entities):
             search_success = False
             for restaurant in query:
                 rest_name = restaurant['name']
-                relevance = difflib.SequenceMatcher(None,name,rest_name)
+                relevance = difflib.SequenceMatcher(None,name,rest_name).ratio()
                 if relevance >= .75:
                     search_success = True
                     if relevance >= most_relevant:

@@ -20,7 +20,11 @@ def process(input,entities):
         
         location = query['location_suggestions'][0]
 
-        search_url = 'https://developers.zomato.com/api/v2.1/search?entity_id={eid}&entity_type={etype}&lat={lat}&lon={lon}&sort=rating&order=desc'.format(eid=location['entity_id'],etype=location['entity_type'],lat=location['latitude'],lon=location['longitude'])
+        search_url = 'https://developers.zomato.com/api/v2.1/search?entity_id={eid}&entity_type={etype}&lat={lat}&lon={lon}&sort=rating&order=desc'.format(
+            eid=location['entity_id'],
+            etype=location['entity_type'],
+            lat=location['latitude'],
+            lon=location['longitude'])
         
         restaurant_name = ''
         restaurant_cuisine = ''

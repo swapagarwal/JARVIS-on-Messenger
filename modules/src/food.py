@@ -22,20 +22,20 @@ def process(input,entities):
 
         search_url = 'https://developers.zomato.com/api/v2.1/search?entity_id={eid}&entity_type={etype}&lat={lat}&lon={lon}&sort=rating&order=desc'.format(eid=location['entity_id'],etype=location['entity_type'],lat=location['latitude'],lon=location['longitude'])
         
-        name = ''
-        type = ''
+        restaurant_name = ''
+        restaurant_cuisine = ''
 
         if 'restaurant_name' in entities:
-            name = entities['restaurant_name'][0]['value']
-            search_url += '&q={name}'.format(name=name)
+            restaurant_name = entities['restaurant_name'][0]['value']
+            search_url += '&q={restaurant_name}'.format(restaurant_name=restaurant_name)
 
         if 'cuisine' in entities:
-            type = entities['cuisine'][0]['value']
-            search_url += '&cuisines={type}'.format(type=type)
+            restaurant_cuisine = entities['cuisine'][0]['value']
+            search_url += '&cuisines={restaurant_cuisine}'.format(restaurant_cuisine=restaurant_cuisine)
 
         query = requests.get(search_url,headers=header).json()['restaurants']
 
-        if name == '':
+        if restaurant_name == '':
             rand_restaurant = query[random.randrange(0,len(query))]
 
             template = TextTemplate('Name: ' + rand_restaurant['name'] +
@@ -55,7 +55,7 @@ def process(input,entities):
             search_success = False
             for restaurant in query:
                 rest_name = restaurant['name']
-                relevance = difflib.SequenceMatcher(None,name,rest_name).ratio()
+                relevance = difflib.SequenceMatcher(None,restaurant_name,rest_name).ratio()
                 if relevance >= .75:
                     search_success = True
                     if relevance >= most_relevant:

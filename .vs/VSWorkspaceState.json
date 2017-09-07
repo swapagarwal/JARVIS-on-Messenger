@@ -1,9 +1,10 @@
 {
   "ExpandedNodes": [
     "",
+    "\\modules",
     "\\modules\\src",
     "\\modules\\tests"
   ],
-  "SelectedNode": "\\modules",
+  "SelectedNode": "\\modules\\src\\food.py",
   "PreviewInSolutionExplorer": false
 }

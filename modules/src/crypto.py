@@ -6,15 +6,6 @@ from templates.text import TextTemplate
 def process(input, entities):
     output = {}
     try:
-        # methods:
-        # getmarkets @param none
-        # getcurrencies @param none
-        # getticker @param market (e.g. BTC-LTC)
-        # getmarketsummaries @param NONE
-        # getmarketsummary @param market
-        # getorderbook @param: market, type (e.g. buy, sell, both)
-        # getmarkethistory @param: market
-
         market = entities['market'][0]['value'].upper()
         if 'to' in market:
             market.replace('to', '-').replace(' ', '')

@@ -14,4 +14,13 @@ def test_crypto():
     assert ('crypto' == intent)
     assert ('ETH to OMG' == entities['market'][0]['value'])
 
+    intent, entities = modules.process_query('market ETH to OMG')
+    assert ('crypto' == intent)
+    assert ('ETH to OMG' == entities['market'][0]['value'])
+
+    intent, entities = modules.process_query('crypto ETH to OMG')
+    assert ('crypto' == intent)
+    assert ('ETH to OMG' == entities['market'][0]['value'])
+
     assert ('crypto' != modules.process_query('tests invalid input')[0])
+    

@@ -10,6 +10,17 @@ from templates.text import TextTemplate
 
 ZOMATO_API_KEY = os.environ.get('ZOMATO_API_KEY', config.ZOMATO_API_KEY)
 
+def format_error_message(output):
+    error_message = 'I couldn\'t find any restaurants matching your query.'
+    error_message += '\nPlease ask me something else, like:'
+    error_message += '\n  - Is Giordano\'s pizza in Chicago good?'
+    error_message += '\n  - Chipotle in Evanston'
+    error_message += '\n  - What are some restaurants in Chicago?'
+    output['error_msg'] = TextTemplate(error_message).get_message()
+    output['success'] = False
+
+    return output
+
 def process(input,entities):
 	output = {}
 	try:
@@ -23,14 +34,7 @@ def process(input,entities):
 			try:
 				location = content['location_suggstions'][0]
 			except (KeyError,IndexError):
-				error_message = 'I couldn\'t find any restaurants matching your query.'
-				error_message += '\nPlease ask me something else, like:'
-				error_message += '\n  - Is Giordano\'s pizza in Chicago good?'
-				error_message += '\n  - Chipotle in Evanston'
-				error_message += '\n  - What are some restaurants in Chicago?'
-				output['error_msg'] = TextTemplate(error_message).get_message()
-				output['success'] = False
-
+				output = format_error_message(output)
 				return output
 
 			search_url = 'https://developers.zomato.com/api/v2.1/search?entity_id={eid}&entity_type={etype}&lat={lat}&lon={lon}&sort=rating&order=desc'.format(
@@ -101,23 +105,10 @@ def process(input,entities):
 							output['output'] = template.get_message()
 							output['success'] = True
 				except (KeyError,IndexError):
-					error_message = 'I couldn\'t find any restaurants matching your query.'
-					error_message += '\nPlease ask me something else, like:'
-					error_message += '\n  - Is Giordano\'s pizza in Chicago good?'
-					error_message += '\n  - Chipotle in Evanston'
-					error_message += '\n  - What are some restaurants in Chicago?'
-					output['error_msg'] = TextTemplate(error_message).get_message()
-					output['success'] = False
-
-					return output
+				    output = format_error_message(output)
+				    return output
 
 	except:
-		error_message = 'I couldn\'t find any restaurants matching your query.'
-		error_message += '\nPlease ask me something else, like:'
-		error_message += '\n  - Is Giordano\'s pizza in Chicago good?'
-		error_message += '\n  - Chipotle in Evanston'
-		error_message += '\n  - What are some restaurants in Chicago?'
-		output['error_msg'] = TextTemplate(error_message).get_message()
-		output['success'] = False
+		output = format_error_message(output)
 
 	return output

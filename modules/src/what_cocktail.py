@@ -5,11 +5,15 @@ import enchant
 import re
 
 def search(drinks, dictionary):
+
+    filter_dict = {}
     for key, value in dictionary.items():
         for v in value:
             if v == drinks:
-                print()
-                print(key, value)
+                filter_dict.update({key: value})
+    drinks = filter_dict
+    return drinks
+
 
 def spell_check(word): #this function is not picking anything up yet
     d = enchant.Dict("en_GB")
@@ -17,23 +21,32 @@ def spell_check(word): #this function is not picking anything up yet
     d.suggest(word)
 
 def matches(match):
-    #this structures the output this one or this one etc
-    print("These are your matches so far:")
-    for e in match:
-        print()
-        print(e)
-        print()
-        print("Or...")
+    bye_or = len(match)
+    print("These are your matches:")
+    for key, value in match.items():
+        if bye_or >= 2:
+            print()
+            print_nice(key, value)
+            print()
+            bye_or -= 1
+            print("Or...")
+        elif bye_or < 2:
+            print()
+            print_nice(key, value)
+            print()
 
-def print_nice(statement):
+def print_nice(statement, statement2):
     statement = str(statement)
+    statement2 = str(statement2)
     statement = re.sub(r'[{}:\']', '', statement)
-    print(statement)
+    statement2 = re.sub(r'[{}:\']', '', statement2)
+    print("%s made with %s" %(statement, statement2))
 
 def dict_lookup(ing, dict):
-    for item in dict:
-        if ing in item:
-            return True
+    for key, value in dict.items():
+        for v in value:
+            if v == ing:
+                return True
 
 
 
@@ -55,7 +68,7 @@ cocktails = {
     "Blue Lagoon": {"Vodka": "50 ml", "Blue Curacao Liqueur": "25 ml", "Lemonade": "150 ml", "Lemon": "1 Slice"},
     "Chi Chi": {"Vodka": "50 ml", "Cream of Coconut": "25 ml", "Pineapple Juice": "100 ml", "Pineapple": "1 Wedge"},
     "French Martini": {"Vodka": "40 ml", "Raspberry Liqueur": "20 ml", "Pineapple Juice": "50 ml", "Lemon": "1 twist"},
-    "Alabama Slammer": {"Gin": "25 ml", "Whiskey":"25 ml", "Amaretto liqueur": "25 ml", "Orange Juice": "25 ml", "Orange": "A Slice"},
+    "Alabama Slammer": {"Gin": "25 ml", "Whiskey":"25 ml", "Amaretto": "25 ml", "Orange Juice": "25 ml", "Orange": "A Slice"},
     "Zombie": {"Dark Rum": "75 ml", "Orange Liqueur": "15 ml", "Apricot Brandy": "15 ml", "Orange Juice": "50 ml", "Lime Juice": "25 ml", "Grenadine": "15 ml", "Oragne": "A Slice", "Pineapple": "1 Piece", "Mint": "A Sprig"},
     "Aviation": {"Gin": "60 ml", "Maraschino Liqueur": "15 ml", "Creme de Violette": "10 ml", "Lemon Juice": "25 ml"},
     "Raspberry Collins": {"Vodka": "50 ml", "Rasperberries": "9", "Lemon Juice": "25 ml", "Sugar Syrup": "10 ml", "Soda Water": "1 Dash"},
@@ -90,35 +103,23 @@ cocktails = {
 
 
 
-
-
-i = list(cocktails.values()) #This turns everything into chunks of strings, so searching for an exact ingredient doesn't work
-ingredients = []
-for v in i:
-    if v not in ingredients:
-        ingredients.append(v)
-
-for x in ingredients:
-    print_nice(x)
-
-
-
-
-
 spirit1 = input("What spirit do you have?").title()
 if dict_lookup(spirit1, cocktails) is True:
     spirit1 = search(spirit1, cocktails)
+    matches(spirit1)
     spirit2 = input("Do you want to add a second spirit?").title()
     if dict_lookup(spirit2, cocktails) is True:
-
-
-
-
-        spirit2 = search(spirit2, spirit1)   # not searching through spirit1 as it is not a dictionary!!
+        spirit2 = search(spirit2, spirit1) #"python create dct from other dict"  # not searching through spirit1 as it is not a dictionary!!
+        matches(spirit2)
         liqueur = input("Do you have any liqueur?").title()
-
-
-
+        if dict_lookup(liqueur, cocktails) is True:
+            liqueur = search(liqueur, spirit2)
+            matches(liqueur)
+    else:
+        nospi_liqueur = input("Do you have any liqueur?").title()
+        if dict_lookup(nospi_liqueur, cocktails) is True:
+            nospi_liqueur = search(nospi_liqueur, spirit1)
+            matches(nospi_liqueur)
 
 else:
     print("Go to the offy!")

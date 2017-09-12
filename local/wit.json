@@ -8,5 +8,9 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"cat": {
+		"intent": "cat",
+		"entities": []
 	}
 }

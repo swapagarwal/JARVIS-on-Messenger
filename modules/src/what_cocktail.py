@@ -18,10 +18,18 @@ def search(drinks, dictionary):
 
 def spell_check(word):
     d = enchant.Dict("en_GB")
-    if word in cocktails:
-        pass
+    if dict_lookup(word, cocktails) is True:
+        return word
     else:
-        while d.check(word) is not True:
+        chkr = SpellChecker("en_GB", word)
+        for err in chkr:
+            print(err.suggest(word))
+            word = input("Please re-type it:").title()
+
+
+
+
+        '''while d.check(word) is not True: #problem with the corrected word not being picked up by the next step
             print("Your input wasn't recognised")
             print()
             print("Are you trying to spell one of these?")
@@ -30,8 +38,8 @@ def spell_check(word):
             suggestion = re.sub(r'(\')', '', suggestion)
             print(suggestion)
             print()
-            word = input("Please re-type it:").title()
-        return word
+            word = input("Please re-type it:").title()'''
+
 
 def matches(match):
     bye_or = len(match)
@@ -141,19 +149,21 @@ if dict_lookup(spirit1, cocktails) is True:
     spirit1 = search(spirit1, cocktails)
     matches(spirit1)
     spirit2 = input("Do you want to add a second spirit?").title()
+    spell_check(spirit2)
     if dict_lookup(spirit2, cocktails) is True:
         spirit2 = search(spirit2, spirit1) #"python create dct from other dict"  # not searching through spirit1 as it is not a dictionary!!
         matches(spirit2)
         liqueur = input("Do you have any liqueur?").title()
+        spell_check(liqueur)
         if dict_lookup(liqueur, cocktails) is True:
             liqueur = search(liqueur, spirit2)
             matches(liqueur)
     else:
         nospi_liqueur = input("Do you have any liqueur?").title()
+        spell_check(nospi_liqueur)
         if dict_lookup(nospi_liqueur, cocktails) is True:
             nospi_liqueur = search(nospi_liqueur, spirit1)
             matches(nospi_liqueur)
 
 else:
     print("Go to the offy!")
-

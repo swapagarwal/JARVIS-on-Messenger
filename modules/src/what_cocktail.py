@@ -1,6 +1,7 @@
 #rewrite the program (which a burglar stole from me!) and then release it onto telegram and messenger!
 ''' argh what cocktail can i make with these ingredients? search and return a cocktail which has
 the most matching ingredients'''
+from enchant.checker import SpellChecker
 import enchant
 import re
 
@@ -15,10 +16,22 @@ def search(drinks, dictionary):
     return drinks
 
 
-def spell_check(word): #this function is not picking anything up yet
+def spell_check(word):
     d = enchant.Dict("en_GB")
-    d.check(word)
-    d.suggest(word)
+    if word in cocktails:
+        pass
+    else:
+        while d.check(word) is not True:
+            print("Your input wasn't recognised")
+            print()
+            print("Are you trying to spell one of these?")
+            print()
+            suggestion = str(d.suggest(word))
+            suggestion = re.sub(r'(\')', '', suggestion)
+            print(suggestion)
+            print()
+            word = input("Please re-type it:").title()
+        return word
 
 def matches(match):
     bye_or = len(match)
@@ -123,6 +136,7 @@ cocktails = {
 
 
 spirit1 = input("What spirit do you have?").title()
+spell_check(spirit1)
 if dict_lookup(spirit1, cocktails) is True:
     spirit1 = search(spirit1, cocktails)
     matches(spirit1)

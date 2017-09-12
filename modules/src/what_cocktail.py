@@ -55,10 +55,10 @@ def print_nice(statement, statement2):
     statement2 = re.sub(r'a?A?\d+\sS?s?plashe?s?', '', statement2)
     statement2 = re.sub(r'T?t?o\sG?g?arnish', '', statement2)
     statement2 = re.sub(r'T?t?o\sT?t?op\sU?u?p', '', statement2)
-    statement2 = re.sub(r'\s\s', ',\s', statement2)
     statement2 = re.sub(r'\d+.', '', statement2)
     statement2 = re.sub(r'\s,', ',', statement2)
     statement2 = re.sub(r'\s$', '', statement2)
+    statement2 = re.sub(r'\s\s', ', ', statement2)
     print("%s made with %s." %(statement, statement2))
 
 def dict_lookup(ing, dict):

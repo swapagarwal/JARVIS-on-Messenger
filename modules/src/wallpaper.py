@@ -16,19 +16,18 @@ utm_params = '?utm_source=jarvis&utm_medium=referral&utm_campaign=api-credit'
 def process(input, entities=None):
     output = {}
     try:
-        with requests_cache.enabled('wallpaper_cache', backend='sqlite', expire_after=3600):
-            headers = {
-                'Accept-Version': 'v1',
-                'Authorization': 'Client-ID %s' % UNSPLASH_API_KEY
-            }
-            r = requests.get('https://api.unsplash.com/photos/random', headers=headers)
-            data = r.json()
+        headers = {
+            'Accept-Version': 'v1',
+            'Authorization': 'Client-ID %s' % UNSPLASH_API_KEY
+        }
+        r = requests.get('https://api.unsplash.com/photos/random', headers=headers)
+        data = r.json()
 
         photographer = data['user']['name']
         photographer_url = data['user']['links']['html'] + utm_params
 
         title = 'Wallpaper: %s x %s' % (data['width'], data['height'])
-        description = '<%s / Unsplash>' % photographer
+        description = "Photo from Unsplash by " + photographer
         image_url = data['urls']['full'] + utm_params
         item_url = data['links']['html'] + utm_params
 
@@ -45,6 +44,6 @@ def process(input, entities=None):
         output['success'] = True
     except:
         error_message = 'Error encountered when querying the Unsplash API.'
-        output['error_msg'] = error_message
+        output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

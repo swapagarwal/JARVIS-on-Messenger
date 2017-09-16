@@ -2,11 +2,9 @@
 ''' argh what cocktail can i make with these ingredients? search and return a cocktail which has
 the most matching ingredients'''
 from enchant.checker import SpellChecker
-import enchant
 import re
 
 def search(drinks, dictionary):
-
     filter_dict = {}
     for key, value in dictionary.items():
         for v in value:
@@ -17,29 +15,63 @@ def search(drinks, dictionary):
 
 
 def spell_check(word):
-    d = enchant.Dict("en_GB")
     if dict_lookup(word, cocktails) is True:
         return word
+
+    elif word == "Rum":
+        word = input("White or Dark?").title()
+        if word == "White":
+            word = "White Rum"
+            return word
+        elif word == "Dark":
+            word = "Dark Rum"
+            return word
+
+    elif word == "Tequila":
+        word = input("White or Dark").title()
+        if word == "White":
+            word = "White Tequila"
+            return word
+        elif word == "Dark":
+            word = "Dark Tequila"
+            return word
+
+    elif word == "Vermouth":
+        word = input("Bianco, Sweet, Dry, Rosso or Red").title()
+        if word == "Sweet":
+            word = "Sweet Vermouth"
+            return word
+        elif word == "Bianco":
+            word = "Vermouth"
+            return word
+        elif word == "Dry":
+            word = "Dry Vermouth"
+            return word
+        elif word == "Rosso":
+            word = "Vermouth Rosso"
+            return word
+        elif word == "Red":
+            word = "Red Vermouth"
+            return word
+
     else:
         chkr = SpellChecker("en_GB", word)
         for err in chkr:
-            print(err.suggest(word))
-            word = input("Please re-type it:").title()
-
-
-
-
-        '''while d.check(word) is not True: #problem with the corrected word not being picked up by the next step
-            print("Your input wasn't recognised")
-            print()
-            print("Are you trying to spell one of these?")
-            print()
-            suggestion = str(d.suggest(word))
-            suggestion = re.sub(r'(\')', '', suggestion)
-            print(suggestion)
-            print()
-            word = input("Please re-type it:").title()'''
-
+            while dict_lookup(word, cocktails) is not True:
+                print("Your input wasn't recognised")
+                print()
+                print("Are you trying to spell one of these?")
+                print()
+                suggestion = str(err.suggest(word))
+                suggestion = re.sub(r'(\')', '', suggestion)
+                suggestion = re.sub(r'\[', '', suggestion)
+                suggestion = re.sub(r'\]', '', suggestion)
+                print(suggestion)
+                print()
+                word = input("Please re-type it:").title()
+                print()
+            return word
+        return word
 
 def matches(match):
     bye_or = len(match)
@@ -67,6 +99,8 @@ def print_nice(statement, statement2):
     statement2 = re.sub(r'\d+?A?a?\s\Dlices?', '', statement2)
     statement2 = re.sub(r'\d+\s\Dedges?', '', statement2)
     statement2 = re.sub(r'\d+\s\Dwists?', '', statement2)
+    statement2 = re.sub(r'c?C?hopped', '', statement2)
+    statement2 = re.sub(r'\d+', '', statement2)
     statement2 = re.sub(r'\d+\s\Dashe?s?', '', statement2)
     statement2 = re.sub(r'A?a?\sS?s?prinkle', '', statement2)
     statement2 = re.sub(r'\d+?A?a?\sP?p?inche?s?', '', statement2)
@@ -113,7 +147,7 @@ cocktails = {
     "Aviation": {"Gin": "60 ml", "Maraschino Liqueur": "15 ml", "Creme de Violette": "10 ml", "Lemon Juice": "25 ml"},
     "Raspberry Collins": {"Vodka": "50 ml", "Rasperberries": "9", "Lemon Juice": "25 ml", "Sugar Syrup": "10 ml", "Soda Water": "1 Dash"},
     "Cosmopolitan": {"Vodka": "35 ml", "Orange Liqueur": "10 ml", "Cranberry Juice": "45 ml", "Lime Juice": "10 ml", "Lime": "To Garnish"},
-    "Vodka Martini": {"Vodka": "50 ml", "Vermouth": "12 ml", "Lemon Zest": "A Sprinkle", "Large Thin Lemon Zest": "To Garnish"},
+    "Vodka Martini": {"Vodka": "50 ml", "Dry Vermouth": "12 ml", "Lemon Zest": "A Sprinkle", "Large Thin Lemon Zest": "To Garnish"},
     "Grog": {"Dark Rum": "50 ml", "Runny Honey": "1 tsp", "Lime Juice": "15 ml", "Lemon": "1 Slice", "Angosturra Bitters": "2 Dashes"},
     "Eggnog": {"Dark Rum": "50 ml", "Egg": "1", "Single Cream": "15 ml", "Sugar Syrup": "15 ml", "Milk": "60 ml", "Nutmeg": "12 Grinds"},
     "Whisky Sour": {"Whisky": "50 ml", "Lemon Juice": "35 ml", "Sugar Syrup": "17.5 ml", "Egg": "White"},
@@ -142,25 +176,24 @@ cocktails = {
              }
 
 
-
 spirit1 = input("What spirit do you have?").title()
-spell_check(spirit1)
+spirit1 = spell_check(spirit1)
 if dict_lookup(spirit1, cocktails) is True:
     spirit1 = search(spirit1, cocktails)
     matches(spirit1)
     spirit2 = input("Do you want to add a second spirit?").title()
-    spell_check(spirit2)
+    spirit2 = spell_check(spirit2)
     if dict_lookup(spirit2, cocktails) is True:
         spirit2 = search(spirit2, spirit1) #"python create dct from other dict"  # not searching through spirit1 as it is not a dictionary!!
         matches(spirit2)
         liqueur = input("Do you have any liqueur?").title()
-        spell_check(liqueur)
+        liqueur = spell_check(liqueur)
         if dict_lookup(liqueur, cocktails) is True:
             liqueur = search(liqueur, spirit2)
             matches(liqueur)
     else:
         nospi_liqueur = input("Do you have any liqueur?").title()
-        spell_check(nospi_liqueur)
+        nospi_liqueur = spell_check(nospi_liqueur)
         if dict_lookup(nospi_liqueur, cocktails) is True:
             nospi_liqueur = search(nospi_liqueur, spirit1)
             matches(nospi_liqueur)

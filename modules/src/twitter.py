@@ -42,20 +42,20 @@ def get_oauth():
 
 
 def getUrl(tweet):
-    """ getUrl by author or popular topic """
+    """ getUrl by author or trendy topic """
 
-    if tweet[0] == '@':
+    if tweet.startswith('@'):
         author = tweet[1:]
         req = requests.get(url=TWI_USER_TIMELINE_API + author, headers={
                            'content-type': 'application/json'}, params=params['timeline'], auth=get_oauth())
-        req = req.json()[0]
-        tweet_id = req['id_str']
+        latest = req.json()[0]
+        tweet_id = latest['id_str']
         url = 'https://twitter.com/%s/status/%s' % (author, tweet_id)
     else:
         req = requests.get(url=TWI_URL_SEARCH_API + tweet, headers={
                            'content-type': 'application/json'}, params=params['search'], auth=get_oauth())
-        req = req.json()['statuses'][0]
-        author = req['user']['screen_name']
+        trendy = req.json()['statuses'][0]
+        author = trendy['user']['screen_name']
         tweet_id = req['id']
         url = 'https://twitter.com/%s/status/%s' % (author, tweet_id)
 
@@ -67,7 +67,7 @@ def getTitle(req, tweet):
 
     try:
         hashtags = req['entities']['hashtags']
-        if len(hashtags) < 1:
+        if not hastags:
             raise KeyError
         title = ''
         for tag in hashtags:

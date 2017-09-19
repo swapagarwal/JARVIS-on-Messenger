@@ -20,39 +20,81 @@ def spell_check(word):
 
     elif word == "Rum":
         word = input("White or Dark?").title()
-        if word == "White":
-            word = "White Rum"
-            return word
-        elif word == "Dark":
-            word = "Dark Rum"
-            return word
+        chkr = SpellChecker("en_GB", word)
+        for err in chkr:
+            while dict_lookup(word, cocktails) is not True:
+                print("Your spelling wasn't recognised")
+                print()
+                print("Are you trying to spell one of these?")
+                print()
+                suggestion = str(err.suggest(word))
+                suggestion = re.sub(r'(\')', '', suggestion)
+                suggestion = re.sub(r'\[', '', suggestion)
+                suggestion = re.sub(r'\]', '', suggestion)
+                print(suggestion)
+                print()
+                word = input("Please re-type it:").title()
+                print()
+                if word == "White":
+                    word = "White Rum"
+                    return word
+                elif word == "Dark": #not returning results because of problem in matches function cause over 1
+                    word = "Dark Rum"
+                    return word
+
 
     elif word == "Tequila":
         word = input("White or Dark").title()
-        if word == "White":
-            word = "White Tequila"
-            return word
-        elif word == "Dark":
-            word = "Dark Tequila"
-            return word
+        chkr = SpellChecker("en_GB", word)
+        for err in chkr:
+            while dict_lookup(word, cocktails) is not True:
+                print("Your spelling wasn't recognised")
+                print()
+                print("Are you trying to spell one of these?")
+                print()
+                suggestion = str(err.suggest(word))
+                suggestion = re.sub(r'(\')', '', suggestion)
+                suggestion = re.sub(r'\[', '', suggestion)
+                suggestion = re.sub(r'\]', '', suggestion)
+                print(suggestion)
+                print()
+                word = input("Please re-type it:").title()
+                print()
+                if word == "White":
+                    word = "White Tequila"
+                    return word
+                elif word == "Dark":
+                    word = "Dark Tequila"
+                    return word
+
 
     elif word == "Vermouth":
-        word = input("Bianco, Sweet, Dry, Rosso or Red").title()
-        if word == "Sweet":
-            word = "Sweet Vermouth"
-            return word
-        elif word == "Bianco":
-            word = "Vermouth"
-            return word
-        elif word == "Dry":
-            word = "Dry Vermouth"
-            return word
-        elif word == "Rosso":
-            word = "Vermouth Rosso"
-            return word
-        elif word == "Red":
-            word = "Red Vermouth"
-            return word
+        word = input("Sweet, Dry or Red?").title()
+        chkr = SpellChecker("en_GB", word)
+        for err in chkr:
+            while dict_lookup(word, cocktails) is not True:
+                print("Your spelling wasn't recognised")
+                print()
+                print("Are you trying to spell one of these?")
+                print()
+                suggestion = str(err.suggest(word))
+                suggestion = re.sub(r'(\')', '', suggestion)
+                suggestion = re.sub(r'\[', '', suggestion)
+                suggestion = re.sub(r'\]', '', suggestion)
+                print(suggestion)
+                print()
+                word = input("Please re-type it:").title()
+                print()
+                if word == "Sweet":
+                    word = "Sweet Vermouth"
+                    return word
+                elif word == "Dry":
+                    word = "Dry Vermouth"
+                    return word
+                elif word == "Red":
+                    word = "Red Vermouth"
+                    return word
+
 
     else:
         chkr = SpellChecker("en_GB", word)
@@ -74,19 +116,45 @@ def spell_check(word):
         return word
 
 def matches(match):
-    bye_or = len(match)
-    print("These are your matches:")
-    for key, value in match.items():
-        if bye_or >= 2:
+    bye_or = len(match) #works
+    if bye_or <= 1:
+        for key, value in match.items():
+            print("With the ingredients you have you MUST make a %s these are the measures:" %(str(key)))
             print()
-            print_nice(key, value)
+            print(value)
             print()
+            print()
+            print("PICKLE RICK")
+            print()
+            exit()
+
+    elif bye_or < 3:
+        print("Which would you prefer:")
+        for key, value in match.items(): #printing last entry twice
             bye_or -= 1
+            print()
+            print(key, value)
+            print()
             print("Or...")
-        elif bye_or < 2:
+            if bye_or == 1:
+                print()
+                print(key, value)
+                print()
+                exit()
+
+    elif bye_or > 3: #printing the last entry twice
+        hi_matches = bye_or
+        print("These are your matches:")
+        for key, value in match.items():
+            hi_matches -= 1
             print()
             print_nice(key, value)
             print()
+            print("Or...")
+            if hi_matches == 1:
+                print()
+                print_nice(key, value)
+                print()
 
 def print_nice(statement, statement2):
     statement = str(statement)
@@ -100,7 +168,6 @@ def print_nice(statement, statement2):
     statement2 = re.sub(r'\d+\s\Dedges?', '', statement2)
     statement2 = re.sub(r'\d+\s\Dwists?', '', statement2)
     statement2 = re.sub(r'c?C?hopped', '', statement2)
-    statement2 = re.sub(r'\d+', '', statement2)
     statement2 = re.sub(r'\d+\s\Dashe?s?', '', statement2)
     statement2 = re.sub(r'A?a?\sS?s?prinkle', '', statement2)
     statement2 = re.sub(r'\d+?A?a?\sP?p?inche?s?', '', statement2)
@@ -130,6 +197,7 @@ cocktails = {
     "Pina Colada":{"White Tequila": "50 ml", "Coconut Cream": "50 ml", "Pineapple Juice": "110 ml", "Pineapple": "3 Slices"},
     "Margarita": {"White Tequila": "50 ml", "Orange Liqueur": "35 ml", "Lime Juice": "25 ml"},
     "Long Island Ice Tea": {"Dark Rum": "17.5 ml", "Vodka": "17.5 ml", "Gin": "17.5 ml", "White Tequila": "17.5 ml", "Orange Liqueur": "17.5 ml", "Sugar Syrup": "17.5 ml", "Lemon Juice": "17.5 ml", "Lime Juice": "17.5 ml", "Cola": "To Top Up", "Lemon": "1 Slice"},
+    "Thug Passion": {"Alize": "50 ml", "Champagne": "50 ml"},
     "Strawberry Daiquiri": {"Dark Rum": "50 ml", "Lime Juice": "25 ml", "Sugar Syrup": "25 ml", "Strawberries": "3 chopped", "Strawberry": "To Garnish"},
     "Caipirinha": {"Dark Rum": "50 ml", "Sugar": "1 tsp", "Lime": "3 Wedges"},
     "Sex On The Beach": {"Peach Schnapps": "9 ml", "Vodka":"35 ml", "Orange Juice": "35 ml", "Cranberry Juice": "35 ml"},
@@ -153,7 +221,7 @@ cocktails = {
     "Whisky Sour": {"Whisky": "50 ml", "Lemon Juice": "35 ml", "Sugar Syrup": "17.5 ml", "Egg": "White"},
     "Martini": {"Gin": "50 ml", "Dry Vermouth": "5 ml", "Olive": "To Garnish"},
     "Gimlet": {"Gin": "25 ml", "Lime Juice": "25 ml", "Sugar": "1 tsp", "Lemon Peel": "To Garnish"},
-    "Negroni": {"Gin": "25 ml", "Vermouth Rosso": "25 ml", "Campari": "25 ml", "Orange": "To Garnish"},
+    "Negroni": {"Gin": "25 ml", "Red Vermouth": "25 ml", "Campari": "25 ml", "Orange": "To Garnish"},
     "Tom Collins": {"Gin": "50 ml", "Lemon Juice": "25 ml", "Sugar Syrup": "10 ml", "Soda Water": "1 Splash", "Lemon": "1 Wedge"},
     "Kir": {"White Wine": "100 ml", "Creme de Cassis": "100 ml"},
     "Tequila Mojito": {"White Tequila": "25 ml", "Lime": "2 Wedges", "Lime Juice": "50 ml", "Water": "50 ml", "Lemon Juice": "110 ml", "Mint": "9 Leaves"},
@@ -181,16 +249,19 @@ spirit1 = spell_check(spirit1)
 if dict_lookup(spirit1, cocktails) is True:
     spirit1 = search(spirit1, cocktails)
     matches(spirit1)
+
     spirit2 = input("Do you want to add a second spirit?").title()
     spirit2 = spell_check(spirit2)
     if dict_lookup(spirit2, cocktails) is True:
-        spirit2 = search(spirit2, spirit1) #"python create dct from other dict"  # not searching through spirit1 as it is not a dictionary!!
+        spirit2 = search(spirit2, spirit1)
         matches(spirit2)
+
         liqueur = input("Do you have any liqueur?").title()
         liqueur = spell_check(liqueur)
         if dict_lookup(liqueur, cocktails) is True:
             liqueur = search(liqueur, spirit2)
             matches(liqueur)
+
     else:
         nospi_liqueur = input("Do you have any liqueur?").title()
         nospi_liqueur = spell_check(nospi_liqueur)

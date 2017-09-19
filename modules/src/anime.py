@@ -1,6 +1,8 @@
 import requests
 import requests_cache
+
 from templates.button import *
+
 
 def process(input, entities):
     output = {}
@@ -8,18 +10,25 @@ def process(input, entities):
         anime = entities['anime'][0]['value']
 
         with requests_cache.enabled('anime_cache', backend='sqlite', expire_after=86400):
-            r = requests.get('https://hummingbird.me/api/v1/search/anime', params={
-                'query': anime
+            r = requests.get('https://kitsu.io/api/edge/anime', params={
+                'filter[text]': anime,
+                'page[limit]': 1
             })
             data = r.json()
 
+        top_anime = data['data'][0]['attributes']
+
         template = TextTemplate()
-        template.set_text('Title: ' + data[0]['title'] + '\nSynopsis: ' + data[0]['synopsis'])
-        template.set_post_text('\nCommunity Rating: ' + str(round(data[0]['community_rating'], 2)) + ' / 5' + '\nStatus: ' + data[0]['status'])
+        template.set_text('Title: ' + top_anime['canonicalTitle'] + '\nSynopsis: ' + top_anime['synopsis'])
+        template.set_post_text(
+            '\nAverage Rating: {0}%\nPopularity Rank: {1}\nRating Rank: {2}\nEpisode Count: {3}'.format(
+                top_anime['averageRating'], str(top_anime['popularityRank']), str(top_anime['ratingRank']),
+                str(top_anime['episodeCount'])))
         text = template.get_text()
 
         template = ButtonTemplate(text)
-        template.add_web_url('Hummingbird URL', data[0]['url'])
+        template.add_web_url('Kitsu URL', 'https://kitsu.io/anime/' + top_anime['slug'])
+        template.add_web_url('YouTube URL', 'https://www.youtube.com/watch?v=' + top_anime['youtubeVideoId'])
 
         output['input'] = input
         output['output'] = template.get_message()

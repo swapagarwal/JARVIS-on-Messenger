@@ -1,3 +1,5 @@
+import modules
+from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
 
 def process(input, entities=None):
@@ -24,13 +26,20 @@ def process(input, entities=None):
     help += '\n  - show a random xkcd comic'
     help += '\n  - latest news'
     help += '\n  - paradise lyrics'
+    help += '\n  - ping google.com'
     help += '\n  - twitter @potus'
     help += '\n\nI\'m always learning, so do come back and say hi from time to time!'
     help += '\nHave a nice day. :)'
 
+    message = TextTemplate(help).get_message()
+    message = add_quick_reply(message, 'Tell me a joke', modules.generate_postback('joke'))
+    message = add_quick_reply(message, 'Roll a die', modules.generate_postback('dice'))
+    message = add_quick_reply(message, 'Latest News', modules.generate_postback('news'))
+    message = add_quick_reply(message, 'Random xkcd comic', modules.generate_postback('xkcd'))
+
     output = {
         'input': input,
-        'output': TextTemplate(help).get_message(),
+        'output': message,
         'success': True
     }
     return output

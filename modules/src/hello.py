@@ -1,5 +1,7 @@
 import random
+
 from templates.text import TextTemplate
+
 
 def process(input, entities=None):
     greetings = [

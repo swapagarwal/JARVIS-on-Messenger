@@ -1,5 +1,6 @@
 from templates.button import ButtonTemplate
 
+
 def process(input, entities=None):
     request = 'Kindly use the following buttons to:'
     request += '\n  - Request a new feature, by including some sample queries and their expected results.'

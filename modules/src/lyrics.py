@@ -1,20 +1,34 @@
-import requests
-import config
 import os
+
+import requests
+
+import config
 from templates.button import *
 
 MUSIXMATCH_API_KEY = os.environ.get('MUSIXMATCH_API_KEY', config.MUSIXMATCH_API_KEY)
+
 
 def process(input, entities):
     output = {}
     try:
         query = entities['lyrics'][0]['value']
+        # Search in title
         r = requests.get('http://api.musixmatch.com/ws/1.1/track.search', params={
             'apikey': MUSIXMATCH_API_KEY,
             'q_track': query,
-            's_track_rating': 'desc'
+            's_track_rating': 'desc',
+            'f_has_lyrics': '1'
         })
         data = r.json()
+        # Search inside lyrics if no results found in title search
+        if int(data['message']['header']['available']) == 0:
+            r = requests.get('http://api.musixmatch.com/ws/1.1/track.search', params={
+                'apikey': MUSIXMATCH_API_KEY,
+                'q_lyrics': query,
+                's_track_rating': 'desc',
+                'f_has_lyrics': '1'
+            })
+            data = r.json()
         track = data['message']['body']['track_list'][0]['track']
         track_id = track['track_id']
         track_name = track['track_name']
@@ -46,5 +60,5 @@ def process(input, entities):
         error_message += '\n  - lyrics of the song hall of fame'
         error_message += '\n  - What are the lyrics to see you again?'
         output['error_msg'] = TextTemplate(error_message).get_message()
-        output['success'] = False      
+        output['success'] = False
     return output

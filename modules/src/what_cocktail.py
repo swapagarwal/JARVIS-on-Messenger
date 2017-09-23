@@ -20,6 +20,7 @@ def spell_check(word):
 
     elif word == "Rum":
         word = input("White or Dark?").title()
+        word += " Rum"
         chkr = SpellChecker("en_GB", word)
         for err in chkr:
             while dict_lookup(word, cocktails) is not True:
@@ -38,13 +39,15 @@ def spell_check(word):
                 if word == "White":
                     word = "White Rum"
                     return word
-                elif word == "Dark": #not returning results because of problem in matches function cause over 1
+                elif word == "Dark":
                     word = "Dark Rum"
                     return word
+        return word
 
 
     elif word == "Tequila":
-        word = input("White or Dark").title()
+        word = input("White or Dark?").title()
+        word += " Rum"
         chkr = SpellChecker("en_GB", word)
         for err in chkr:
             while dict_lookup(word, cocktails) is not True:
@@ -66,10 +69,12 @@ def spell_check(word):
                 elif word == "Dark":
                     word = "Dark Tequila"
                     return word
+        return word
 
 
     elif word == "Vermouth":
         word = input("Sweet, Dry or Red?").title()
+        word += " Vermouth"
         chkr = SpellChecker("en_GB", word)
         for err in chkr:
             while dict_lookup(word, cocktails) is not True:
@@ -94,6 +99,7 @@ def spell_check(word):
                 elif word == "Red":
                     word = "Red Vermouth"
                     return word
+        return word
 
 
     else:
@@ -116,42 +122,44 @@ def spell_check(word):
         return word
 
 def matches(match):
-    bye_or = len(match) #works
-    if bye_or <= 1:
+    bye_or = len(match)
+
+    if bye_or <= 1: #works
         for key, value in match.items():
             print("With the ingredients you have you MUST make a %s these are the measures:" %(str(key)))
             print()
             print(value)
             print()
-            print()
-            print("PICKLE RICK")
-            print()
             exit()
 
-    elif bye_or < 3:
-        print("Which would you prefer:")
-        for key, value in match.items(): #printing last entry twice
-            bye_or -= 1
-            print()
-            print(key, value)
-            print()
-            print("Or...")
-            if bye_or == 1:
+    elif bye_or <= 3:
+        last_opt = bye_or
+        print("With the ingredients you have you have these options for a cocktail tonight:")
+        for key, value in match.items():
+            if last_opt > 1:
+                last_opt -= 1
                 print()
-                print(key, value)
+                print(key)
+                print("made with these measures %s" % (str(value)))
+                print()
+                print("Or...")
+            elif last_opt == 1:
+                print()
+                print(key)
+                print("made with these measures %s" % (str(value)))
                 print()
                 exit()
-
-    elif bye_or > 3: #printing the last entry twice
-        hi_matches = bye_or
+    else:
+        hi_matches = bye_or # works
         print("These are your matches:")
         for key, value in match.items():
-            hi_matches -= 1
-            print()
-            print_nice(key, value)
-            print()
-            print("Or...")
-            if hi_matches == 1:
+            if hi_matches > 1:
+                hi_matches -= 1
+                print()
+                print_nice(key, value)
+                print()
+                print("Or...")
+            elif hi_matches == 1:
                 print()
                 print_nice(key, value)
                 print()

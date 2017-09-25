@@ -4,6 +4,10 @@ the most matching ingredients'''
 from enchant.checker import SpellChecker
 import re
 
+print("What? Cocktail")
+print()
+print()
+
 def search(drinks, dictionary):
     filter_dict = {}
     for key, value in dictionary.items():
@@ -126,27 +130,31 @@ def matches(match):
 
     if bye_or <= 1: #works
         for key, value in match.items():
-            print("With the ingredients you have you MUST make a %s these are the measures:" %(str(key)))
+            print("With the ingredients you have you MUST make a %s these are the measures:" % (str(key)))
             print()
-            print(value)
+            print(final_print(value))
             print()
             exit()
 
     elif bye_or <= 3:
         last_opt = bye_or
+        print()
+        print()
         print("With the ingredients you have you have these options for a cocktail tonight:")
         for key, value in match.items():
             if last_opt > 1:
                 last_opt -= 1
                 print()
                 print(key)
-                print("made with these measures %s" % (str(value)))
+                print("made with these measures:")
+                print(final_print(value))
                 print()
                 print("Or...")
             elif last_opt == 1:
                 print()
                 print(key)
-                print("made with these measures %s" % (str(value)))
+                print("made with these measures:")
+                print(final_print(value))
                 print()
                 exit()
     else:
@@ -169,7 +177,7 @@ def print_nice(statement, statement2):
     statement2 = str(statement2)
     statement = re.sub(r'[{}:\']', '', statement)
     statement2 = re.sub(r'[{}:\']', '', statement2)
-    statement2 = re.sub(r'L?l?arge\sT?t?hin\s', '', statement2)
+    statement2 = re.sub(r'T?t?hin\s', '', statement2)
     statement2 = re.sub(r'\d+\sS?s?ticks?', '',statement2)
     statement2 = re.sub(r'(\d+\sml)', '', statement2)
     statement2 = re.sub(r'\d+?A?a?\s\Dlices?', '', statement2)
@@ -197,7 +205,35 @@ def dict_lookup(ing, dict):
             if v == ing:
                 return True
 
+def final_print(v_state):
+    v_state = str(v_state)
+    v_state = re.sub(r'[\']', '', v_state)
+    return v_state
 
+def after_mix(final):
+    last_opt = len(final)
+    if last_opt == 0:
+        print("Mix what you got up, give it a name, pour and drank")
+        exit()
+    print()
+    print()
+    print("With the ingredients you have you have these options for a cocktail tonight:")
+    for key, value in final.items():
+        if last_opt > 1:
+            last_opt -= 1
+            print()
+            print(key)
+            print("made with these measures:")
+            print(final_print(value))
+            print()
+            print("Or...")
+        elif last_opt == 1:
+            print()
+            print(key)
+            print("made with these measures:")
+            print(final_print(value))
+            print()
+            exit()
 
 cocktails = {
 
@@ -223,7 +259,7 @@ cocktails = {
     "Aviation": {"Gin": "60 ml", "Maraschino Liqueur": "15 ml", "Creme de Violette": "10 ml", "Lemon Juice": "25 ml"},
     "Raspberry Collins": {"Vodka": "50 ml", "Rasperberries": "9", "Lemon Juice": "25 ml", "Sugar Syrup": "10 ml", "Soda Water": "1 Dash"},
     "Cosmopolitan": {"Vodka": "35 ml", "Orange Liqueur": "10 ml", "Cranberry Juice": "45 ml", "Lime Juice": "10 ml", "Lime": "To Garnish"},
-    "Vodka Martini": {"Vodka": "50 ml", "Dry Vermouth": "12 ml", "Lemon Zest": "A Sprinkle", "Large Thin Lemon Zest": "To Garnish"},
+    "Vodka Martini": {"Vodka": "50 ml", "Dry Vermouth": "12 ml", "Lemon Zest": "A Sprinkle", "Thin Lemon Zest": "To Garnish"},
     "Grog": {"Dark Rum": "50 ml", "Runny Honey": "1 tsp", "Lime Juice": "15 ml", "Lemon": "1 Slice", "Angosturra Bitters": "2 Dashes"},
     "Eggnog": {"Dark Rum": "50 ml", "Egg": "1", "Single Cream": "15 ml", "Sugar Syrup": "15 ml", "Milk": "60 ml", "Nutmeg": "12 Grinds"},
     "Whisky Sour": {"Whisky": "50 ml", "Lemon Juice": "35 ml", "Sugar Syrup": "17.5 ml", "Egg": "White"},
@@ -270,12 +306,46 @@ if dict_lookup(spirit1, cocktails) is True:
             liqueur = search(liqueur, spirit2)
             matches(liqueur)
 
+            mixer = input("Do you have any mixer?").title()
+            mixer = spell_check(mixer)
+            if dict_lookup(mixer, cocktails) is True:
+                mixer = search(mixer, liqueur)
+                after_mix(mixer)
+            else:
+                after_mix(liqueur)
+
+        else:
+            mixer_no_liq = input("Do you have any mixer?").title()
+            mixer_no_liq = spell_check(mixer_no_liq)
+            if dict_lookup(mixer_no_liq, cocktails) is True:
+                mixer_no_liq = search(mixer_no_liq, spirit2)
+                after_mix(mixer_no_liq)
+            else:
+                after_mix(spirit2)
+
+
     else:
         nospi_liqueur = input("Do you have any liqueur?").title()
         nospi_liqueur = spell_check(nospi_liqueur)
         if dict_lookup(nospi_liqueur, cocktails) is True:
             nospi_liqueur = search(nospi_liqueur, spirit1)
             matches(nospi_liqueur)
+
+            mix_liq = input("Do you have any mixer?").title()
+            mix_liq = spell_check(mix_liq)
+            if dict_lookup(mix_liq, cocktails) is True:
+                mix_liq = search(mix_liq, nospi_liqueur)
+                after_mix(mix_liq)
+            else:
+                after_mix(nospi_liqueur)
+        else:
+            no_liq = input("Do you have any mixer?").title()
+            no_liq = spell_check(no_liq)
+            if dict_lookup(no_liq, cocktails) is True:
+                no_liq = search(no_liq, spirit1)
+                after_mix(no_liq)
+            else:
+                after_mix(spirit1)
 
 else:
     print("Go to the offy!")

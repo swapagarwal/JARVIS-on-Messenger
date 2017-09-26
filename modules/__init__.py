@@ -19,9 +19,11 @@ def generate_postback(module):
 
 
 def process_query(input):
+
     # For local testing, mock the response from Wit
     with open(config.WIT_LOCAL_DATA) as wit_file:
         wit_local_data = json.load(wit_file)
+
         if input in wit_local_data:
             return wit_local_data[input]['intent'], wit_local_data[input]['entities']
     try:
@@ -47,16 +49,24 @@ def search(input, sender=None, postback=False):
         entities = payload['entities']
     else:
         intent, entities = process_query(input)
+
     if intent is not None:
+
         if intent in src.__personalized__ and sender is not None:
             r = requests.get('https://graph.facebook.com/v2.6/' + str(sender), params={
                 'fields': 'first_name',
                 'access_token': os.environ.get('ACCESS_TOKEN', config.ACCESS_TOKEN)
             })
+
             if entities is None:
                 entities = {}
             entities['sender'] = r.json()
+
+        if intent == 'die':
+            intent = 'dice'
+            
         data = sys.modules['modules.src.' + intent].process(input, entities)
+
         if data['success']:
             return data['output']
         else:

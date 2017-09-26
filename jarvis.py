@@ -65,9 +65,9 @@ def run():
 @app.route('/process/')
 def process():
     
-    x =  request.args.get('q').encode('unicode-escape')    # read emoji and convert it to its unicode
+    #x =  request.args.get('q').encode('unicode-escape')    # read emoji and convert it to its unicode
     
-    print dict[x][random.randint(0,len(dict[x])-1)]
+    #print dict[x][random.randint(0,len(dict[x])-1)]
     #print request.args.get('q').decode('unicode-escape')    # read unicode and convert it to its emoji
     return json.dumps(modules.process_query(request.args.get('q')))
 

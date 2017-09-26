@@ -10,7 +10,7 @@ import time
 import dlib
 import cv2
 import imageio
-import visvis as vv
+#import visvis as vv
 
 from gi.repository import Gdk
 #from SimpleCV import Camera
@@ -41,7 +41,11 @@ def main():
 	 
 	EYE_AR_THRESH = 0.26
 	EYE_AR_CONSEC_FRAMES = 20
-
+	
+	earpre=np.zeros(2)
+	ear=np.zeros(2)
+	count=np.zeros(2)
+	
 	COUNTER = 0
 	ALARM_ON = False
 
@@ -70,13 +74,17 @@ def main():
 
 	i=1
 	# loop over frames from the video stream
-	while True:
+	TEAM=True
+
+	while TEAM:
 
 		#var, frame = vs.read()
 		#frame = cv2.imread('/home/rock19/Desktop/new/Pictures%d.jpg' % i)
 			
 		for frame in reader:
 
+			if not TEAM:
+				break
 			#vv.processEvents()
 			#t.SetData(frame)
 
@@ -87,7 +95,13 @@ def main():
 			rects = detector(gray, 0)
 
 			# loop over the face detections
+			j=0
 			for rect in rects:
+
+				if j>1:
+					print 'More persons than expected!!!!'
+					continue
+
 				# determine the facial landmarks for the face region, then
 				# convert the facial landmark (x, y)-coordinates to a NumPy
 				# array
@@ -102,7 +116,7 @@ def main():
 				rightEAR = eye_aspect_ratio(rightEye)
 
 				# average the eye aspect ratio together for both eyes
-				ear = (leftEAR + rightEAR) / 2.0
+				ear[j] = (leftEAR + rightEAR) / 2.0
 
 				# compute the convex hull for the left and right eye, then
 				# visualize each of the eyes
@@ -113,11 +127,29 @@ def main():
 
 				# check to see if the eye aspect ratio is below the blink
 				# threshold, and if so, increment the blink frame counter
-				if ear < EYE_AR_THRESH:
+
+				if j<2:
+					if earpre[j] - ear[j] > 0.05:
+						count[j] += 1
+						
+						if count[j] > 5:
+							print 'Player ',j+1,' loses\n'
+							print 'Score: ',abs(count[j]-count[j^1]),'\n'
+							cv2.destroyAllWindows()
+							TEAM=False
+							break
+							
+
+						print 'blink',(j+1)
+
+				earpre[j]=ear[j]
+
+				if ear[j] < EYE_AR_THRESH:
 					COUNTER += 1
 
 					# if the eyes were closed for a sufficient number of
 					# then sound the alarm
+					'''
 					if COUNTER >= EYE_AR_CONSEC_FRAMES:
 						# if the alarm is not on, turn it on
 						if not ALARM_ON:
@@ -135,6 +167,8 @@ def main():
 						cv2.putText(frame, "DROWSINESS ALERT!", (200, 30),
 							cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
 
+					'''
+
 				# otherwise, the eye aspect ratio is not below the blink
 				# threshold, so reset the counter and alarm
 				else:
@@ -144,9 +178,22 @@ def main():
 				# draw the computed eye aspect ratio on the frame to help
 				# with debugging and setting the correct eye aspect ratio
 				# thresholds and frame counters
-				cv2.putText(frame, "EAR: {:.2f}".format(ear), (10, 30),
+				cv2.putText(frame, "EAR: {:.2f}".format(ear[j]), (10, 30),
 					cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+
+
+				if(j==0):
+					cv2.putText(frame, "{:.0f}".format(count[j]), (10, 300),
+						cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+
+				if(j==1):
+					cv2.putText(frame, "{:.0f}".format(count[j]), (300, 300),
+						cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+				
+				j += 1
 		 
+		 	if not TEAM:
+		 		break
 			# show the frame
 			cv2.imshow("Frame", frame)
 			key = cv2.waitKey(1) & 0xFF
@@ -156,5 +203,3 @@ def main():
 
 	# do a bit of cleanup
 	cv2.destroyAllWindows()
-	if vs is True:
-		vs.stop()

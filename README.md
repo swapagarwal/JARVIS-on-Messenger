@@ -47,16 +47,16 @@ Feel free to add to this list by opening an Issue / Pull Request.
 | currency | usd to eur rate | Fixer.io |
 | dice | roll a die | --- |
 | dictionary | define comfort | Words API |
-| fact | tell me a fact | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/facts.json) |
+| fact | tell me a fact | [JARVIS](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/facts.json) |
 | hello | Hi, Jarvis! | --- |
 | help | What can you do? | --- |
-| joke | tell me a joke | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/jokes.json) |
+| joke | tell me a joke | [JARVIS](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/jokes.json) |
 | lyrics | paradise lyrics | Powered by musiXmatch |
 | movie | iron man 2 movie plot | <img src="/images/powered_by_tmdb.png"/> |
 | music | songs by linkin park | Spotify |
 | news | latest news | Powered by NewsAPI |
 | ping | ping google.com | Is it up? |
-| quote | random quote | [Offline](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/quotes.json) |
+| quote | random quote | [JARVIS](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/quotes.json) |
 | request | report a bug <br> request a feature | --- |
 | thanks | Thank you! | --- |
 | time | time in seattle | TimeZoneDB API |
@@ -100,11 +100,12 @@ c) `brew install libtins`
 `http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
 `http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
-The "process" endpoint returns what module the system classifies your query into, say a dictionary query or a song search, etc. Visit the following URLs to understand the output format:  
+* The "process" endpoint returns what module the system classifies your query into, say a dictionary query or a song search, etc. Visit the following URLs to understand the output format:  
 `http://localhost:5000/process/?q=tell%20me%20a%20joke`  
 `http://localhost:5000/process/?q=time%20in%20seattle`  
 `http://localhost:5000/process/?q=convert%2025%20usd%20to%20eur`  
-The "search" endpoint returns the actual bot output, that you get when you interact with the bot using that query.
+> You can mock the results for local testing by adding your queries [here](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/local/wit.json).
+* The "search" endpoint returns the actual bot output, that you get when you interact with the bot using that query.
 
 Note that for the search query to work, you have to set your own key (of the module that you want to test) in config.py  
 

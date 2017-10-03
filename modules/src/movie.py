@@ -2,7 +2,7 @@ import os
 
 import requests
 import requests_cache
-#from imdb import IMDb
+from imdb import IMDb
 
 import config
 from templates.button import *

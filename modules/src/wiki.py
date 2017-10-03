@@ -2,6 +2,7 @@ import wikipedia
 
 from templates.generic import *
 from templates.text import TextTemplate
+from templates.quick_replies import add_quick_reply
 
 
 def process(input, entities):
@@ -14,7 +15,10 @@ def process(input, entities):
         text = template.get_text()
         template = ButtonTemplate(text)
         template.add_web_url('Wikipedia Link', data.url)
-        output['output'] = template.get_message()
+        page = wikipedia.random(pages=1)
+        message = template.get_message()
+        message = add_quick_reply(message,"Random Article","page")
+        output['output'] = message
         output['success'] = True
     except wikipedia.exceptions.DisambiguationError as e:
         template = GenericTemplate()

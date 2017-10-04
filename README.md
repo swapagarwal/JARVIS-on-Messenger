@@ -82,6 +82,18 @@ More sample queries can be found [here](https://github.com/swapagarwal/JARVIS-on
 
 ### Local Development / Testing
 
+#### Docker
+
+Install Docker for your system [Docker for Mac](https://docs.docker.com/docker-for-mac/), [Docker for Windows](https://docs.docker.com/docker-for-windows/), [Docker for Linux](https://docs.docker.com/engine/installation/#server)
+
+Build and start Jarvis in Docker
+
+```shell
+docker build . -t jarvis && docker run -p 5000:5000 jarvis
+```
+
+#### Locally
+
 1. Clone this repo.
 2. Linux:  
 a) Debian (Ubuntu, Linux Mint, etc.): `sudo apt-get install python-dev libffi-dev libssl-dev`  

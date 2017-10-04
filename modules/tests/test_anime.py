@@ -13,6 +13,8 @@ TEST_TITLES = ['One Punch Man', 'Dragon Ball Super', 'Dragon Ball Z',
 
 random.shuffle(TEST_TITLES)
 
+# The following functions retrieve some data from an API call with a given title
+# according to the contents as described in the Kitsu API.
 
 def get_data_from_api(title):
     r = requests.get('https://kitsu.io/api/edge/anime',
@@ -147,6 +149,7 @@ def test_average_rating():
         while not (tokens[current_token].startswith('Average Rating: ')):
             current_token += 1
 
+        assert(tokens[current_token].startswith('Average Rating: '))
         checked_token = tokens[current_token]
 
         '''Remove the title.'''
@@ -214,6 +217,7 @@ def test_popularity_rank():
         while not (tokens[current_token].startswith('Popularity Rank: ')):
             current_token += 1
 
+        assert(tokens[current_token].startswith('Popularity Rank: '))
         checked_token = tokens[current_token]
 
         '''Remove the title.'''
@@ -248,6 +252,8 @@ def test_episode_count():
 
         while not (tokens[current_token].startswith('Episode Count: ')):
             current_token += 1
+
+        assert(tokens[current_token].startswith('Episode Count: '))
         checked_token = tokens[current_token]
 
         '''Remove the title.'''

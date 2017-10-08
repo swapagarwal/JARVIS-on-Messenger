@@ -11,7 +11,7 @@ Just A Rather Very Intelligent System, now on Messenger!
 [![Contributors](https://img.shields.io/github/contributors/swapagarwal/JARVIS-on-Messenger.svg)](https://github.com/swapagarwal/JARVIS-on-Messenger/graphs/contributors)
 [![Beginner Issues](https://img.shields.io/github/issues/swapagarwal/JARVIS-on-Messenger/Low-Hanging%20Fruit.svg?label=low-hanging%20fruits)](https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit)
 
-Messenger is now used by 1.2 billion people every month. With the launch of Send / Receive API, bots are about to [take](http://time.com/4291214/facebook-messenger-bots/) [over](http://www.computerworld.com/article/3055588/social-media/an-army-of-chatbots-will-take-over-facebook-here-s-why.html).
+Messenger is now used by 1.2 billion people every month. With the launch of Send/Receive API, bots are about to [take](http://time.com/4291214/facebook-messenger-bots/) [over](http://www.computerworld.com/article/3055588/social-media/an-army-of-chatbots-will-take-over-facebook-here-s-why.html).
 
 ### Usage
 
@@ -28,15 +28,15 @@ JARVIS is at your service [here](https://m.me/J.A.R.V.I.S.on.Messenger).
 I created JARVIS with two goals in mind:
 
 1. It should have a lot of useful features (both fun and commonly used).
-1. Anyone can contribute to this project. (As this is module-based, anybody with a decent knowledge of Python can contribute.) One of the prime goals of this project is to lower the entry barrier in the world of open source.
+1. Anyone can contribute to this project. (As this is module-based, anybody with a decent knowledge of Python can contribute.) One of the prime goals of this project is to lower the entry barrier into the world of open source.
 
-Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/CONTRIBUTING.md) to see how easy it is to add your code. I'll be waiting for your pull request! :wink:
+Take a look at the [contributing guidelines](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/CONTRIBUTING.md) to see how easy it is to add your own code. I'll be waiting for your pull request! :wink:
 
 A massive Thank You to all [contributors](https://github.com/swapagarwal/JARVIS-on-Messenger/graphs/contributors), and congratulations to people who made their first open-source contribution! :tada:
 
 ### Modules
 
-Feel free to add to this list by opening an Issue / Pull Request.
+Feel free to add to this list by opening an Issue/Pull Request.
 
 | Name | Sample Query | Source (w/ Attribution) |
 |:-:|:-:|:-:|
@@ -100,12 +100,12 @@ c) `brew install libtins`
 `http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
 `http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
-* The "process" endpoint returns what module the system classifies your query into, say a dictionary query or a song search, etc. Visit the following URLs to understand the output format:  
+* The "process" endpoint returns what module the system classifies your query e.g. a dictionary query, a song search, etc. Visit the following URLs to understand the output format:  
 `http://localhost:5000/process/?q=tell%20me%20a%20joke`  
 `http://localhost:5000/process/?q=time%20in%20seattle`  
 `http://localhost:5000/process/?q=convert%2025%20usd%20to%20eur`  
 > You can mock the results for local testing by adding your queries [here](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/local/wit.json).
-* The "search" endpoint returns the actual bot output, that you get when you interact with the bot using that query.
+* The "search" endpoint returns the actual bot output, which you get when you interact with the bot using that query.
 
 Note that for the search query to work, you have to set your own key (of the module that you want to test) in config.py  
 
@@ -117,14 +117,14 @@ If you want a public endpoint, use the below button to deploy on Heroku and fill
 
 1. J.A.R.V.I.S. runs on Python 2
 1. For the search query to work, you have to set your own key (of the module that you want to test) in config.py
-1. Best place to ask anything: https://gitter.im/swapagarwal/JARVIS-on-Messenger
+1. The best place to ask anything: https://gitter.im/swapagarwal/JARVIS-on-Messenger
 1. Some issues are reserved for you! https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit
-1. If you're working on something, let everyone know by creating an issue, or commenting on an existing one so that work is not duplicated.
+1. If you're working on something, let everyone know by either creating an issue or commenting on an existing one so that work is not duplicated.
 1. Prefer using an IDE (Use [PyCharm](https://www.jetbrains.com/pycharm/download/) if you don't have any preference yet)
 
 ### History
 
-I started out with rule-based model but it didn't scale well so now I've shifted to Natural Language Processing.
+I started out with a rule-based model, but it didn't scale well so now I've shifted to Natural Language Processing.
 Rest assured, I'll strive to keep it as simple as possible so that you, yes you, can contribute!
 
 If you'd like to contribute to the old model, you are welcome to do so as well.

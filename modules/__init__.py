@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import sys
 
@@ -9,6 +10,7 @@ from src import *
 from templates.text import TextTemplate
 
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)
+logging.basicConfig(filename='logs/traffic.log', level=logging.DEBUG, format='%(message)s')
 
 
 def generate_postback(module):
@@ -41,6 +43,7 @@ def process_query(input):
 
 
 def search(input, sender=None, postback=False):
+    logging.info('[jarvis] ' + input)
     if postback:
         payload = json.loads(input)
         intent = payload['intent']

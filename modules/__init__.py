@@ -10,7 +10,7 @@ from src import *
 from templates.text import TextTemplate
 
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)
-logging.basicConfig(filename='logs/traffic.log', level=logging.DEBUG, format='%(message)s')
+logging.basicConfig(filename='traffic.log', level=logging.DEBUG, format='%(message)s')
 
 
 def generate_postback(module):

@@ -1,6 +1,7 @@
 # List of all modules
 __all__ = [
     'anime',
+    'aww',
     'book',
     'bye',
     'coin',

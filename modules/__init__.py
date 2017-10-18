@@ -43,14 +43,15 @@ def process_query(input):
 
 
 def search(input, sender=None, postback=False):
-    print '[jarvis] ' + input
-    logging.info('[jarvis] ' + input)
     if postback:
         payload = json.loads(input)
         intent = payload['intent']
         entities = payload['entities']
     else:
         intent, entities = process_query(input)
+    l = '[jarvis]' + json.dumps({"input": input, "intent": intent, "entities": entities})
+    print l
+    logging.info(l)
     if intent is not None:
         if intent in src.__personalized__ and sender is not None:
             r = requests.get('https://graph.facebook.com/v2.6/' + str(sender), params={

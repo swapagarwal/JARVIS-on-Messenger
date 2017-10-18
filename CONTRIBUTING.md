@@ -12,6 +12,7 @@ To add a new module, follow these steps:
 8. Create a Pull Request 
 
 Kindly note that your tests may fail initially as I'll have to configure wit.ai to handle these new types of queries. Just include some sample queries in your PR's description for the initial training.
+In order to understand what wit.ai exactly is. You can watch this video [here](https://www.youtube.com/watch?v=tLdjaKkJK_8).
 
 ## Improve an existing module
 

@@ -43,6 +43,7 @@ def process_query(input):
 
 
 def search(input, sender=None, postback=False):
+    print '[jarvis] ' + input
     logging.info('[jarvis] ' + input)
     if postback:
         payload = json.loads(input)

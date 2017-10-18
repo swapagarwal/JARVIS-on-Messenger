@@ -23,6 +23,12 @@ JARVIS is at your service [here](https://m.me/J.A.R.V.I.S.on.Messenger).
   <img src="https://i.vimeocdn.com/video/645512677_640.jpg" alt="JARVIS on Messenger Demo" width="300">
 </a>
 
+### How the ai works
+
+<a href="https://vimeo.com/238717639" target="_blank" title="Click to open Vimeo link">
+  <img src="https://i.imgur.com/qZeRlBk.jpg" alt="Wit.ai Demo" width="500">
+</a>
+
 ### Why?
 
 I created JARVIS with two goals in mind:

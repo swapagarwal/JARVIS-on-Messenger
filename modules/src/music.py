@@ -8,6 +8,7 @@ import requests_cache
 import config
 from templates.generic import *
 from templates.text import TextTemplate
+from jarvis import app
 
 SPOTIFY_API_KEY = os.environ.get('SPOTIFY_API_KEY', config.SPOTIFY_API_KEY)
 UNAUTHORIZED = 401  # Spotify returns 401 if request fails due to no / invalid auth token
@@ -21,6 +22,7 @@ def api_search(auth_token, search_term):
 
 
 def process(input, entities):
+    app.logger.info('Accessing Music module')
     output = {}
     try:
         music = entities['music'][0]['value']

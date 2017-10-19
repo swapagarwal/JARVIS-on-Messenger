@@ -5,11 +5,13 @@ import requests
 
 import config
 from templates.text import TextTemplate
+from jarvis import app
 
 GOOGLE_URL_SHORTENER_API_KEY = os.environ.get('GOOGLE_URL_SHORTENER_API_KEY', config.GOOGLE_URL_SHORTENER_API_KEY)
 
 
 def process(input, entities):
+    app.logger.info('Accessing URL module')
     output = {}
     try:
         url = entities['url'][0]['value']

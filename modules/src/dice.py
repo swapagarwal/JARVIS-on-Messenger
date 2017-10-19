@@ -3,6 +3,7 @@ import random
 import modules
 from templates.attachment import AttachmentTemplate
 from templates.quick_replies import add_quick_reply
+from jarvis import app
 
 dice_sides = {
     1: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-one/256/0/e74c3c_none.png',
@@ -15,6 +16,7 @@ dice_sides = {
 
 
 def process(input, entities=None):
+    app.logger.info('Accessing Dice module')
     message = AttachmentTemplate(dice_sides[random.randint(1, 6)], type='image').get_message()
     message = add_quick_reply(message, 'Roll again!', modules.generate_postback('dice'))
     message = add_quick_reply(message, 'Flip a coin.', modules.generate_postback('coin'))

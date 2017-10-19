@@ -1,9 +1,11 @@
 import modules
 from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
+from jarvis import app
 
 
 def process(input, entities=None):
+    app.logger.info('Accessing Help module')
     help = 'Hi there! I\'m Jarvis, your personal assistant.'
     if entities is not None:
         if 'sender' in entities and 'first_name' in entities['sender']:

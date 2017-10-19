@@ -5,11 +5,13 @@ import requests
 import config
 from templates.generic import *
 from templates.text import TextTemplate
+from jarvis import app
 
 NEWS_API_KEY = os.environ.get('NEWS_API_KEY', config.NEWS_API_KEY)
 
 
 def process(input, entities=None):
+    app.logger.info('Accessing News module')
     output = {}
     source = 'google-news'  # Can add more sources in future
     try:

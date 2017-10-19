@@ -7,6 +7,7 @@ import requests
 import config
 from src import *
 from templates.text import TextTemplate
+from jarvis import app
 
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)
 
@@ -19,6 +20,7 @@ def generate_postback(module):
 
 
 def process_query(input):
+    app.logger.info('Unable to access any module')
     # For local testing, mock the response from Wit
     with open(config.WIT_LOCAL_DATA) as wit_file:
         wit_local_data = json.load(wit_file)

@@ -7,11 +7,13 @@ from html2text import html2text
 
 import config
 from templates.button import *
+from jarvis import app
 
 GOODREADS_ACCESS_TOKEN = os.environ.get('GOODREADS_ACCESS_TOKEN', config.GOODREADS_ACCESS_TOKEN)
 
 
 def process(input, entities):
+    app.logger.info('Accessing Book module')
     output = {}
     try:
         book_title = entities['book'][0]['value']

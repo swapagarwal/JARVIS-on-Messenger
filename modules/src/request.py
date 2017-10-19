@@ -1,7 +1,8 @@
 from templates.button import ButtonTemplate
-
+from jarvis import app
 
 def process(input, entities=None):
+    app.logger.info('Accessing Request module')
     request = 'Kindly use the following buttons to:'
     request += '\n  - Request a new feature, by including some sample queries and their expected results.'
     request += '\n  - Report a bug (I couldn\'t handle the query and/or gave unexpected results), by including your search query and the expected result.'

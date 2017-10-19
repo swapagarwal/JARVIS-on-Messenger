@@ -2,9 +2,10 @@ import requests
 import requests_cache
 
 from templates.button import *
-
+from jarvis import app
 
 def process(input, entities):
+    app.logger.info('Accessing Anime module')
     output = {}
     try:
         anime = entities['anime'][0]['value']

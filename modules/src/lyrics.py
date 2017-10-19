@@ -4,11 +4,13 @@ import requests
 
 import config
 from templates.button import *
+from jarvis import app
 
 MUSIXMATCH_API_KEY = os.environ.get('MUSIXMATCH_API_KEY', config.MUSIXMATCH_API_KEY)
 
 
 def process(input, entities):
+    app.logger.info('Accessing Lyrics module')
     output = {}
     try:
         query = entities['lyrics'][0]['value']

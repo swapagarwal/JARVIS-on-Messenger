@@ -1,9 +1,10 @@
 import requests
 
 from templates.text import TextTemplate
-
+from jarvis import app
 
 def process(input, entities):
+    app.logger.info('Accessing Currency module')
     output = {}
     try:
         from_currency = entities['from_currency'][0]['value'].upper()

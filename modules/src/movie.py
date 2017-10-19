@@ -6,12 +6,14 @@ from imdb import IMDb
 
 import config
 from templates.button import *
+from jarvis import app
 
 # This product uses the TMDb API but is not endorsed or certified by TMDb.
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY', config.TMDB_API_KEY)
 
 
 def process(input, entities):
+    app.logger.info('Accessing Movie module')
     output = {}
     try:
         movie = entities['movie'][0]['value']

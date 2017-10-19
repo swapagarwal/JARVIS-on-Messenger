@@ -4,12 +4,14 @@ import requests
 
 import config
 from templates.text import TextTemplate
+from jarvis import app
 
 MAPQUEST_CONSUMER_KEY = os.environ.get('MAPQUEST_CONSUMER_KEY', config.MAPQUEST_CONSUMER_KEY)
 OPEN_WEATHER_MAP_ACCESS_TOKEN = os.environ.get('OPEN_WEATHER_MAP_ACCESS_TOKEN', config.OPEN_WEATHER_MAP_ACCESS_TOKEN)
 
 
 def process(input, entities):
+    app.logger.info('Accessing Weather module')
     output = {}
     try:
         r = requests.get(

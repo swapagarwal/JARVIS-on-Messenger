@@ -4,9 +4,10 @@ import requests
 
 from templates.generic import *
 from templates.text import TextTemplate
-
+from jarvis import app
 
 def process(input, entities):
+    app.logger.info('Accessing Ping module')
     output = {}
     try:
         url = entities['url'][0]['value']

@@ -1,26 +1,28 @@
-import urllib2
-import json
 from random import randint
-
+import praw
 import modules
 from templates.generic import *
-
-headers = {"User-Agent" : "Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0"}
 
 #aww pulls top 25 posts from reddit.com/r/aww and serves the receipient a random image
 def process(input, entities):
     output = {}
 
-    request = urllib2.Request('https://www.reddit.com/r/aww/top.json?count=N&after=t3_XXXXX', None, headers)
-    data = urllib2.urlopen(request)
-    json_data = json.load(data)
+    reddit = praw.Reddit(client_id='hidrsV8C-QzMmQ',
+                         client_secret='segvJkUHCUFquxCxqz5ml9-tlmE',
+                         user_agent='JARVIS_ON_MESSENGER module by u/argfooiv')
 
-    #request returns json array of 24 indicies (HOT posts from r/aww)
-    r = randint(0, 24)
+    subreddit = reddit.subreddit('aww')
+    posts = []
 
-    post_title =  json_data['data']['children'][r]['data']['title']
-    post_thumbnail = json_data['data']['children'][r]['data']['thumbnail']
-    post_url = json_data['data']['children'][r]['data']['url']
+    #request returns top 25 posts from r/aww
+    #skipping indicie 0 due to reddit announcements 
+    r = randint(1, 24)
+
+    for index, submission in enumerate(subreddit.hot(limit=25)):
+        posts.append(submission)
+
+    post_title =  posts[r].title
+    post_url = posts[r].url
 
     template = GenericTemplate()
     template.set_image_aspect_ratio_to_square()

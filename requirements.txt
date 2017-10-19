@@ -15,6 +15,7 @@ lxml==3.8.0
 MarkupSafe==0.23
 ndg-httpsclient==0.4.0
 pbr==3.1.1
+praw==5.1.0
 py==1.4.31
 pyasn1==0.1.9
 pycparser==2.14

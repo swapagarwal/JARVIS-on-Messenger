@@ -24,5 +24,13 @@ TMDB_API_KEY = '<<TMDB_API_KEY>>'
 WORDS_API_KEY = '<<WORDS_API_KEY>>'
 YOUTUBE_DATA_API_KEY = '<<YOUTUBE_DATA_API_KEY>>'
 
+# Amazon API Keys
+AMAZON_KEYS = {
+    'access_key': '<<AMAZON_API_ACCESS_KEY>>',
+    'secret_key': '<<AMAZON_API_SECRET_KEY>>',
+    'associate_tag': '<<AMAZON_ASSOCIATE_TAG>>',
+    'locale': 'us'
+}
+
 # Local Testing
 WIT_LOCAL_DATA = 'local/wit.json'

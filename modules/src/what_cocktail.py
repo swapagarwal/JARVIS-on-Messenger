@@ -51,7 +51,7 @@ def spell_check(word):
 
     elif word == "Tequila":
         word = input("White or Dark?").title()
-        word += " Rum"
+        word += " Tequila"
         chkr = SpellChecker("en_GB", word)
         for err in chkr:
             while dict_lookup(word, cocktails) is not True:

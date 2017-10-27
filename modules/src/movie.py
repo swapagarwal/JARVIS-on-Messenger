@@ -37,7 +37,7 @@ def process(input, entities):
             # Seperate Videos from rest of data 
             videos = data['videos']['results']
 
-	# Fetch movie rating from IMDb
+        # Fetch movie rating from IMDb
         ia = IMDb()
         imdb_id = data['imdb_id']
         imdb_movie = ia.get_movie(imdb_id[2:])

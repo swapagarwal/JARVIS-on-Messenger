@@ -34,8 +34,8 @@ def process(input, entities):
                 'append_to_response':'videos'
             })
             data = r.json()
-        # Seperate Videos from rest of data 
-        videos = data['videos']['results']
+            # Seperate Videos from rest of data 
+            videos = data['videos']['results']
 
 	# Fetch movie rating from IMDb
         ia = IMDb()
@@ -50,11 +50,11 @@ def process(input, entities):
         template = ButtonTemplate(text)
         template.add_web_url('IMDb Link', 'https://www.imdb.com/title/' + data['imdb_id'] + '/')
 
-	# Append first Trailer URL if one exists
-	for video in videos:
-		if video['type'] == 'Trailer':
-			template.add_web_url('Trailer Link','https://www.youtube.com/watch?v='+video['key']+'/')
-			break
+        # Append first Trailer URL if one exists
+        for video in videos:
+            if video['type'] == 'Trailer':
+                template.add_web_url('Trailer Link','https://www.youtube.com/watch?v='+video['key']+'/')
+                break
 
         output['input'] = input
         output['output'] = template.get_message()

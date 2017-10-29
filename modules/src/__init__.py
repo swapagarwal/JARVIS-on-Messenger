@@ -19,12 +19,13 @@ __all__ = [
     'quote',
     'request',
     'thanks',
-    'time',
+    'time-module',
     'url',
     'video',
     'weather',
     'wiki',
     'xkcd',
+    'reddit',
 ]
 
 # List of modules that send data personalized to the user

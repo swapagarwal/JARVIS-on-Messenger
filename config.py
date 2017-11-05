@@ -26,3 +26,7 @@ YOUTUBE_DATA_API_KEY = '<<YOUTUBE_DATA_API_KEY>>'
 
 # Local Testing
 WIT_LOCAL_DATA = 'local/wit.json'
+
+# Analytics
+KEEN_PROJECT_ID = '<<KEEN_PROJECT_ID>>'
+KEEN_WRITE_KEY = '<<KEEN_WRITE_KEY>>'

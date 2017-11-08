@@ -1,9 +1,10 @@
 import random
 
 from templates.text import TextTemplate
-
+from jarvis import app
 
 def process(input, entities=None):
+    app.logger.info('Accessing Bye module')
     greetings = [
         'Have a good day, sir.',
         'Wonderful, I think it\'s time for my evening nap...',

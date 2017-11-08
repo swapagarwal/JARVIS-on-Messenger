@@ -7,9 +7,11 @@ import modules
 from templates.generic import *
 from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
+from jarvis import app
 
 
 def process(input, entities=None):
+    app.logger.info('Accessing xkcd module')
     output = {}
     try:
         with requests_cache.enabled('xkcd_cache', backend='sqlite', expire_after=3600):

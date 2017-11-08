@@ -6,11 +6,13 @@ import requests_cache
 import config
 from templates.generic import *
 from templates.text import TextTemplate
+from jarvis import app
 
 YOUTUBE_DATA_API_KEY = os.environ.get('YOUTUBE_DATA_API_KEY', config.YOUTUBE_DATA_API_KEY)
 
 
 def process(input, entities):
+    app.logger.info('Accessing video module')
     output = {}
     try:
         video = entities['video'][0]['value']

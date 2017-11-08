@@ -2,9 +2,10 @@ import wikipedia
 
 from templates.generic import *
 from templates.text import TextTemplate
-
+from jarvis import app
 
 def process(input, entities):
+    app.logger.info('Accessing WIKI module')
     output = {}
     try:
         query = entities['wiki'][0]['value']

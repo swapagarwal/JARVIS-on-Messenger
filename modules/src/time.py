@@ -5,12 +5,14 @@ import requests
 
 import config
 from templates.text import TextTemplate
+from jarvis import app
 
 MAPQUEST_CONSUMER_KEY = os.environ.get('MAPQUEST_CONSUMER_KEY', config.MAPQUEST_CONSUMER_KEY)
 TIME_ZONE_DB_API_KEY = os.environ.get('TIME_ZONE_DB_API_KEY', config.TIME_ZONE_DB_API_KEY)
 
 
 def process(input, entities):
+    app.logger.info('Accessing Time module')
     output = {}
     try:
         r = requests.get(

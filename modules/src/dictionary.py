@@ -5,11 +5,13 @@ import requests_cache
 
 import config
 from templates.text import TextTemplate
+from jarvis import app
 
 WORDS_API_KEY = os.environ.get('WORDS_API_KEY', config.WORDS_API_KEY)
 
 
 def process(input, entities):
+    app.logger.info('Accessing Dictonary module')
     output = {}
     try:
         word = entities['word'][0]['value']

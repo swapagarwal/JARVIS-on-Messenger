@@ -5,9 +5,10 @@ import config
 import modules
 from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
-
+from jarvis import app
 
 def process(input, entities=None):
+    app.logger.info('Accessing Quote module')
     output = {}
     try:
         with open(config.QUOTES_SOURCE_FILE) as quotes_file:

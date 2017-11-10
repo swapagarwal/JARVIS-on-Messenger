@@ -2,6 +2,7 @@ import json
 import os
 import sys
 
+import keen
 import requests
 
 import config

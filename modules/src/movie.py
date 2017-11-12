@@ -31,11 +31,9 @@ def process(input, entities):
             # Make another request to the API using the movie's TMDb ID to get the movie's IMDb ID
             r = requests.get('https://api.themoviedb.org/3/movie/' + tmdb_id, params={
                 'api_key': TMDB_API_KEY,
-                'append_to_response':'videos'
+                'append_to_response': 'videos'
             })
             data = r.json()
-            # Seperate Videos from rest of data 
-            videos = data['videos']['results']
 
         # Fetch movie rating from IMDb
         ia = IMDb()
@@ -50,10 +48,11 @@ def process(input, entities):
         template = ButtonTemplate(text)
         template.add_web_url('IMDb Link', 'https://www.imdb.com/title/' + data['imdb_id'] + '/')
 
+        videos = data['videos']['results']
         # Append first Trailer URL if one exists
         for video in videos:
-            if video['type'] == 'Trailer':
-                template.add_web_url('Trailer Link','https://www.youtube.com/watch?v='+video['key']+'/')
+            if video['type'] == 'Trailer' and video['site'] == 'YouTube':
+                template.add_web_url('YouTube Trailer', 'https://www.youtube.com/watch?v=' + video['key'] + '/')
                 break
 
         output['input'] = input

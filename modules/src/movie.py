@@ -1,11 +1,12 @@
 import os
+from imdb import IMDb
 
 import requests
 import requests_cache
-from imdb import IMDb
 
 import config
 from templates.button import *
+from utils.YouTube import YouTubeUtil
 
 # This product uses the TMDb API but is not endorsed or certified by TMDb.
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY', config.TMDB_API_KEY)
@@ -52,7 +53,7 @@ def process(input, entities):
         # Append first Trailer URL if one exists
         for video in videos:
             if video['type'] == 'Trailer' and video['site'] == 'YouTube':
-                template.add_web_url('YouTube Trailer', 'https://www.youtube.com/watch?v=' + video['key'] + '/')
+                template.add_web_url('YouTube Trailer', YouTubeUtil.get_video_url(video['key']))
                 break
 
         output['input'] = input

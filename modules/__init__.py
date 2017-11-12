@@ -23,8 +23,8 @@ def process_query(input):
     # For local testing, mock the response from Wit
     with open(config.WIT_LOCAL_DATA) as wit_file:
         wit_local_data = json.load(wit_file)
-        if input in wit_local_data:
-            return wit_local_data[input]['intent'], wit_local_data[input]['entities']
+        if input.lower() in wit_local_data:
+            return wit_local_data[input.lower()]['intent'], wit_local_data[input.lower()]['entities']
     try:
         r = requests.get('https://api.wit.ai/message?v=20160420&q=' + input, headers={
             'Authorization': 'Bearer %s' % WIT_AI_ACCESS_TOKEN

@@ -17,7 +17,6 @@ app = Flask(__name__)
 def about():
     return 'Just A Rather Very Intelligent System, now on Messenger!'
 
-
 @app.route('/process/')
 def process():
     return json.dumps(modules.process_query(request.args.get('q')))
@@ -31,12 +30,15 @@ def search():
 @app.route('/webhook/', methods=['GET', 'POST'])
 def webhook():
     if request.method == 'POST':
+
         data = request.get_json(force=True)
         messaging_events = data['entry'][0]['messaging']
         for event in messaging_events:
             sender = event['sender']['id']
             message = None
+
             if 'message' in event and 'text' in event['message']:
+
                 if 'quick_reply' in event['message'] and 'payload' in event['message']['quick_reply']:
                     quick_reply_payload = event['message']['quick_reply']['payload']
                     message = modules.search(quick_reply_payload, sender=sender, postback=True)

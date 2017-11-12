@@ -5,6 +5,14 @@
 			"value": "linkin park"
 		}]
 	},
+
+	"roll a die": {
+		"intent": "die",
+		"entities": [{
+			"value": "die"
+		}]
+	},
+
 	"test": {
 		"intent": "xkcd",
 		"entities": []

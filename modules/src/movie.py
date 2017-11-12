@@ -9,7 +9,7 @@ from templates.button import *
 
 # This product uses the TMDb API but is not endorsed or certified by TMDb.
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY', config.TMDB_API_KEY)
-
+youtube_link = 'https://www.youtube.com/watch?v='
 
 def process(input, entities):
     output = {}
@@ -30,9 +30,12 @@ def process(input, entities):
 
             # Make another request to the API using the movie's TMDb ID to get the movie's IMDb ID
             r = requests.get('https://api.themoviedb.org/3/movie/' + tmdb_id, params={
-                'api_key': TMDB_API_KEY
+                'api_key': TMDB_API_KEY,
+                'append_to_response': 'videos'
             })
             data = r.json()
+            trailer = data['videos']['results'][0]['key']
+            youtube_link = youtube_link + str(trailer)
 
         # Fetch movie rating from IMDb
         ia = IMDb()
@@ -46,6 +49,7 @@ def process(input, entities):
         text = template.get_text()
         template = ButtonTemplate(text)
         template.add_web_url('IMDb Link', 'https://www.imdb.com/title/' + data['imdb_id'] + '/')
+        template.add_web_url('Trailer', youtube_link)
 
         output['input'] = input
         output['output'] = template.get_message()

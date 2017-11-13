@@ -23,7 +23,7 @@ def process(input, entities=None):
     try:
         response = None
         response = api_search(keyword)
-        message = "Okay, here are some tweets about " + keyword + "<br><br>" + response
+        message = 'Okay, here are some tweets about ' + keyword + '<br><br>' + response.encode('ascii', 'xmlcharrefreplace')
         output['input'] = input
         output['output'] = message
         output['success'] = True
@@ -33,32 +33,35 @@ def process(input, entities=None):
 
 
 def api_search(keyword):
-    try:
-        tso = TwitterSearchOrder() # create a TwitterSearchOrder object
-        tso.set_keywords([keyword])
-        tso.set_language('en')
-        tso.set_count(1)
-        tso.set_include_entities(False) # and don't give us all those entity information
 
-        tuo = TwitterUserOrder("JARVIS")
-        tuo.set_exclude_replies(True)
+    ts = TwitterSearch(
+        consumer_key=TWITTER_CONSUMER_KEY,
+        consumer_secret=TWITTER_CONSUMER_SECRET,
+        access_token=TWITTER_ACCESS_TOKEN,
+        access_token_secret=TWITTER_ACCESS_TOKEN_SECRET
+    )
 
-        # it's about time to create a TwitterSearch object with our secret tokens
-        ts = TwitterSearch(
-            consumer_key = TWITTER_CONSUMER_KEY,
-            consumer_secret = TWITTER_CONSUMER_SECRET,
-            access_token = TWITTER_ACCESS_TOKEN,
-            access_token_secret = TWITTER_ACCESS_TOKEN_SECRET
-         )
+    tuoFilter = TwitterUserOrder("JARVIS")
+    tuoFilter.set_exclude_replies(True)
+    tuoFilter.set_include_rts(False)
+    tuoFilter.set_contributor_details(False)
 
-        result = ""
+    tsoFilter = TwitterSearchOrder() # create a TwitterSearchOrder object
+    tsoFilter.set_keywords([keyword])
+    tsoFilter.set_language('en')
+    tsoFilter.set_count(3)
+    tsoFilter.set_include_entities(False) # and don't give us all those entity information
 
-         # this is where the fun actually starts :)
-        for tweet in ts.search_tweets_iterable(tso):
-            result += tweet['user']['screen_name'] + ' tweeted: ' + tweet['text'] + "<br><br>"
-            print( '@%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] ) )
+    tso = TwitterSearchOrder()
+    tso.set_search_url(tsoFilter.create_search_url() + tuoFilter.create_search_url())
 
-    except TwitterSearchException as e: # take care of all those ugly errors if there are some
-        print(e)
+    result = ''
+    counter = 0
+
+    results = ts.search_tweets(tsoFilter)
+
+    for tweet in results['content']['statuses']:
+        result += tweet['user']['screen_name'] + ' tweeted: ' + tweet['text'] + "<br><br>"
+        print('@%s tweeted: %s' % (tweet['user']['screen_name'], tweet['text']))
 
     return result

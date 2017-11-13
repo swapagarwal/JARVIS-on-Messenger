@@ -2,6 +2,7 @@ import requests
 import requests_cache
 
 from templates.button import *
+from utils.YouTube import YouTubeUtil
 
 
 def process(input, entities):
@@ -28,7 +29,7 @@ def process(input, entities):
 
         template = ButtonTemplate(text)
         template.add_web_url('Kitsu URL', 'https://kitsu.io/anime/' + top_anime['slug'])
-        template.add_web_url('YouTube URL', 'https://www.youtube.com/watch?v=' + top_anime['youtubeVideoId'])
+        template.add_web_url('YouTube URL', YouTubeUtil.get_video_url(top_anime['youtubeVideoId']))
 
         output['input'] = input
         output['output'] = template.get_message()

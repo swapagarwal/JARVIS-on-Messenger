@@ -21,13 +21,13 @@ def process(input, entities):
         status = data['status_code']
         if status == 1:
             text = hostname + ' is up.'
-            image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/check-circle/256/0/27ae60_none.png'
+            image_url = 'http://fa2png.io/media/icons/font-awesome/4-7-0/check-circle/256/0/27ae60_none.png'
         elif status == 2:
             text = hostname + ' seems to be down!'
-            image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/times-circle/256/0/c0392b_none.png'
+            image_url = 'http://fa2png.io/media/icons/font-awesome/4-7-0/times-circle/256/0/c0392b_none.png'
         elif status == 3:
             text = 'Please enter a valid domain to check availability.'
-            image_url = 'http://fa2png.io/media/icons/font-awesome/4-6-3/exclamation-circle/256/0/f1c40f_none.png'
+            image_url = 'http://fa2png.io/media/icons/font-awesome/4-7-0/exclamation-circle/256/0/f1c40f_none.png'
         else:
             raise Exception("Something unexpected happened!")
 

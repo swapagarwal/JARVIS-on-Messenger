@@ -6,6 +6,7 @@ import requests_cache
 import config
 from templates.generic import *
 from templates.text import TextTemplate
+from utils.YouTube import YouTubeUtil
 
 YOUTUBE_DATA_API_KEY = os.environ.get('YOUTUBE_DATA_API_KEY', config.YOUTUBE_DATA_API_KEY)
 
@@ -22,12 +23,12 @@ def process(input, entities):
         videos = [item for item in data['items'] if item['id']['kind'] == 'youtube#video']
         for item in videos:
             title = item['snippet']['title']
-            item_url = 'https://www.youtube.com/watch?v=' + item['id']['videoId']
+            item_url = YouTubeUtil.get_video_url(item['id']['videoId'])
             image_url = item['snippet']['thumbnails']['high']['url']
             subtitle = item['snippet']['channelTitle']
             buttons = ButtonTemplate()
-            buttons.add_web_url('YouTube Link', 'https://www.youtube.com/watch?v=' + item['id']['videoId'])
-            buttons.add_web_url('Channel Link', 'https://www.youtube.com/channel/' + item['snippet']['channelId'])
+            buttons.add_web_url('YouTube Link', YouTubeUtil.get_video_url(item['id']['videoId']))
+            buttons.add_web_url('Channel Link', YouTubeUtil.get_channel_url(item['snippet']['channelId']))
             template.add_element(title=title, item_url=item_url, image_url=image_url, subtitle=subtitle,
                                  buttons=buttons.get_buttons())
         output['input'] = input

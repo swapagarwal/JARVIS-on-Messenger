@@ -43,5 +43,13 @@ Apart from these, contributions directly to the framework are also welcome!
 
 You can use the following commits for reference: [coin](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/e3f9f587b9b6d05efb1a2769a4cd75fb4855b4f9), [lyrics](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/d3e7b7c969cc3ca1f8276bab0357c9f3c680b236), [news](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/59beb1ca0a0f5210ebf44809282d0cc7d3d42874), [xkcd](https://github.com/swapagarwal/JARVIS-on-Messenger/commit/e322d312525545d1993fe9bda1c5d78f1407095e), etc.
 
+## How the AI works
+
+[Here](https://www.youtube.com/watch?v=tLdjaKkJK_8) is a quick intro to wit.ai
+
+<a href="https://vimeo.com/238717639" target="_blank" title="Click to open Vimeo link">
+  <img src="https://i.imgur.com/qZeRlBk.jpg" alt="Wit.ai Demo" width="500">
+</a>
+
 P.S. If you've come this far, you might as well contribute.
 Looking for a place to start? Take a look at some of the [low-hanging fruits](https://github.com/swapagarwal/JARVIS-on-Messenger/labels/Low-Hanging%20Fruit)!

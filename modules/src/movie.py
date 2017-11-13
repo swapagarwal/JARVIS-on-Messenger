@@ -1,11 +1,12 @@
 import os
+from imdb import IMDb
 
 import requests
 import requests_cache
-from imdb import IMDb
 
 import config
 from templates.button import *
+from utils.YouTube import YouTubeUtil
 
 # This product uses the TMDb API but is not endorsed or certified by TMDb.
 TMDB_API_KEY = os.environ.get('TMDB_API_KEY', config.TMDB_API_KEY)
@@ -30,7 +31,8 @@ def process(input, entities):
 
             # Make another request to the API using the movie's TMDb ID to get the movie's IMDb ID
             r = requests.get('https://api.themoviedb.org/3/movie/' + tmdb_id, params={
-                'api_key': TMDB_API_KEY
+                'api_key': TMDB_API_KEY,
+                'append_to_response': 'videos'
             })
             data = r.json()
 
@@ -46,6 +48,13 @@ def process(input, entities):
         text = template.get_text()
         template = ButtonTemplate(text)
         template.add_web_url('IMDb Link', 'https://www.imdb.com/title/' + data['imdb_id'] + '/')
+
+        videos = data['videos']['results']
+        # Append first Trailer URL if one exists
+        for video in videos:
+            if video['type'] == 'Trailer' and video['site'] == 'YouTube':
+                template.add_web_url('YouTube Trailer', YouTubeUtil.get_video_url(video['key']))
+                break
 
         output['input'] = input
         output['output'] = template.get_message()

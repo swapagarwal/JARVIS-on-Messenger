@@ -15,6 +15,9 @@
     "GOODREADS_ACCESS_TOKEN": {
       "required": false
     },
+    "GOOGLE_MAPS_API_KEY": {
+      "required": false
+    },
     "GOOGLE_URL_SHORTENER_API_KEY": {
       "required": false
     },

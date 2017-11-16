@@ -9,20 +9,16 @@
 		"intent": "xkcd",
 		"entities": []
 	},
-    "i love you": {
-        "intent": "love",
+    "give me a menu": {
+        "intent": "menu",
         "entities": []
     },
-    "i like you": {
-        "intent": "love",
+    "i don't know what to eat": {
+        "intent": "menu",
         "entities": []
     },
-    "i missed you": {
-        "intent": "love",
-        "entities": []
-    },
-    "do you love me?": {
-        "intent": "love",
+    "pick a menu": {
+        "intent": "menu",
         "entities": []
     }
 }

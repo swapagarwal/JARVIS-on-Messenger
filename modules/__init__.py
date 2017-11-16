@@ -2,6 +2,7 @@ import json
 import os
 import sys
 
+import keen
 import requests
 
 import config
@@ -22,8 +23,8 @@ def process_query(input):
     # For local testing, mock the response from Wit
     with open(config.WIT_LOCAL_DATA) as wit_file:
         wit_local_data = json.load(wit_file)
-        if input in wit_local_data:
-            return wit_local_data[input]['intent'], wit_local_data[input]['entities']
+        if input.lower() in wit_local_data:
+            return wit_local_data[input.lower()]['intent'], wit_local_data[input.lower()]['entities']
     try:
         r = requests.get('https://api.wit.ai/message?v=20160420&q=' + input, headers={
             'Authorization': 'Bearer %s' % WIT_AI_ACCESS_TOKEN
@@ -47,6 +48,19 @@ def search(input, sender=None, postback=False):
         entities = payload['entities']
     else:
         intent, entities = process_query(input)
+    # TODO: Needs to be refactored out
+    try:
+        keen.project_id = os.environ.get('KEEN_PROJECT_ID', config.KEEN_PROJECT_ID)
+        keen.write_key = os.environ.get('KEEN_WRITE_KEY', config.KEEN_WRITE_KEY)
+        keen.add_event('logs', {
+            'intent': intent,
+            'entities': entities,
+            'input': input,
+            'sender': sender,
+            'postback': postback
+        })
+    except:
+        pass # Could not stream data for analytics
     if intent is not None:
         if intent in src.__personalized__ and sender is not None:
             r = requests.get('https://graph.facebook.com/v2.6/' + str(sender), params={

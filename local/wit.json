@@ -12,5 +12,20 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
-	}
+	},
+    "give me a menu": {
+        "intent": "menu",
+        "entities": []
+    },
+    "i don't know what to eat": {
+        "intent": "menu",
+        "entities": []
+    },
+    "pick a menu": {
+        "intent": "menu",
+        "entities": []
+    }
 }
+
+
+

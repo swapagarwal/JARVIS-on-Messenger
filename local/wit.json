@@ -9,7 +9,7 @@
 			"value": "linkin park"
 		}]
 	},
-	"what is the price of apple": {
+	"what is the price of apple?": {
 		"intent": "stock",
 		"entities": [{
 			"value":"apple"

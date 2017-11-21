@@ -7,12 +7,12 @@ from templates.text import TextTemplate
 def process(input, entities):
     output = {}
     try:
-        stock_name = entities['stock'][0]['value'].upper()
+        stock_name = entities['stocks'][0]['value'].upper()
 
         r = requests.get('http://www.google.com/finance?q='+stock_name+'&output=json')
         data = json.loads(r.text[3:])
         stockprice = data[0]['l']
-        print('here')
+
         returnString = 'The last price of ' + stock_name + ' is: USD '+ stockprice
         output['input'] = input
         output['output'] = TextTemplate(returnString).get_message()

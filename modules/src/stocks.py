@@ -4,7 +4,7 @@ import json
 from templates.text import TextTemplate
 
 
-def process(input, entities):
+def process(userInput, entities):
     output = {}
     try:
         stock_name = entities['stocks'][0]['value'].upper()
@@ -14,7 +14,7 @@ def process(input, entities):
         stockprice = data[0]['l']
 
         returnString = 'The last price of ' + stock_name + ' is: USD '+ stockprice
-        output['input'] = input
+        output['input'] = userInput
         output['output'] = TextTemplate(returnString).get_message()
         output['success'] = True
     except:

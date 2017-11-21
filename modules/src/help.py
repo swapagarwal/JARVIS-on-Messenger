@@ -28,6 +28,7 @@ def process(input, entities=None):
     help += '\n  - latest news'
     help += '\n  - paradise lyrics'
     help += '\n  - ping google.com'
+    help += '\n  - show me the price of apple'
     help += '\n\nI\'m always learning, so do come back and say hi from time to time!'
     help += '\nHave a nice day. :)'
 

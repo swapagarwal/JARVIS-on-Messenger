@@ -8,7 +8,7 @@ dir = os.getcwd()
 
 # Use gif in images directory
 coin_images = {
-        'heads':'file:///' + dir + '/images/coin_head.gif'
+        'heads':'file:///' + dir + '/images/coin_head.gif',
         'tails':'file:///' + dir + '/images/coin_tail.gif'
     }
 

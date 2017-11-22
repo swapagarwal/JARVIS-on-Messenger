@@ -6,7 +6,7 @@ import requests
 import config
 from templates.text import TextTemplate
 
-MAPQUEST_CONSUMER_KEY = os.environ.get('MAPQUEST_CONSUMER_KEY', config.MAPQUEST_CONSUMER_KEY)
+GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY', config.GOOGLE_MAPS_API_KEY)
 TIME_ZONE_DB_API_KEY = os.environ.get('TIME_ZONE_DB_API_KEY', config.TIME_ZONE_DB_API_KEY)
 
 
@@ -14,8 +14,7 @@ def process(input, entities):
     output = {}
     try:
         r = requests.get(
-            'http://open.mapquestapi.com/nominatim/v1/search.php?key=' + MAPQUEST_CONSUMER_KEY + '&format=json&q=' +
-            entities['time_location'][0]['value'] + '&limit=1')
+             'https://maps.googleapis.com/maps/api/geocode/json?address=' + entities['location'][0]['value'] + '&key=' + GOOGLE_MAPS_API_KEY)
         location_data = r.json()
         r = requests.get('http://api.timezonedb.com/?lat=' + location_data[0]['lat'] + '&lng=' + location_data[0][
             'lon'] + '&format=json&key=' + TIME_ZONE_DB_API_KEY)

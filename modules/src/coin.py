@@ -1,14 +1,16 @@
 import random
-
+import os
 import modules
 from templates.attachment import AttachmentTemplate
 from templates.quick_replies import add_quick_reply
 
-# Images by US Mint; published on wikimedia under public domain rights
+dir = os.getcwd()
+
+# Use gif in images directory
 coin_images = {
-    'heads': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/2006_Quarter_Proof.png/244px-2006_Quarter_Proof.png',
-    'tails': 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Oregon_quarter%2C_reverse_side%2C_2005.jpg/236px-Oregon_quarter%2C_reverse_side%2C_2005.jpg'
-}
+        'heads':'file:///' + dir + '/images/coin_head.gif'
+        'tails':'file:///' + dir + '/images/coin_tail.gif'
+    }
 
 
 def process(input, entities=None):

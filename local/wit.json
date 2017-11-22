@@ -12,5 +12,17 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"i love you": {
+		"intent": "love",
+		"entities": []
+	},
+	"i like you": {
+		"intent": "love",
+		"entities": []
+	},
+	"do you love me?": {
+		"intent": "love",
+		"entities": []
 	}
 }

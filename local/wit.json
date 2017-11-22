@@ -1,4 +1,8 @@
 {
+	"roll a die": {
+		"intent": "dice",
+		"entities": []
+	},
 	"songs by linkin park": {
 		"intent": "music",
 		"entities": [{

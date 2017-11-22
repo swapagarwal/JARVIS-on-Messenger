@@ -119,12 +119,12 @@
                 {
                   "type": "postback",
                   "title": "time in seattle",
-                  "payload": "{\"entities\": {\"time_location\":[{\"value\":\"seattle\"}]}, \"intent\": \"time\"}"
+                  "payload": "{\"entities\": {\"location\":[{\"value\":\"seattle\"}]}, \"intent\": \"time\"}"
                 },
                 {
                   "type": "postback",
                   "title": "weather in london",
-                  "payload": "{\"entities\": {\"weather_location\":[{\"value\":\"london\"}]}, \"intent\": \"weather\"}"
+                  "payload": "{\"entities\": {\"location\":[{\"value\":\"london\"}]}, \"intent\": \"weather\"}"
                 }
               ]
             }

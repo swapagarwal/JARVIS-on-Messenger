@@ -1,18 +1,19 @@
 import random
-
+import os
 import modules
 from templates.attachment import AttachmentTemplate
 from templates.quick_replies import add_quick_reply
 
-dice_sides = {
-    1: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-one/256/0/e74c3c_none.png',
-    2: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-two/256/0/e74c3c_none.png',
-    3: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-three/256/0/e74c3c_none.png',
-    4: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-four/256/0/e74c3c_none.png',
-    5: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-five/256/0/e74c3c_none.png',
-    6: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-six/256/0/e74c3c_none.png'
-}
+dir = os.getcwd()
 
+dice_sides = {
+        1: 'file:///' + dir + '/images/num_1.gif',
+        2: 'file:///' + dir + '/images/num_2.gif',
+        3: 'file:///' + dir + '/images/num_3.gif',
+        4: 'file:///' + dir + '/images/num_4.gif',
+        5: 'file:///' + dir + '/images/num_5.gif',
+        6: 'file:///' + dir + '/images/num_6.gif'
+} 
 
 def process(input, entities=None):
     message = AttachmentTemplate(dice_sides[random.randint(1, 6)], type='image').get_message()

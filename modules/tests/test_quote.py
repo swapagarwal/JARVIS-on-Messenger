@@ -1,4 +1,6 @@
 import modules
+from utils.Quotes import getQuote
+from modules.src.quote import process
 
 
 def test_quote():

@@ -1,12 +1,16 @@
 import os
 import config
+import urllib
 
-from TwitterSearch import *
+from birdy.twitter import UserClient
+from templates.text import *
 
 TWITTER_CONSUMER_KEY = os.environ.get('TWITTER_CONSUMER_KEY', config.TWITTER_CONSUMER_KEY)
 TWITTER_CONSUMER_SECRET = os.environ.get('TWITTER_CONSUMER_SECRET', config.TWITTER_CONSUMER_SECRET)
 TWITTER_ACCESS_TOKEN = os.environ.get('TWITTER_ACCESS_TOKEN', config.TWITTER_ACCESS_TOKEN)
 TWITTER_ACCESS_TOKEN_SECRET = os.environ.get('TWITTER_ACCESS_TOKEN_SECRET', config.TWITTER_ACCESS_TOKEN_SECRET)
+
+CHARACTER_LIMIT = 1024
 
 
 def process(input, entities=None):
@@ -20,10 +24,15 @@ def process(input, entities=None):
     output = {}
     try:
         response = api_search(keyword)
-        message = 'Okay, here are some tweets about ' + keyword + '<br><br>' + response.encode('ascii',
-                                                                                               'xmlcharrefreplace')
+        message = TextTemplate()
+        output_text = 'Okay, here are some tweets about ' + keyword + '\n\n' + response.encode('ascii',
+                                                                                                   'xmlcharrefreplace')
+        message.set_text(text=output_text)
+        message.set_post_text('')
+        message.set_limit(CHARACTER_LIMIT)
+
         output['input'] = input
-        output['output'] = message
+        output['output'] = message.get_message()
         output['success'] = True
     except:
         output['success'] = False
@@ -31,32 +40,17 @@ def process(input, entities=None):
 
 
 def api_search(keyword):
-    ts = TwitterSearch(
-        consumer_key=TWITTER_CONSUMER_KEY,
-        consumer_secret=TWITTER_CONSUMER_SECRET,
-        access_token=TWITTER_ACCESS_TOKEN,
-        access_token_secret=TWITTER_ACCESS_TOKEN_SECRET
-    )
+    client = UserClient(TWITTER_CONSUMER_KEY,
+                        TWITTER_CONSUMER_SECRET,
+                        TWITTER_ACCESS_TOKEN,
+                        TWITTER_ACCESS_TOKEN_SECRET)
 
-    tuo_filter = TwitterUserOrder("JARVIS")
-    tuo_filter.set_exclude_replies(True)
-    tuo_filter.set_include_rts(False)
-    tuo_filter.set_contributor_details(False)
-
-    tso_filter = TwitterSearchOrder()  # create a TwitterSearchOrder object
-    tso_filter.set_keywords([keyword])
-    tso_filter.set_language('en')
-    tso_filter.set_count(3)
-    tso_filter.set_include_entities(False)  # and don't give us all those entity information
-
-    tso = TwitterSearchOrder()
-    tso.set_search_url(tso_filter.create_search_url() + tuo_filter.create_search_url())
-
-    result = ''
-    results = ts.search_tweets(tso_filter)
-
-    for tweet in results['content']['statuses']:
-        result += tweet['user']['screen_name'] + ' tweeted: ' + tweet['text'] + "<br><br>"
-        print('@%s tweeted: %s' % (tweet['user']['screen_name'], tweet['text']))
+    keyword = urllib.quote(keyword.encode('utf8'))
+    response = client.api.search.tweets.get(q=keyword, count=3, tweet_mode='extended')
+    result = ""
+    for tweet in response.data['statuses']:
+        link = 'https://twitter.com/%s/status/%s' % (tweet['user']['screen_name'], tweet['id'])
+        link = '<a href=' + link + '>Show in Twitter</a>'
+        result += tweet['user']['name'] + ' tweeted: ' + tweet['full_text'] + ' ' + link + '\n\n'
 
     return result

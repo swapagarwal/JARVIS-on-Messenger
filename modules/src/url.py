@@ -5,6 +5,7 @@ import requests
 
 import config
 from templates.text import TextTemplate
+from templates.button import ButtonTemplate
 
 GOOGLE_URL_SHORTENER_API_KEY = os.environ.get('GOOGLE_URL_SHORTENER_API_KEY', config.GOOGLE_URL_SHORTENER_API_KEY)
 
@@ -20,7 +21,8 @@ def process(input, entities):
                 'shortUrl': url
             })
             data = r.json()
-            response = 'Here\'s your original URL:\n' + data['longUrl']
+            response = 'Here\'s the URL you entered:\n' + url + '\n\n'
+            response += 'And here\'s your original URL:\n' + data['longUrl']
         else:
             assert (action == 'shorten')
             r = requests.post('https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTENER_API_KEY,
@@ -30,7 +32,8 @@ def process(input, entities):
                     'Content-Type': 'application/json'
                 })
             data = r.json()
-            response = 'Here\'s your shortened URL:\n' + data['id']
+            response = 'Here\'s the URL you entered:\n' + url + '\n\n'
+            response += 'And here\'s your shortened URL:\n' + data['id']
         output['input'] = input
         output['output'] = TextTemplate(response).get_message()
         output['success'] = True

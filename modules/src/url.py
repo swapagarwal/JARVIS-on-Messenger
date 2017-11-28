@@ -23,7 +23,7 @@ def process(input, entities):
             response = 'Here\'s the URL you entered:\n' + url + '\n\n'
             response += 'And here\'s your original URL:\n' + data['longUrl']
             template = ButtonTemplate(response)
-            template.add_web_url('Go to website', url)
+            template.add_web_url('Go to website', data['longUrl'])
         else:
             assert (action == 'shorten')
             r = requests.post('https://www.googleapis.com/urlshortener/v1/url?key=' + GOOGLE_URL_SHORTENER_API_KEY,

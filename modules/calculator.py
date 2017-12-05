@@ -40,6 +40,9 @@ def process(input, entities):
 				output['output'] = math.pow(firstOp, secondOp)
 			elif (operator == 'log'):
 				output['output'] = math.log(firstOp, secondOp)
+			else:
+				output['error_msg'] = TextTemplate('I couldn\'t find the result for your calculation').get_message()
+				output['success'] = False
 	
 	except:
 		output['error_msg'] = TextTemplate('I couldn\'t find the result for your calculation').get_message()

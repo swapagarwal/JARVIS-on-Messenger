@@ -1,68 +1,50 @@
 import math
 
-def add(a, b):
-	return a + b
-	
-def sub(a, b):
-	return a - b
-	
-def mult(a, b):
-	return a * b
-	
-def div(a, b):
-	return a / b
-	
-def sin(a):
-	return math.sin(a)
-	
-def cos(a):
-	return math.cos(a)
-	
-def tan(a):
-	return math.tan(a)
-	
-def asin(a):
-	return math.asin(a)
-	
-def acos(a):
-	return math.acos(a)
-	
-def atan(a):
-	return math.atan(a)
-	
-def pow(a, b):
-	return math.pow(a, b)
-	
-def log(x, base):
-	return math.log(x, base)
-	
-def sqrt(x):
-	return math.sqrt(x)
-	
-def addPolynom(coefs_a, coefs_b):
-	tmp = zip(coefs_a, coefs_b)
-	return t[0] + t[1] for t in tmp
-	
-def subPolynom(coefs_a, coefs_b):
-	tmp = zip(coefs_a, coefs_b)
-	return t[0] - t[1] for t in tmp
-
-
-def derivePolynom(coefs):
-	if(len(coefs) < 1):
-		return coefs
-	
-	tmp = coefs[1:]
-	for x in range(len(tmp)):
-		tmp[x] = (x + 1) * tmp[x]
+def process(input, entities):
+	output = {}
+	try:
+		operator = entities['operator']
+		firstOp = entities['operand'][0]
 		
-	return tmp
-
-def integratePolynom(coefs):
-	for x in range(len(coefs)):
-		coefs[x] = coefs[x] / (x + 1)
+		output['success'] = True
+		
+		if (operator == 'sin'):
+			output['output'] = math.sin(firstOp)
+		elif (operator == 'cos'):
+			output['output'] = math.cos(firstOp)
+		elif (operator == 'tan'):
+			output['output'] = math.tan(firstOp)
+		elif (operator == 'asin'):
+			output['output'] = math.asin(firstOp)
+		elif (operator == 'acos'):
+			output['output'] = math.acos(firstOp)
+		elif (operator == 'atan'):
+			output['output'] = math.atan(firstOp)
+		elif (operator == 'sqrt'):
+			output['output'] = math.sqrt(firstOp)
+		elif (operator == 'ln'):
+			output['output'] = math.log(firstOp)
+		else:
+			secondOp = entities['operand'][1]
+			if (operator == '+'):
+				output['output'] = firstOp + secondOp
+			elif (operator == '-'):
+				output['output'] = firstOp - secondOp
+			elif (operator == '*'):
+				output['output'] = firstOp * secondOp
+			elif (operator == '/'):
+				output['output'] = firstOp / secondOp
+			elif (operator == '%'):
+				output['output'] = firstOp % secondOp
+			elif (operator == 'pow'):
+				output['output'] = math.pow(firstOp, secondOp)
+			elif (operator == 'log'):
+				output['output'] = math.log(firstOp, secondOp)
 	
-	return 0 + coefs
-
-def compute(parameters):
+	except:
+		output['error_msg'] = TextTemplate('I couldn\'t find the result for your calculation').get_message()
+		output['success'] = False
+	
+	
+	return output
 	

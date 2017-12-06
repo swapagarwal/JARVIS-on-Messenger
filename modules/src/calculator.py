@@ -1,13 +1,14 @@
 import math
+from templates.text import TextTemplate
 
 def process(input, entities):
 	output = {}
 	try:
 		operator = entities['operator']
 		firstOp = entities['operand'][0]
-		
+		output['input'] = input
 		output['success'] = True
-		
+
 		if (operator == 'sin'):
 			output['output'] = math.sin(firstOp)
 		elif (operator == 'cos'):
@@ -26,6 +27,8 @@ def process(input, entities):
 			output['output'] = math.log(firstOp)
 		else:
 			secondOp = entities['operand'][1]
+			if secondOp == '':
+				raise Exception
 			if (operator == '+'):
 				output['output'] = firstOp + secondOp
 			elif (operator == '-'):
@@ -43,11 +46,9 @@ def process(input, entities):
 			else:
 				output['error_msg'] = TextTemplate('I couldn\'t find the result for your calculation').get_message()
 				output['success'] = False
-	
 	except:
 		output['error_msg'] = TextTemplate('I couldn\'t find the result for your calculation').get_message()
 		output['success'] = False
-	
-	
+
+
 	return output
-	

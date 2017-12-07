@@ -46,6 +46,7 @@ def process(input, entities):
 			else:
 				output['error_msg'] = "I couldn\'t find the result for your calculation"
 				output['success'] = False
+	
 	except:
 		output['error_msg'] = "I couldn\'t find the result for your calculation"
 		output['success'] = False

@@ -41,11 +41,11 @@ def process(input, entities):
 			elif (operator == 'log'):
 				output['output'] = math.log(firstOp, secondOp)
 			else:
-				output['error_msg'] = TextTemplate('I couldn\'t find the result for your calculation').get_message()
+				output['error_msg'] = "I couldn\'t find the result for your calculation"
 				output['success'] = False
 	
 	except:
-		output['error_msg'] = TextTemplate('I couldn\'t find the result for your calculation').get_message()
+		output['error_msg'] = "I couldn\'t find the result for your calculation"
 		output['success'] = False
 	
 	

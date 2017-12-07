@@ -1,7 +1,7 @@
-import math
-from calculator import process
+import modules
 
-def test():
+def test_calculator():
+    
     input = ""
     entities = {}
     
@@ -130,5 +130,3 @@ def test():
     assert(False == success)
     
     print("all tests passed")
-
-test()

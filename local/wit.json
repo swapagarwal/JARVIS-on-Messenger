@@ -9,6 +9,12 @@
 			"value": "linkin park"
 		}]
 	},
+	"margarita cocktail": {
+		"intent": "cocktail",
+		"entities": [{
+			"value": "linkin park"
+		}]
+	},
 	"test": {
 		"intent": "xkcd",
 		"entities": []

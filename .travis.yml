@@ -5,4 +5,5 @@ cache: pip
 install:
   - pip install -r requirements.txt
 script:
-  - py.test -n 8 -v
+  - py.test -n 8 -v --cov=./
+  - codecov

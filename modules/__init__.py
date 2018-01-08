@@ -7,6 +7,7 @@ import requests
 
 import config
 from src import *
+from tests import *
 from templates.text import TextTemplate
 
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)

@@ -12,12 +12,5 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
-	},
-	"margarita": {
-		"intent": "cocktail",
-		"entities": [{
-			"value": "margarita cocktail"
-		}]
 	}
-
 }

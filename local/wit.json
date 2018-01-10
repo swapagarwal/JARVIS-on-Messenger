@@ -16,13 +16,15 @@
 	"margarita cocktail": {
 		"intent": "cocktail",
 		"entities": [{
-			"value": "margarita"
-		}],
+				"value": "margarita"
+		}]
+	},
 	"mai tai cocktail": {
 		"intent": "cocktail",
 		"entities": [{
 			"value": "mai tai"
-		}],
+		}]
+	},
 	"cocktail martini": {
 		"intent": "cocktail",
 		"entities": [{

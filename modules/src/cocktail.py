@@ -11,7 +11,7 @@ COCKTAIL_API_KEY = os.environ.get('COCKTAIL_API_KEY', config.COCKTAIL_API_KEY)
 def process(input, entities):
     output = {}
     try:
-        query = entities['cocktail'][0]['value']
+        query = entities[0]['value']
         # Search in title
         r = requests.get('http://www.thecocktaildb.com/api/json/v1/' + COCKTAIL_API_KEY + '/search.php', params={
             's': query

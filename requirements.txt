@@ -9,7 +9,7 @@ Flask==0.10.1
 FormEncode==1.3.1
 html2text==2016.9.19
 idna==2.1
-IMDbPY==5.1.1
+imdbparser==1.0.3
 ipaddress==1.0.16
 itsdangerous==0.24
 Jinja2==2.8

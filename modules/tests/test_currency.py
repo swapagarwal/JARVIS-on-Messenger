@@ -5,7 +5,7 @@ def test_currency():
     assert ('currency' == modules.process_query('HKD to USD')[0])
     assert ('currency' == modules.process_query('USD to INR')[0])
     assert ('currency' == modules.process_query('how much is USD in EUR')[0])
-    
+
     intent, entities = modules.process_query('convert 5 HKD to USD')
     assert ('currency' == intent)
     assert ('HKD' == entities['from_currency'][0]['value'])

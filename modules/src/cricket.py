@@ -9,7 +9,6 @@ def process(input, entities=None):
     try:
         cricket = Cricbuzz()
         matches = cricket.matches()
-        data = json.dumps(cricket.livescore(match['id']))
         text_data=""
         template = TextTemplate()
         for match in matches:

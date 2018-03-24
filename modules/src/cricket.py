@@ -8,7 +8,7 @@ def process(input, entities=None):
     output = {}
     try:
         cricket = Cricbuzz()
-        matches = c.matches()
+        matches = cricket.matches()
         data = json.dumps(cricket.livescore(match['id']))
         text_data=""
         template = TextTemplate()

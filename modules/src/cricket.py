@@ -14,8 +14,9 @@ def process(input, entities=None):
         for match in matches:
             cric_data=cricket.livescore(match['id'])
             text_data+=cric_data['matchinfo']['mnum']+"\n"+cric_data['matchinfo']['mchdesc']+"\n"
-            text_data+=cric_data['batting']['team']+"\t"+cric_data['batting']['score'][0]['runs']+"/"+cric_data['batting']['score'][0]['wickets']+"\n"
-            text_data+=cric_data['bowling']['team']+"\t"+cric_data['bowling']['score'][0]['runs']+"/"+cric_data['bowling']['score'][0]['wickets']+"\n"
+            if "Starts" not in cric_data['matchinfo']['status']:
+                text_data+=cric_data['batting']['team']+"\t"+cric_data['batting']['score'][0]['runs']+"/"+cric_data['batting']['score'][0]['wickets']+"\n"
+                text_data+=cric_data['bowling']['team']+"\t"+cric_data['bowling']['score'][0]['runs']+"/"+cric_data['bowling']['score'][0]['wickets']+"\n"
             text_data+=cric_data['matchinfo']['status']+"\n"+"*"*10+"\n"
         template.set_text(text_data)
         text = template.get_text()

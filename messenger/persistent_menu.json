@@ -84,6 +84,11 @@
                   "title": "videos of sia",
                   "payload": "{\"entities\": {\"video\":[{\"value\":\"sia\"}]}, \"intent\": \"video\"}"
                 }
+              {
+                "type": "postback",
+                "title": "cricket livescores",
+                "payload": "{\"entities\": null, \"intent\": \"cricket\"}"
+              }
               ]
             },
             {

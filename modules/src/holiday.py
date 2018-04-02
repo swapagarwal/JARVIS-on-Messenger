@@ -10,7 +10,8 @@ def process(input, entities=None):
         us_holidays = holidays.US()
         while 1:
             if date(now.year, now.month, now.day) in us_holidays:
-        	    output['output'] = us_holidays[date(now.year, now.month, now.day)]
+            	message = "The nearest holiday is " + us_holidays[date(now.year, now.month, now.day)] + " on " + str(now.month) + "-" + str(now.day) + "-" + str(now.year)
+        	    output['output'] = message
         	    output['success'] = True
         	    break
             else:

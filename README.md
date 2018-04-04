@@ -100,6 +100,9 @@ c) `brew install libtins`
 `http://localhost:5000/process/?q=<<YOUR_QUERY>>` returns the intent of the query.  
 `http://localhost:5000/search/?q=<<YOUR_QUERY>>` returns the search result of the query.
 
+Ex) `http://localhost:5000/process/?q=hello` [result](/images/result_hello.png)
+or `http://localhost:5000/search/?q=joke` [result](/images/result_joke.png)
+
 * The "process" endpoint returns what module the system classifies your query e.g. a dictionary query, a song search, etc. Visit the following URLs to understand the output format:  
 `http://localhost:5000/process/?q=tell%20me%20a%20joke`  
 `http://localhost:5000/process/?q=time%20in%20seattle`  

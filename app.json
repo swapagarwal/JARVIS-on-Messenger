@@ -21,9 +21,6 @@
     "GOOGLE_URL_SHORTENER_API_KEY": {
       "required": false
     },
-    "MAPQUEST_CONSUMER_KEY": {
-      "required": false
-    },
     "MUSIXMATCH_API_KEY": {
       "required": false
     },

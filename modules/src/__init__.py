@@ -22,6 +22,7 @@ __all__ = [
     'time',
     'url',
     'video',
+    'wallpaper',
     'weather',
     'wiki',
     'xkcd',

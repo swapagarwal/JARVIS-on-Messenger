@@ -1,5 +1,5 @@
 import os
-from imdb import IMDb
+from imdbparser import IMDb
 
 import requests
 import requests_cache
@@ -40,10 +40,11 @@ def process(input, entities):
         ia = IMDb()
         imdb_id = data['imdb_id']
         imdb_movie = ia.get_movie(imdb_id[2:])
+        imdb_movie.fetch()
 
         template = TextTemplate('Title: ' + data['title'] +
                                 '\nYear: ' + data['release_date'][:4] +
-                                '\nIMDb Rating: ' + str(imdb_movie['rating']) + ' / 10' +
+                                '\nIMDb Rating: ' + str(imdb_movie.__dict__['rating']) + ' / 10' +
                                 '\nOverview: ' + data['overview'])
         text = template.get_text()
         template = ButtonTemplate(text)

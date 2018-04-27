@@ -18,6 +18,7 @@ __all__ = [
     'ping',
     'quote',
     'request',
+    'stocks',
     'thanks',
     'time',
     'url',

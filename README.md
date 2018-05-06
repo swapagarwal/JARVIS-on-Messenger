@@ -18,6 +18,8 @@ Messenger is now used by 1.2 billion people every month. With the launch of Send
 
 JARVIS is at your service [here](https://m.me/J.A.R.V.I.S.on.Messenger).
 
+<a href="https://www.buymeacoffee.com/swap" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
 ### Demo (Vimeo)
 
 <a href="https://vimeo.com/226022581" target="_blank" title="Click to open Vimeo link">

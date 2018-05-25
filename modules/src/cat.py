@@ -8,7 +8,7 @@ from templates.text import TextTemplate
 def process(input, entities=None):
     output = {}
     try:
-        response = requests.get('http://thecatapi.com/api/images/get', params = {'format': 'xml'})
+        response = requests.get('http://thecatapi.com/api/images/get', params={'format': 'xml'})
         cat_image = ''
 
         # Response example:
@@ -42,6 +42,7 @@ def process(input, entities=None):
     except:
         error_message = 'There was some error while retrieving your cat picture.'
         output = {
+            'input': input,
             'error_msg': TextTemplate(error_message).get_message(),
             'success': False
         }

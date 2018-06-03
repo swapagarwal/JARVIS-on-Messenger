@@ -24,8 +24,8 @@ __all__ = [
     'video',
     'weather',
     'wiki',
-    'xkcd',
     'hate',
+    'xkcd',
 ]
 
 # List of modules that send data personalized to the user

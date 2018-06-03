@@ -8,6 +8,7 @@ __all__ = [
     'dice',
     'dictionary',
     'fact',
+    'hate',
     'hello',
     'help',
     'joke',
@@ -24,7 +25,6 @@ __all__ = [
     'video',
     'weather',
     'wiki',
-    'hate',
     'xkcd',
 ]
 

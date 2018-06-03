@@ -14,7 +14,7 @@
 		"entities": []
 	},
 	"i love you":{
-		"intent":"love",
+		"intent":"emotion",
 		"entities":[]
 	
 	}

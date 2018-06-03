@@ -13,4 +13,8 @@
 		"intent": "xkcd",
 		"entities": []
 	}
+	"i hate you": {
+		"intent": "hate",
+		"entities": []
+	}
 }

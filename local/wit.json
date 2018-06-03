@@ -16,6 +16,17 @@
 	"i love you":{
 		"intent":"emotion",
 		"entities":[]
-	
+	},
+	"i missed you":{
+		"intent":"emotion",
+		"entities":[]
+	},									
+	"i like you":{
+		"intent":"emotion",
+		"entities":[]
+	},
+	"what is love":{
+		"intent":"emotion",
+		"entities":[]
 	}
 }

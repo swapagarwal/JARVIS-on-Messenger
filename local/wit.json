@@ -9,6 +9,11 @@
 			"value": "linkin park"
 		}]
 	},
+	"chicken recipe": {
+		"intent": "recipe",
+		"entities": [{
+			"value": "chicken"
+		}]
 	"test": {
 		"intent": "xkcd",
 		"entities": []

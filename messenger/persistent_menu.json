@@ -24,6 +24,11 @@
                 },
                 {
                   "type": "postback",
+                  "title": "Let me know about today's lucky.",
+                  "payload": "{\"entities\": null, \"intent\": \"lucy\"}"
+                },
+                {
+                  "type": "postback",
                   "title": "show me a fact",
                   "payload": "{\"entities\": null, \"intent\": \"fact\"}"
                 },

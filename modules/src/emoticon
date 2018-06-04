@@ -1,0 +1,50 @@
+import json
+from random import choice
+
+import config
+import modules
+from templates.quick_replies import add_quick_reply
+from templates.text import TextTemplate
+
+
+# List of all emoticons
+__all__ = [
+    '\U0001f604',
+    
+    '\U0001f600',
+
+    '\U0001f602',
+
+    '\U0002f639',
+
+    '\U0001f611',
+    
+    '\U0001f644',
+    
+    '\U0001f62e',
+    
+    '\U0001f62a',
+    
+    '\U0001f62b',
+    
+    '\U0001f620',
+
+]
+
+
+def process(input):
+    output = {}
+    try:
+        with open(config.EMOTICONS_SOURCE_FILE) as emoticons_file:
+            emoticons = json.load(emoticons_file)
+
+            emoticons_list = emoticons[input]
+
+            print emoticons_list
+            message = TextTemplate(choice(emoticons_list)).get_message()
+            output['input'] = input
+            output['output'] = message
+            output['success'] = True
+    except:
+        output['success'] = False
+    return output

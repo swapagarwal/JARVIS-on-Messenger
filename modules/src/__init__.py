@@ -16,6 +16,7 @@ __all__ = [
     'music',
     'news',
     'ping',
+    'place',
     'quote',
     'request',
     'thanks',

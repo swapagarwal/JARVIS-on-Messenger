@@ -12,5 +12,10 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"I'm angry": {
+		"intent": "angry",
+		"entities": []
 	}
+	
 }

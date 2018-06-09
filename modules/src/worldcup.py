@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 
-from text import TextTemplate
+from templates.text import TextTemplate
 
 r = requests.get("https://raw.githubusercontent.com/openfootball/world-cup.json/master/2018/worldcup.json")
 

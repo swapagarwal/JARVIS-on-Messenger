@@ -24,6 +24,7 @@ __all__ = [
     'video',
     'weather',
     'wiki',
+    'worldcup',
     'xkcd',
 ]
 

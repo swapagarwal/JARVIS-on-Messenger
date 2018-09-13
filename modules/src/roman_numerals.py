@@ -6,7 +6,15 @@ def process(input, entities):
     
     try:
     
-        modern_numeral = int(float(modern_numeral)) 
+        modern_numeral = int(float(modern_numeral))
+        
+        tempa = modern_numeral
+        count = 1
+        
+        while tempa > 5000:
+            tempa = temp**.5
+            count += 1
+            
         
         # TODO remove runding and use decimal dot system too
         
@@ -14,17 +22,29 @@ def process(input, entities):
         
         # TODO uses old number system f.x. VIIII update to the newer IX
         
-        # TODO make use of () to * by a thausend f.x. (V) = 5000 and ((V)) = 5000000 to efficintlt write infinitly big numbers
+        dicta = {}
         
-        thausends, modern_numeral = modern_numeral//1000, modern_numeral%1000
-        fivehundreds, modern_numeral = modern_numeral//500, modern_numeral%500
-        hundreds, modern_numeral = modern_numeral//100, modern_numeral%100
-        fifties, modern_numeral = modern_numeral//50, modern_numeral%50
-        tens, modern_numeral = modern_numeral//10, modern_numeral%10
-        fives, modern_numeral = modern_numeral//5, modern_numeral%5
-        ones = modern_numeral
-    
-        out_line = "In roman numerals that would be "+"M"*thausends+"D"*fivehundreds+"C"*hundreds+"L"*fifties+"X"*tens+"V"*fives+"I"*ones
+        for i in range(count)[::-1]:
+            
+            dicta["thausends"+str(i)], modern_numeral = modern_numeral//(1000*1000**i), modern_numeral%(1000*1000**i)
+            dicta["fivehundreds"+str(i)], modern_numeral = modern_numeral//(500*1000**i), modern_numeral%(500*1000**i)
+            dicta["hundreds"+str(i)], modern_numeral = modern_numeral//(100*1000**i), modern_numeral%(100*1000**i)
+            dicta["fifties"+str(i)], modern_numeral = modern_numeral//(50*1000**i), modern_numeral%(50*1000**i)
+            dicta["tens"+str(i)], modern_numeral = modern_numeral//(10*1000**i), modern_numeral%(10*1000**i)
+            dicta["fives"+str(i)], modern_numeral = modern_numeral//(5*1000**i), modern_numeral%(5*1000**i)
+            dicta["ones"+str(i)], modern_numeral = modern_numeral//(1*1000**i), modern_numeral%(1*1000**i)
+        
+        out_line = "In roman numerals that would be "
+        
+        for i in range(count)[::-1]:
+            
+            out_line += ("("*i+"M"+")"*i)*dicta["thausends"+str(i)]*bool(dicta["thausends"+str(i)])
+            out_line += ("("*i+"D"+")"*i)*dicta["fivehundreds"+str(i)]*bool(dicta["fivehundreds"+str(i)])
+            out_line += ("("*i+"C"+")"*i)*dicta["hundreds"+str(i)]*bool(dicta["hundreds"+str(i)])
+            out_line += ("("*i+"L"+")"*i)*dicta["fifties"+str(i)]*bool(dicta["fifties"+str(i)])
+            out_line += ("("*i+"X"+")"*i)*dicta["tens"+str(i)]*bool(dicta["tens"+str(i)])
+            out_line += ("("*i+"V"+")"*i)*dicta["fives"+str(i)]*bool(dicta["fives"+str(i)])
+            out_line += ("("*i+"I"+")"*i)*dicta["ones"+str(i)]*bool(dicta["ones"+str(i)])
     
         output['input'] = input
         output['output'] = TextTemplate(out_line).get_message()

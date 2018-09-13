@@ -26,7 +26,7 @@ def process(input, entities):
         fives, modern_numeral = modern_numeral//5, modern_numeral%5
         ones = modern_numeral
     
-         out_line = "M"*thausends+"D"*fivehundreds+"C"*hundreds+"L"*fifties+"X"*tens+"V"*fives+"I"*ones
+        out_line = "M"*thausends+"D"*fivehundreds+"C"*hundreds+"L"*fifties+"X"*tens+"V"*fives+"I"*ones
     
         output['input'] = input
         output['output'] = TextTemplate(out_line).get_message()

@@ -12,7 +12,7 @@ def process(input, entities):
         count = 1
         
         while tempa > 5000:
-            tempa = temp**.5
+            tempa = temp//1000+1
             count += 1
             
         

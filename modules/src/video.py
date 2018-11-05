@@ -7,6 +7,7 @@ import config
 from templates.generic import *
 from templates.text import TextTemplate
 from utils.YouTube import YouTubeUtil
+from utils.Trending import TrendingUtil
 
 YOUTUBE_DATA_API_KEY = os.environ.get('YOUTUBE_DATA_API_KEY', config.YOUTUBE_DATA_API_KEY)
 
@@ -14,6 +15,10 @@ YOUTUBE_DATA_API_KEY = os.environ.get('YOUTUBE_DATA_API_KEY', config.YOUTUBE_DAT
 def process(input, entities):
     output = {}
     try:
+        # if the request includes as entity value the word 'trending' it will get the most popular videos from the region requested
+        # in utils/Trending.py is the function that does this work
+        if entities['video'][0]['value'] == 'trending':
+            return TrendingUtil.get_trending(entities['video'][1]['value'])
         video = entities['video'][0]['value']
         with requests_cache.enabled('video_cache', backend='sqlite', expire_after=3600):
             r = requests.get(

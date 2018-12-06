@@ -1,6 +1,6 @@
 class YouTubeUtil:
     def searchyoutube(term):
-        return ("https://www.google.com/search?q="+ youtube +"+site:www.youtube.com&btnI")
+        return ("https://www.google.com/search?q="+ term +"+site:www.youtube.com&btnI")
     @staticmethod
     def get_video_url(id):
         return 'https://www.youtube.com/watch?v=' + id + '/'

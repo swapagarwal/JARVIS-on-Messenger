@@ -22,6 +22,7 @@ def api_search(auth_token, search_term):
 
 def process(input, entities):
     output = {}
+    print(entities)
     try:
         music = entities['music'][0]['value']
 

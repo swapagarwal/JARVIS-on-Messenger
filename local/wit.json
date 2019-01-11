@@ -12,5 +12,13 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"translate hello to french": {
+		"intent": "translate",
+		"entities": [{
+			"word": "hello",
+            "curr-lang": "english",
+			"new-lang": "french"
+		}]
 	}
 }

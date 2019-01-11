@@ -17,7 +17,7 @@
 		"intent": "translate",
 		"entities": [{
 			"word": "hello",
-            "curr-lang": "english",
+            "curr-lang": "",
 			"new-lang": "french"
 		}]
 	}

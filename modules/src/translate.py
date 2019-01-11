@@ -11,7 +11,8 @@ def process(intent, entities):
     words_to_translate = entities[0]['word']
     src_lang = LANGCODES.get(entities[0]['curr-lang'])
     dest_lang = LANGCODES.get(entities[0]['new-lang'])
-    if src_lang != "" :
+
+    if src_lang is not None:
         translated_text = translator.translate(words_to_translate, src=src_lang, dest=dest_lang)
 
         if translated_text.text == words_to_translate:
@@ -21,7 +22,7 @@ def process(intent, entities):
             output['output'] = TextTemplate(translated_text.text).get_message()
             output['success'] = True
     else:
-        translated_text = translator.translate(words_to_translate, dest_lang=dest_lang)
+        translated_text = translator.translate(words_to_translate, dest=dest_lang)
 
         output['output'] = TextTemplate(translated_text.text).get_message()
         output['success'] = True

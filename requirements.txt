@@ -23,7 +23,7 @@ pyasn1==0.1.9
 pycparser==2.14
 pycryptodome==3.4.7
 PyDispatcher==2.0.5
-pyOpenSSL==16.0.0
+pyOpenSSL==17.5.0
 pytest==3.2.3
 pytest-forked==0.2
 pytest-sugar==0.9.0

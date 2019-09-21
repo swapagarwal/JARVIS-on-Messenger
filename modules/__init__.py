@@ -14,9 +14,15 @@ from templates.text import TextTemplate
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)
 
 
-def not_understood_message():
-    message = TextTemplate(
-        'I\'m sorry; I\'m not sure I understand what you\'re trying to say.\nTry typing "help" or "request"').get_message()
+def not_understood_message(error=None):
+    message = None
+    if error is None:
+        message = TextTemplate(
+            'I\'m sorry; I\'m not sure I understand what you\'re trying to say.\nTry typing "help" or "request"').get_message()
+    else:
+        message = TextTemplate(
+            'I\'m sorry; I\'m not sure I understand what you\'re trying to say.\nTry typing "help" or "request". Error: '+str(error)).get_message()
+
     message = add_quick_reply(message, 'Help', modules.generate_postback('help'))
     message = add_quick_reply(message, 'Request', modules.generate_postback('request'))
     return message
@@ -52,7 +58,7 @@ def process_query(input):
 
 def search(input, sender=None, postback=False):
     if input is None:
-        return not_understood_message()
+        return not_understood_message("Empty Input in Search!")
     if postback:
         payload = json.loads(input)
         intent = payload['intent']

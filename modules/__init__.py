@@ -58,7 +58,7 @@ def process_query(input):
 
 def search(input, sender=None, postback=False):
     if input is None:
-        return not_understood_message("Empty Input in Search!")
+        return not_understood_message("Empty Input in Search!g")
     if postback:
         payload = json.loads(input)
         intent = payload['intent']

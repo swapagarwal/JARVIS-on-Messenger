@@ -50,7 +50,7 @@
                 },
                 {
                   "type": "postback",
-                  "title": "roll a die",
+                  "title": "roll a dice",
                   "payload": "{\"entities\": null, \"intent\": \"dice\"}"
                 },
                 {

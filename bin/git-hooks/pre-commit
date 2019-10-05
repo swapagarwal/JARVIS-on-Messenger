@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+#
+# To enable this hook, rename this file to "pre-commit".
+
+#my $init_file ="../../modules/init.py";
+#open (INIT_FILE, $init_file);
+#my $file_str = <INIT_FILE>;
+
+#my @matches = $file_str ~= __all__\s?=\s?\[\s*(\'[A-Za-z0-9_-]+\'[,\s]?\s*)+\];
+#echo "@matches";
+
+git diff --cached --name-only | 
+	while read file
+	do
+		if [ "$file" = 'modules/src/__init__.py' ]
+		then
+			all_re="\[\s*(\'[A-Za-z0-9_-]+\'\s*,\s*)*\'[A-Za-z0-9_-]+\'\s*,?\s*\]"
+			all_var="$(grep -z -Po $all_re $file | tr '\0' '.')"
+			all_var=$(echo $all_var | sed "s/\.//g")
+			all_var=$(echo $all_var | sed "s/\]\[/:/g" | sed "s/\[//g" | sed "s/\]//g")
+			all_var=$(echo $all_var | sed "s/[\',( )+\']/ /g")
+			IFS=':'; read -a ARR0 <<< "$all_var"
+			for j in "${ARR0[@]}"; do
+				prev=""
+				IFS=' '; read -a ARR <<< "$j"
+				for i in "${ARR[@]}"; do
+					if [[ "$prev" > "$i" ]]
+					then
+						echo "Modules in init are not in order: ($prev $i)"
+						exit 1
+					fi
+					prev="$i"
+				done
+			done
+		fi
+done
+
+

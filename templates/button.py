@@ -1,7 +1,7 @@
 import json
 from copy import deepcopy as copy
 
-from text import TextTemplate
+from .text import TextTemplate
 
 TextTemplate.get_text = lambda self: self.get_message()['text']
 

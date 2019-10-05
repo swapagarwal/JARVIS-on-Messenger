@@ -1,5 +1,5 @@
 import os
-from imdbparser import IMDb
+from imdb import IMDb
 
 import requests
 import requests_cache

@@ -7,12 +7,25 @@ import requests
 
 import config
 import modules
-from src import *
+from .src import *
 from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
 
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)
 
+
+def not_understood_message(error=None):
+    message = None
+    if error is None:
+        message = TextTemplate(
+            'I\'m sorry; I\'m not sure I understand what you\'re trying to say.\nTry typing "help" or "request"').get_message()
+    else:
+        message = TextTemplate(
+            'I\'m sorry; I\'m not sure I understand what you\'re trying to say.\nTry typing "help" or "request". Error: '+str(error)).get_message()
+
+    message = add_quick_reply(message, 'Help', modules.generate_postback('help'))
+    message = add_quick_reply(message, 'Request', modules.generate_postback('request'))
+    return message
 
 def generate_postback(module):
     return {
@@ -44,6 +57,8 @@ def process_query(input):
 
 
 def search(input, sender=None, postback=False):
+    if input is None:
+        return not_understood_message("Empty Input in Search!g")
     if postback:
         payload = json.loads(input)
         intent = payload['intent']
@@ -81,8 +96,4 @@ def search(input, sender=None, postback=False):
             else:
                 return TextTemplate('Something didn\'t work as expected! I\'ll report this to my master.').get_message()
     else:
-        message = TextTemplate(
-            'I\'m sorry; I\'m not sure I understand what you\'re trying to say.\nTry typing "help" or "request"').get_message()
-        message = add_quick_reply(message, 'Help', modules.generate_postback('help'))
-        message = add_quick_reply(message, 'Request', modules.generate_postback('request'))
-        return message
+        return not_understood_message()

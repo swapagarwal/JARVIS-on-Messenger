@@ -35,6 +35,7 @@ def process_query(input):
         intent = data['outcomes'][0]['intent']
         entities = data['outcomes'][0]['entities']
         confidence = data['outcomes'][0]['confidence']
+
         if intent in src.__all__ and confidence > 0.5:
             return intent, entities
         else:

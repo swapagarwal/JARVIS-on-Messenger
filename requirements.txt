@@ -21,7 +21,7 @@ pbr==3.1.1
 py==1.4.34
 pyasn1==0.1.9
 pycparser==2.14
-pycryptodome==3.4.7
+pycryptodome==3.6.6
 PyDispatcher==2.0.5
 pyOpenSSL==16.0.0
 pytest==3.2.3

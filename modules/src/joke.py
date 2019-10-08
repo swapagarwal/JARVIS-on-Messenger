@@ -7,12 +7,13 @@ import modules
 from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
 
-def download_new_joke(joke_idx, jokes_list):
+
+def download_new_joke(joke_idx, jokes):
     r = requests.get('https://icanhazdadjoke.com/', headers={'Accept': 'application/json'})
     resp = r.json()
     tick = 0
-    while 'joke' in resp and tick <= 4:
-        if resp['joke'] not in jokes_list:
+    while 'joke' in resp and tick <= 10:
+        if resp['joke'] not in jokes['jokes']+jokes['used_jokes']:
             return resp['joke']
         else:
             resp = requests.get('https://icanhazdadjoke.com/', headers={'Accept': 'application/json'}).json()
@@ -36,7 +37,7 @@ def process(input, entities=None):
         if 'used_jokes' not in jokes:
             jokes['used_jokes'] = []
         jokes['used_jokes'].append(joke)
-        new_joke = download_new_joke(joke_idx, jokes_list)
+        new_joke = download_new_joke(joke_idx, jokes)
         if new_joke:
             print(new_joke)
             jokes_list[joke_idx] = new_joke

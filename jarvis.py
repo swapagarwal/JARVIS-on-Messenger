@@ -64,4 +64,6 @@ def webhook():
 
 
 if __name__ == '__main__':
+    import logging, logging.config, yaml
+    logging.config.dictConfig(yaml.load(open('logger.conf')))
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)

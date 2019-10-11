@@ -3,6 +3,7 @@
 Just A Rather Very Intelligent System, now on Messenger!
 
 [![Build Status](https://travis-ci.org/swapagarwal/JARVIS-on-Messenger.svg?branch=master)](https://travis-ci.org/swapagarwal/JARVIS-on-Messenger)
+[![Code Coverage](https://codecov.io/gh/swapagarwal/JARVIS-on-Messenger/branch/master/graph/badge.svg)](https://codecov.io/gh/swapagarwal/JARVIS-on-Messenger)
 ![Python](https://img.shields.io/badge/python-2.7-blue.svg)
 [![PEP8](https://img.shields.io/badge/code%20style-pep8-orange.svg)](https://www.python.org/dev/peps/pep-0008/)
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20🚀%20🐳-FFDD67.svg)](https://gitmoji.carloscuesta.me)

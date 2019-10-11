@@ -13,7 +13,7 @@ def process(input, entities):
     output = {}
     try:
         r = requests.get(
-            'https://maps.googleapis.com/maps/api/geocode/json?address=' + entities['weather_location'][0][
+            'https://maps.googleapis.com/maps/api/geocode/json?address=' + entities['location'][0][
                 'value'] + '&key=' + GOOGLE_MAPS_API_KEY)
         location_data = r.json()
         r = requests.get('http://api.openweathermap.org/data/2.5/weather?lat=' + str(

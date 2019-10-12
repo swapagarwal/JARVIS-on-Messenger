@@ -9,6 +9,12 @@
 			"value": "linkin park"
 		}]
 	},
+	"next spacex launch": {
+		"intent": "spacex",
+		"entities": [{
+			"value": "next launch"
+		}]
+	},
 	"test": {
 		"intent": "xkcd",
 		"entities": []

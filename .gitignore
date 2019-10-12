@@ -63,6 +63,13 @@ target/
 
 # Ipython Notebook
 .ipynb_checkpoints
+jupyter/
 
 # PyCharm
 .idea/
+
+# Environments
+venv/
+
+# VS code
+.vscode

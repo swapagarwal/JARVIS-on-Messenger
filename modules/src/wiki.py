@@ -6,6 +6,7 @@ from templates.text import TextTemplate
 
 def process(input, entities):
     output = {}
+    print entities
     try:
         query = entities['wiki'][0]['value']
         data = wikipedia.page(query)

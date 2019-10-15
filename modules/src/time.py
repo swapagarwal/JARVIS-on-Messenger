@@ -15,7 +15,7 @@ def process(input, entities):
     try:
         r = requests.get(
             'http://open.mapquestapi.com/nominatim/v1/search.php?key=' + MAPQUEST_CONSUMER_KEY + '&format=json&q=' +
-            entities['time_location'][0]['value'] + '&limit=1')
+            entities['location'][0]['value'] + '&limit=1')
         location_data = r.json()
         r = requests.get('http://api.timezonedb.com/?lat=' + location_data[0]['lat'] + '&lng=' + location_data[0][
             'lon'] + '&format=json&key=' + TIME_ZONE_DB_API_KEY)

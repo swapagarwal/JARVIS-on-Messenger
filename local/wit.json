@@ -12,5 +12,9 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"Food menu":{
+		"intent": "Food menu",
+		"entities" : []
 	}
 }

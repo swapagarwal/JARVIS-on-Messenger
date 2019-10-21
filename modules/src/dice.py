@@ -5,12 +5,12 @@ from templates.attachment import AttachmentTemplate
 from templates.quick_replies import add_quick_reply
 
 dice_sides = {
-    1: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-one/256/0/e74c3c_none.png',
-    2: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-two/256/0/e74c3c_none.png',
-    3: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-three/256/0/e74c3c_none.png',
-    4: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-four/256/0/e74c3c_none.png',
-    5: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-five/256/0/e74c3c_none.png',
-    6: 'http://fa2png.io/media/icons/foundation-icon-fonts/2015-02-16/die-six/256/0/e74c3c_none.png'
+    1: 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Alea_1.png',
+    2: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Alea_2.png',
+    3: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Alea_3.png',
+    4: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Alea_4.png',
+    5: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Alea_5.png',
+    6: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Alea_6.png'
 }
 
 

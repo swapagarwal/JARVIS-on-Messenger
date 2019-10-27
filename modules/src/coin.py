@@ -15,6 +15,7 @@ def process(input, entities=None):
     message = AttachmentTemplate(coin_images[random.choice(['heads', 'tails'])], type='image').get_message()
     message = add_quick_reply(message, 'Flip again!', modules.generate_postback('coin'))
     message = add_quick_reply(message, 'Roll a die.', modules.generate_postback('dice'))
+    message = add_quick_reply(message, 'Flip a table!', modules.generate_postback('table'))
     output = {
         'input': input,
         'output': message,

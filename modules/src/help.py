@@ -2,7 +2,6 @@ import modules
 from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
 
-
 def process(input, entities=None):
     help = 'Hi there! I\'m Jarvis, your personal assistant.'
     if entities is not None:
@@ -28,6 +27,7 @@ def process(input, entities=None):
     help += '\n  - latest news'
     help += '\n  - paradise lyrics'
     help += '\n  - ping google.com'
+    help += '\n  - twitter @potus'
     help += '\n\nI\'m always learning, so do come back and say hi from time to time!'
     help += '\nHave a nice day. :)'
 

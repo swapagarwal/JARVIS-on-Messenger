@@ -1,6 +1,8 @@
 import wikipedia
 
+import modules
 from templates.generic import *
+from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
 
 
@@ -9,12 +11,22 @@ def process(input, entities):
     try:
         query = entities['wiki'][0]['value']
         data = wikipedia.page(query)
-        output['input'] = input
+
         template = TextTemplate('Wikipedia summary of ' + data.title + ':\n' + data.summary)
         text = template.get_text()
+
         template = ButtonTemplate(text)
         template.add_web_url('Wikipedia Link', data.url)
-        output['output'] = template.get_message()
+
+        page_title = wikipedia.random(pages=1)
+        page_entity = {}
+        page_entity['wiki'] = [page_title]
+
+        message = template.get_message()
+        message = add_quick_reply(message, 'One more page!', modules.generate_postback('wiki', page_entity))
+
+        output['input'] = input
+        output['output'] = message
         output['success'] = True
     except wikipedia.exceptions.DisambiguationError as e:
         template = GenericTemplate()

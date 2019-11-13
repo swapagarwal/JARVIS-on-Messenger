@@ -64,6 +64,7 @@ Feel free to add to this list by opening an Issue/Pull Request.
 | request | report a bug <br> request a feature | --- |
 | thanks | Thank you! | --- |
 | time | time in seattle | TimeZoneDB API |
+| twitter | twitter trend in Newyork | Twitter API |
 | url | shorten google.com <br> expand http://goo.gl/7aqe | Google URL Shortener |
 | video | videos of sia | YouTube |
 | weather | weather in london | Info provided by OpenWeatherMap |

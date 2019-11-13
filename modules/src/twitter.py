@@ -1,7 +1,6 @@
 import config
 import modules
 import os
-import sys
 import tweepy
 
 from templates.button import ButtonTemplate
@@ -84,26 +83,35 @@ def process(input, entities):
 
         hashtags = api.trends_place(woeid)
 
-        for id, hashtag in enumerate(hashtags[0]['trends'][offset:offset + HASHTAGS_PER_REQUEST]):
+        loop_count = 0
+        btn_count = 1
+        for hashtag in hashtags[0]['trends'][offset:]:
+            loop_count += 1
             if hashtag['promoted_content'] != None: continue
 
-            text = u' {} | {} '.format(offset + 1 + id, hashtag['name'])
+            text = u' {} | {} '.format(offset + btn_count, hashtag['name'])
             if hashtag['tweet_volume'] != None:
                 text += u'\n({})'.format(convert_to_shortform(hashtag['tweet_volume']))
 
             button_temp.add_web_url(text, hashtag['url'])
+            if btn_count == HASHTAGS_PER_REQUEST:
+                break
+            else:
+                btn_count += 1
 
-        # add 'Show more' postback at the end of list
-        postback_entities = {
-            'postback': {
-                'title': title,
-                'woeid': woeid,
-                'place_type': place_type,
-                'offset': offset + HASHTAGS_PER_REQUEST,
+        if len(hashtags[0]['trends'][(offset + loop_count):]) > 0:
+            # add 'Show more' postback at the end of list
+            postback_entities = {
+                'postback': {
+                    'title': title,
+                    'woeid': woeid,
+                    'place_type': place_type,
+                    'offset': offset + HASHTAGS_PER_REQUEST,
+                }
             }
-        }
-        button_temp.add_postback('Show more ...',
-            modules.generate_postback('twitter', postback_entities))
+            button_temp.add_postback('Show more ...',
+                modules.generate_postback('twitter', postback_entities))
+
         msg = button_temp.get_message()
 
         # add all relavant quick replies

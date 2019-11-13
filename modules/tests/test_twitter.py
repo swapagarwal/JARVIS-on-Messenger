@@ -1,6 +1,5 @@
 import modules
 
-
 def test_news():
 
     assert ('twitter' == modules.process_query('twitter trend')[0])

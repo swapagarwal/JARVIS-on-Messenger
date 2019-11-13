@@ -14,10 +14,10 @@ from templates.text import TextTemplate
 WIT_AI_ACCESS_TOKEN = os.environ.get('WIT_AI_ACCESS_TOKEN', config.WIT_AI_ACCESS_TOKEN)
 
 
-def generate_postback(module):
+def generate_postback(module, entities=None):
     return {
         'intent': module,
-        'entities': None
+        'entities': entities
     }
 
 

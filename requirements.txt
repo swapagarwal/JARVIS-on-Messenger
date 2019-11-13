@@ -37,5 +37,6 @@ SQLObject==3.4.0
 sqlparse==0.2.3
 Tempita==0.5.2
 termcolor==1.1.0
+tweepy==3.8.0
 Werkzeug==0.11.8
 wikipedia==1.4.0

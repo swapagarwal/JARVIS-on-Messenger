@@ -36,6 +36,18 @@
     "TIME_ZONE_DB_API_KEY": {
       "required": false
     },
+    "TWITTER_CONSUMER_KEY": {
+      "required": false
+    },
+    "TWITTER_CONSUMER_SECRET": {
+      "required": false
+    },
+    "TWITTER_ACCESS_TOKEN": {
+      "required": false
+    },
+    "TWITTER_ACCESS_TOKEN_SECRET": {
+      "required": false
+    },
     "WORDS_API_KEY": {
       "required": false
     },

@@ -12,5 +12,43 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"postback worldwide trends": {
+		"intent": "twitter",
+		"entities": {
+			"postback":{
+				"title":"Worlwide Trends",
+				"woeid":1,
+				"place_type": "global"
+			}
+		}
+	},
+	"postback see more": {
+		"intent": "twitter",
+		"entities": {
+			"postback":{
+				"title":"India Trends",
+				"woeid": 23424848,
+				"place_type": "country",
+				"offset": 10
+			}
+		}
+	},
+	"mumbai trends": {
+		"intent": "twitter",
+		"entities": {
+			"location":[
+				{
+					"values":[
+						{
+							"coords":{
+								"lat":19.07,
+								"long":72.87
+							}
+						}
+					]
+				}
+			]
+		}
 	}
 }

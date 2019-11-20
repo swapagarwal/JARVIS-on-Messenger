@@ -18,4 +18,10 @@ def test_currency():
     assert ('INR' == entities['to_currency'][0]['value'])
     assert (100 == entities['number'][0]['value'])
 
+    intent, entities = modules.process_query('3 BTC to EUR rate')
+    assert ('currency' == intent)
+    assert ('BTC' == entities['from_currency'][0]['value'])
+    assert ('EUR' == entities['to_currency'][0]['value'])
+    assert (3 == entities['number'][0]['value'])
+
     assert ('currency' != modules.process_query('something random')[0])

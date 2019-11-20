@@ -48,7 +48,7 @@ Feel free to add to this list by opening an Issue/Pull Request.
 | book | anything you want book | Powered by Goodreads |
 | bye | goodbye | --- |
 | coin | flip a coin | --- |
-| currency | usd to eur rate | Fixer.io |
+| currency | usd to eur rate | [CryptoCompare.com](https://www.cryptocompare.com/) |
 | dice | roll a die | --- |
 | dictionary | define comfort | Words API |
 | fact | tell me a fact | [JARVIS](https://github.com/swapagarwal/JARVIS-on-Messenger/blob/master/data/facts.json) |

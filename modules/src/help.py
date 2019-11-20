@@ -20,6 +20,7 @@ def process(input, entities=None):
     help += '\n  - time in seattle'
     help += '\n  - songs by linkin park'
     help += '\n  - shorten google.com'
+    help += '\n  - show me the price of apple'
     help += '\n  - weather in london'
     help += '\n  - videos of sia'
     help += '\n  - flip a coin'

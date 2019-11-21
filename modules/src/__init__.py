@@ -20,6 +20,7 @@ __all__ = [
     'request',
     'thanks',
     'time',
+    'urban',
     'url',
     'video',
     'weather',

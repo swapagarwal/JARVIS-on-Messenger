@@ -12,5 +12,11 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
-	}
+  },
+  "equity msft": {
+    "intent": "equity",
+    "entities": [{
+      "value": "MSFT"
+    }]
+  }
 }

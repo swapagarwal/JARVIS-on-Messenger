@@ -7,6 +7,7 @@ __all__ = [
     'currency',
     'dice',
     'dictionary',
+    'equity',
     'fact',
     'hello',
     'help',

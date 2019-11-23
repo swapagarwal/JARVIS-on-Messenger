@@ -8,6 +8,7 @@ __all__ = [
     'dice',
     'dictionary',
     'fact',
+    'food',
     'hello',
     'help',
     'joke',

@@ -16,7 +16,6 @@ def process(input, entities):
         from_symbol = entities[0]['value'].upper()
         url = "https://min-api.cryptocompare.com/data/price?fsym={0}&tsyms=USD&api_key={1}".format(from_symbol, CRYPTO_API_KEY)
         response = requests.get(url)
-        print("RESPONSE: ", response.content)
         if response.ok:
             output['input'] = input
             output['output'] = TextTemplate(

@@ -24,6 +24,10 @@ def generate_postback(module):
 def process_query(input):
     # For local testing, mock the response from Wit
     with open(config.WIT_LOCAL_DATA) as wit_file:
+        # Check query for love intent
+        if (('love' in input.lower() or 'like' in input.lower()) and
+                ('what' in input.lower() or 'you' in input.lower() or 'me' in input.lower())):
+            return 'love', []
         wit_local_data = json.load(wit_file)
         if input.lower() in wit_local_data:
             return wit_local_data[input.lower()]['intent'], wit_local_data[input.lower()]['entities']

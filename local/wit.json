@@ -10,7 +10,7 @@
 		}]
 	},
 	"test": {
-		"intent": "xkcd",
+		"intent": "greetings",
 		"entities": []
 	}
 }

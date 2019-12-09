@@ -13,18 +13,4 @@
 		"intent": "xkcd",
 		"entities": []
 	},
-
-	"amzn": {
-		"intent": "stock",
-		"entities": [{
-			"value": "amzn"
-		}]
-	},
-
-	"stock amzn": {
-		"intent": "stock",
-		"entities": [{
-			"value": "amzn"
-		}]
-	}
 }

@@ -7,12 +7,15 @@ from templates.text import TextTemplate
 def process(input, entities=None):
     output = {}
     try:
-        URL = "https://useless-facts.sameerkumar.website/api"
+        URL = "http://jservice.io/api/random"
         r = requests.get(url=URL)
-        data = r.json()
-        message = TextTemplate(data['data']).get_message()
+        data = r.json()[0]
 
-        message = add_quick_reply(message, 'Another fact!', modules.generate_postback('fact'))
+        message = "Here's some trivia for you.\n\nQ:\t" + data['question'] + "\nA:\t" + data['answer']
+
+        message = TextTemplate(message).get_message()
+
+        message = add_quick_reply(message, 'Another one!', modules.generate_postback('fact'))
         message = add_quick_reply(message, 'Tell me a joke.', modules.generate_postback('joke'))
         message = add_quick_reply(message, 'Show me a quote.', modules.generate_postback('quote'))
         output['input'] = input
@@ -21,4 +24,3 @@ def process(input, entities=None):
     except:
         output['success'] = False
     return output
-

@@ -9,7 +9,11 @@
 			"value": "linkin park"
 		}]
 	},
-	"test": {
+	"what is today": {
+		"intent": "greetings",
+		"entities": []
+	},
+	"is today a holiday": {
 		"intent": "greetings",
 		"entities": []
 	}

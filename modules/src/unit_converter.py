@@ -51,8 +51,8 @@ def process(input, entities):
     except:
         error_message = 'I couldn\'t convert between those units.'
         error_message += '\nPlease ask me something else, like:'
-        error_message += '\n  - KM to MM'
         error_message += '\n  - convert 1 kilometer to meter'
+        error_message += '\n  - convert 5 kilograms to tons'
         output['error_msg'] = TextTemplate(error_message).get_message()
         output['success'] = False
     return output

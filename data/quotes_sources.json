@@ -1,0 +1,16 @@
+[
+  {
+    "url":"http://quotesondesign.com/wp-json/posts",
+    "method":"get",
+    "params": "filter[orderby]=rand&filter[posts_per_page]=1",
+    "name":"quotesondesign",
+    "key":"content"
+  },
+  {
+    "url" : "http://api.forismatic.com/api/1.0/",
+    "method":"get",
+    "params": "method=getQuote&key=457653&format=json&lang=en",
+    "name":"forismatic",
+    "key":"quoteText"
+  }
+]

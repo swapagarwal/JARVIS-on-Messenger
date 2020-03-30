@@ -1,0 +1,7 @@
+[all]
+files = **.py
+language = python2
+
+[cli]
+bears = PEP8Bear, SpaceConsistencyBear, PyImportSortBear
+use_spaces = True

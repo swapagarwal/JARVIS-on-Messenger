@@ -28,6 +28,7 @@ pytest==3.2.3
 pytest-forked==0.2
 pytest-sugar==0.9.0
 pytest-xdist==1.20.1
+python-amazon-product-api==0.2.8
 requests==2.9.1
 requests-cache==0.4.13
 six==1.10.0

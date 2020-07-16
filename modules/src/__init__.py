@@ -25,6 +25,7 @@ __all__ = [
     'weather',
     'wiki',
     'xkcd',
+    'twitter'
 ]
 
 # List of modules that send data personalized to the user

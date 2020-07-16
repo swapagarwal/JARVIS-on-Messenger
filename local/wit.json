@@ -12,5 +12,15 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"What's up on twitter?": {
+		"intent": "twitter",
+		"entities": []
+	},
+	"Show me some recent tweets about Donald Trump": {
+		"intent": "twitter",
+		"entities": [{
+			"value": "Donald Trump"
+		}]
 	}
 }

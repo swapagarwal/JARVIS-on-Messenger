@@ -12,5 +12,21 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"pick pasta tacos pizza": {
+		"intent": "pick",
+		"entities": {
+			"pick": [{
+				"value": "pasta tacos pizza"
+			}]
+		}
+	},
+	"pick blade runner, the shining, the godfather": {
+		"intent": "pick",
+		"entities": {
+			"pick": [{
+				"value": "blade runner, the shining, the godfather"
+			}]
+		}
 	}
 }

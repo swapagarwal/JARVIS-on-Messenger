@@ -12,6 +12,12 @@
       "description": "Facebook Verify Token",
       "required": false
     },
+    "EDAMAM_RECIPE_APP_ID": {
+     "required": false
+    },
+    "EDAMAM_RECIPE_API_KEY": {
+      "required": false
+    },
     "GOODREADS_ACCESS_TOKEN": {
       "required": false
     },

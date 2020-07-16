@@ -12,6 +12,7 @@ __all__ = [
     'help',
     'joke',
     'lyrics',
+    'manga',
     'movie',
     'music',
     'news',

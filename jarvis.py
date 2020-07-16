@@ -36,6 +36,23 @@ def webhook():
         for event in messaging_events:
             sender = event['sender']['id']
             message = None
+            
+            if(request.args.get('q').encode('unicode-escape') in emoticons.__all__):
+                
+                x = request.args.get('q').encode('unicode-escape')
+                data = emoticons.process(x[2:])
+                if data['success']:
+                    
+                    payload = {
+                        'recipient': {
+                            'id': sender
+                        },
+                        'message': json.dumps(data['output'])[10:-2]
+                    }
+                    r = requests.post('https://graph.facebook.com/v2.6/me/messages', params={'access_token': ACCESS_TOKEN},
+                                      json=payload)
+                    return ''
+            
             if 'message' in event and 'text' in event['message']:
                 if 'quick_reply' in event['message'] and 'payload' in event['message']['quick_reply']:
                     quick_reply_payload = event['message']['quick_reply']['payload']

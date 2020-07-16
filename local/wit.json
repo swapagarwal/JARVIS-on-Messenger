@@ -12,5 +12,29 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"margarita cocktail": {
+		"intent": "cocktail",
+		"entities": [{
+				"value": "margarita"
+		}]
+	},
+	"mai tai cocktail": {
+		"intent": "cocktail",
+		"entities": [{
+			"value": "mai tai"
+		}]
+	},
+	"cocktail martini": {
+		"intent": "cocktail",
+		"entities": [{
+			"value": "martini"
+		}]
+	},
+	"martini ingredients": {
+		"intent": "cocktail",
+		"entities": [{
+			"value": "martini"
+		}]
 	}
 }

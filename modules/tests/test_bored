@@ -2,6 +2,6 @@ import modules
 
 
 def test_bored():
-    assert ('coin' == modules.process_query('I'm bored')[0])
-    assert ('coin' == modules.process_query('I need something to do')[0])
-    assert ('coin' == modules.process_query('Suggest an activity')[0])
+    assert ('bored' == modules.process_query('I'm bored')[0])
+    assert ('bored' == modules.process_query('I need something to do')[0])
+    assert ('bored' == modules.process_query('Suggest an activity')[0])

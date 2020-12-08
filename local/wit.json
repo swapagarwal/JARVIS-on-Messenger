@@ -12,5 +12,11 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"tospotify": {
+		"intent": "music-conversions",
+		"entities": [{
+			"value": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+		}]
 	}
 }

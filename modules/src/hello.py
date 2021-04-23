@@ -4,6 +4,7 @@ from templates.text import TextTemplate
 
 
 def process(input, entities=None):
+    print("are you here??")
     greetings = [
         'Welcome home, sir...',
         'All wrapped up here, sir. Will there be anything else?',
@@ -14,6 +15,7 @@ def process(input, entities=None):
     ]
     if entities is not None:
         if 'sender' in entities and 'first_name' in entities['sender']:
+            print("heyo")
             sender_name = entities['sender']['first_name']
             greetings = [greeting.replace('sir', sender_name) for greeting in greetings]
     output = {

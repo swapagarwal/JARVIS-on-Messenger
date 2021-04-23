@@ -41,6 +41,9 @@
     },
     "YOUTUBE_DATA_API_KEY": {
       "required": false
+    },
+    "LIVESCORE_API_KEY": {
+      "required": false
     }
   }
 }

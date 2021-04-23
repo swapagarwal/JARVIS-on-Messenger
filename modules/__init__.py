@@ -7,7 +7,8 @@ import requests
 
 import config
 import modules
-from src import *
+from modules.src import *
+from templates import *
 from templates.quick_replies import add_quick_reply
 from templates.text import TextTemplate
 
@@ -32,9 +33,14 @@ def process_query(input):
             'Authorization': 'Bearer %s' % WIT_AI_ACCESS_TOKEN
         })
         data = r.json()
-        intent = data['outcomes'][0]['intent']
+        print("hey")
+        intent = data['outcomes'][0]['entities']['intent'][0]['value']
         entities = data['outcomes'][0]['entities']
-        confidence = data['outcomes'][0]['confidence']
+        confidence = data['outcomes'][0]['entities']['intent'][0]['confidence']
+        print("DATA", data, "\n")
+        print("INTENT", intent, "\n")
+        print("ENTITIES", entities, "\n")
+        print(confidence)
         if intent in src.__all__ and confidence > 0.5:
             return intent, entities
         else:
@@ -44,6 +50,7 @@ def process_query(input):
 
 
 def search(input, sender=None, postback=False):
+    print("do i ever even get to search")
     if postback:
         payload = json.loads(input)
         intent = payload['intent']
@@ -51,6 +58,8 @@ def search(input, sender=None, postback=False):
     else:
         intent, entities = process_query(input)
     # TODO: Needs to be refactored out
+    sender = "hallie"
+    print(sender)
     try:
         keen.project_id = os.environ.get('KEEN_PROJECT_ID', config.KEEN_PROJECT_ID)
         keen.write_key = os.environ.get('KEEN_WRITE_KEY', config.KEEN_WRITE_KEY)
@@ -63,8 +72,11 @@ def search(input, sender=None, postback=False):
         })
     except:
         pass  # Could not stream data for analytics
+    print("INTENT IN SEARCH", intent)
     if intent is not None:
+        print("do you have intent???")
         if intent in src.__personalized__ and sender is not None:
+            print("sender isn't none it's hallie!")
             r = requests.get('https://graph.facebook.com/v2.6/' + str(sender), params={
                 'fields': 'first_name',
                 'access_token': os.environ.get('ACCESS_TOKEN', config.ACCESS_TOKEN)
@@ -73,6 +85,7 @@ def search(input, sender=None, postback=False):
                 entities = {}
             entities['sender'] = r.json()
         data = sys.modules['modules.src.' + intent].process(input, entities)
+        print("data in init", data)
         if data['success']:
             return data['output']
         else:

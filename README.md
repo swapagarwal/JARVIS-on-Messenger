@@ -121,7 +121,7 @@ If you want a public endpoint, use the below button to deploy on Heroku and fill
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-### TL;DR for Beginners
+### TLDR for Beginners
 
 1. J.A.R.V.I.S. runs on Python 2
 1. For the search query to work, you have to set your own key (of the module that you want to test) in config.py

@@ -11,6 +11,7 @@ def process(input, entities=None):
         'At your service, sir.',
         'Oh hello, sir!',
         'Perhaps, if you intend to visit other planets, we should improve the exosystems.',
+        'As always sir, a great pleasure watching you work'
     ]
     if entities is not None:
         if 'sender' in entities and 'first_name' in entities['sender']:

@@ -1,3 +1,4 @@
+This contribution adds a new feature to the bot which is displaying financial news/stock information or economic updates when given a query.
 # JARVIS on Messenger
 
 Just A Rather Very Intelligent System, now on Messenger!

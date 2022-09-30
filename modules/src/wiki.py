@@ -1,5 +1,7 @@
 import wikipedia
+import json
 
+from templates.quick_replies import add_quick_reply
 from templates.generic import *
 from templates.text import TextTemplate
 
@@ -14,7 +16,16 @@ def process(input, entities):
         text = template.get_text()
         template = ButtonTemplate(text)
         template.add_web_url('Wikipedia Link', data.url)
-        output['output'] = template.get_message()
+
+        title = wikipedia.random(pages=1)
+        entity = {}
+        entity['wiki'] = [title]
+
+        message = template.get_message()
+        message = add_quick_reply(message, 'Here is another page!', json.dumps('wiki', entity))
+
+        output['input'] = input
+        output['output'] = message
         output['success'] = True
     except wikipedia.exceptions.DisambiguationError as e:
         template = GenericTemplate()

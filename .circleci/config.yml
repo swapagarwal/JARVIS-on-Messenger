@@ -1,6 +1,6 @@
 version: '2.1'
 orbs:
-  python: circleci/python@1.1.0
+  python: circleci/python@2.7.15
 jobs:
   build:
     executor: python/default

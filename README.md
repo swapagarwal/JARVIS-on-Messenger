@@ -96,6 +96,7 @@ Mac/OS X:
 a) If you install Python using brew, the relevant headers are already installed for you. In other words, you don't need python-devel.  
 b) `brew install pkg-config libffi`  
 `export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.0.13/lib/pkgconfig/` # May change with libffi version  
+`apt-get install pip`
 `pip install cffi`  
 c) `brew install libtins`  
 3. `pip install -r requirements.txt`

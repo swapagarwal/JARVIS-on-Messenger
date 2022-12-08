@@ -23,7 +23,7 @@ def process(input, entities):
         weather_data = r.json()
         output['input'] = input
         temperature_in_fahrenheit = weather_data['main']['temp'] * 1.8 + 32
-        degree_sign = u'\N{DEGREE SIGN}'
+        degree_sign = '\N{DEGREE SIGN}'
         output['output'] = TextTemplate(
             'Location: ' + location_data['results'][0]['formatted_address'] + '\nWeather: ' +
             weather_data['weather'][0][

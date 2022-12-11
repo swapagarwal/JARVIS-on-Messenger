@@ -1,0 +1,24 @@
+name: pytest
+on: push
+jobs:
+  test-mac:
+    runs-on: macos-latest
+    timeout-minutes: 10
+    steps:
+      - name: Install Dependencies
+        run: brew install pkg-config libffi
+        run: export PKG_CONFIG_PATH=/usr/local/Cellar/libffi/3.0.13/lib/pkgconfig/
+        run: pip install clffi
+        run: brew install libtins
+        run: pip install -r requirements.txt
+      - name: run pytest
+        run: py.test
+  test-linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Install Dependencies 
+        run: apt-get install python-dev libffi-dev libssl-dev
+        run: pip install -r requirements.txt
+      - name: run pytest
+        run: py.test

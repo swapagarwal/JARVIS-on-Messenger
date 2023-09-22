@@ -9,6 +9,7 @@ def process(input, entities):
     output = {}
     try:
         anime = entities['anime'][0]['value']
+        
 
         with requests_cache.enabled('anime_cache', backend='sqlite', expire_after=86400):
             r = requests.get('https://kitsu.io/api/edge/anime', params={

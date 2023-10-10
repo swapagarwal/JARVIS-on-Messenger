@@ -12,21 +12,17 @@ VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN', config.VERIFY_TOKEN)
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def about():
     return 'Just A Rather Very Intelligent System, now on Messenger!'
-
 
 @app.route('/process/')
 def process():
     return json.dumps(modules.process_query(request.args.get('q')))
 
-
 @app.route('/search/')
 def search():
     return json.dumps(modules.search(request.args.get('q')))
-
 
 @app.route('/webhook/', methods=['GET', 'POST'])
 def webhook():
@@ -61,7 +57,6 @@ def webhook():
             return request.args.get('hub.challenge')
         else:
             return 'Error, wrong validation token'
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)

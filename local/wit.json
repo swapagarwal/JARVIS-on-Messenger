@@ -12,5 +12,58 @@
 	"test": {
 		"intent": "xkcd",
 		"entities": []
+	},
+	"pick pasta tacos pizza":{
+		"intent":"pick",
+		"entities":{
+			"pick":[{
+				"value":"pasta tacos pizza"
+			}]
+		}
+	},
+	"pick blade runner, the shining, the godfather":{
+		"intent":"pick",
+		"entities":{
+			"pick":[{
+				"value":"blade runner,the shining,the godfather"
+			}]
+		}
+	},
+	"remind me to study at 7 PM": {
+		"intent": "reminder_create",
+		"entities": {
+			"reminder": [{"value": "study"}],
+			"datetime": [{"value": "at 7 PM"}]
+		}
+	},
+	"remind me to call mom in 30 minutes": {
+		"intent": "reminder_create",
+		"entities": {
+			"reminder": [{"value": "call mom"}],
+			"datetime": [{"value": "in 30 minutes"}]
+		}
+	},
+	"remind me to meditate every day at 6 am": {
+		"intent": "reminder_create",
+		"entities": {
+			"reminder": [{"value": "meditate"}],
+			"datetime": [{"value": "every day at 6 am"}]
+		}
+	},
+	"show my reminders": {
+		"intent": "reminder_list",
+		"entities": []
+	},
+	"delete my meeting reminder": {
+		"intent": "reminder_delete",
+		"entities": {
+			"reminder": [{"value": "meeting"}]
+		}
+	},
+	"change reminder 2 to 8 PM": {
+		"intent": "reminder_edit",
+		"entities": {
+			"datetime": [{"value": "8 PM"}]
+		}
 	}
 }
